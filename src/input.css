@@ -1,1 +1,44 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+@layer base {
+    body {
+        font-family: var(--font-sans);
+        color: var(--color-text-main);
+        background-color: var(--color-brand-bg);
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+@theme {
+    --font-sans: 'Inter', sans-serif;
+
+    /* Core Surfaces */
+    --color-brand-bg: #0f172a; /* Main dark background (slate-900) */
+    --color-brand-surface: #1e293b; /* Cards & container tiles (slate-800) */
+    --color-brand-input: #020617; /* Input fields & dark inset surfaces (slate-950) */
+
+    /* Typography */
+    --color-text-main: #f8fafc; /* Primary text (slate-50) */
+    --color-text-muted: #94a3b8; /* Muted text (slate-400) */
+
+    /* Neutral Borders & Rings */
+    --color-hairline: #334155; /* Default subtle border (slate-700) */
+    --color-hairline-hover: #475569; /* Elevated hover border (slate-600) */
+
+    /* Accents & Glows */
+    --color-accent-sky: #38bdf8; /* Primary text/icons (sky-400) */
+    --color-accent-sky-glow: #0ea5e9; /* Hover borders & shadow glows (sky-500) */
+    --color-accent-cyan: #a5f3fc; /* Gradient clip (cyan-200) */
+}
