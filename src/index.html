@@ -12,35 +12,35 @@
     <title>AtmoSphere | Weather Forecast</title>
 </head>
 <body>
-    <header class="sticky top-0 z-50 flex justify-between items-center w-full h-16 px-4 gap-2 bg-brand-bg/80 backdrop-blur-md border-b border-b-hairline/60">
+    <header class="sticky top-0 z-50 flex justify-between items-center w-full h-16 px-4 gap-2 bg-brand-bg/80 backdrop-blur-md border-b border-b-hairline/60 sm:h-20 sm:px-6 sm:gap-4">
         <a href="#" class="flex items-center gap-2 group active:opacity-80 transition-opacity">
-            <div class="hidden">
-                <img src="./images/weather-svgrepo-com (1).svg" alt="AtmoSphere Logo" class="w-8 h-8">
+            <div class="hidden sm:flex justify-center items-center shrink-0 w-12 h-12 bg-brand-surface/80 border border-hairline/60 rounded-xl ring-1 ring-white/10 ring-inset shadow-sm shadow-accent-sky-glow/15 md:w-14 md:h-14 group-hover:border-hairline-hover group-hover:shadow-accent-sky-glow/30 transition-all duration-300">
+                <img src="./images/weather-svgrepo-com (1).svg" alt="AtmoSphere Logo" class="w-9 h-9 mt-2 object-contain md:w-10 md:h-10">
             </div>
 
-            <h1 class="font-medium text-2xl tracking-tight">
+            <h1 class="font-medium text-2xl tracking-tight sm:text-3xl md:text-4xl">
                 Atmo<span class="font-black text-transparent bg-linear-to-r from-accent-sky to-accent-cyan bg-clip-text group-hover:brightness-110 transition-all duration-300">Sphere</span>
             </h1>
         </a>
 
-        <div class="flex items-center gap-2 w-auto">
+        <div class="flex items-center gap-2 w-auto md:gap-3">
             <!-- Search Form -->
-            <form class="flex-1 relative w-full max-w-44">
+            <form class="flex-1 relative w-full max-w-44 sm:max-w-xs">
                 <label for="search-input" class="sr-only">Search for a city</label>
-                <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-10 pl-9 pr-9 text-xs text-text-main placeholder:text-text-muted bg-brand-input/60 border border-hairline/60 rounded-xl">
+                <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-10 pl-9 pr-9 text-xs text-text-main placeholder:text-text-muted bg-brand-input/60 border border-hairline/60 rounded-xl sm:h-11 sm:pl-10 sm:pr-10 sm:text-sm">
 
                 <!-- Search Icon -->
-                <i class="fa-solid fa-magnifying-glass absolute z-10 left-3 top-1/2 -translate-y-1/2 text-xs text-text-muted pointer-events-none"></i>
+                <i class="fa-solid fa-magnifying-glass absolute z-10 left-3 top-1/2 -translate-y-1/2 text-xs text-text-muted pointer-events-none sm:left-3.5 sm:text-sm"></i>
 
                 <!-- Search Button -->
-                <button id="search-btn" type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 flex justify-center items-center w-7 h-7 text-text-muted rounded-lg cursor-pointer">
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                <button id="search-btn" type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 flex justify-center items-center w-7 h-7 text-text-muted rounded-lg cursor-pointer sm:right-2">
+                    <i class="fa-solid fa-arrow-right text-xs sm:text-sm"></i>
                 </button>
             </form>
 
             <!-- Current Location Button -->
-            <button id="cur-loc-btn" type="button" title="Use current location" class="flex justify-center items-center shrink-0 w-10 h-10 text-text-muted bg-brand-surface border border-hairline/60 rounded-xl shadow-sm shadow-accent-sky/10 ring-1 ring-white/10 ring-inset cursor-pointer group">
-                <i class="fa-solid fa-location-crosshairs text-sm"></i>
+            <button id="cur-loc-btn" type="button" title="Use current location" class="flex justify-center items-center shrink-0 w-10 h-10 text-text-muted bg-brand-surface border border-hairline/60 rounded-xl shadow-sm shadow-accent-sky/10 ring-1 ring-white/10 ring-inset cursor-pointer group sm:w-11 sm:h-11">
+                <i class="fa-solid fa-location-crosshairs text-sm sm:text-base"></i>
             </button>
         </div>
     </header>
