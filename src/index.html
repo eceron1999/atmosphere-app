@@ -27,20 +27,20 @@
             <!-- Search Form -->
             <form class="flex-1 relative w-full max-w-44 sm:max-w-xs">
                 <label for="search-input" class="sr-only">Search for a city</label>
-                <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-10 pl-9 pr-9 text-xs text-text-main placeholder:text-text-muted bg-brand-input/60 border border-hairline/60 rounded-xl sm:h-11 sm:pl-10 sm:pr-10 sm:text-sm">
+                <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-10 pl-9 pr-9 text-xs text-text-main placeholder:text-text-muted bg-brand-input/60 border border-hairline/60 rounded-xl sm:h-11 sm:pl-10 sm:pr-10 sm:text-sm hover:border-hairline-hover focus:outline-none focus:border-accent-sky focus:ring-2 focus:ring-accent-sky/20 focus:transition-all duration-300">
 
                 <!-- Search Icon -->
                 <i class="fa-solid fa-magnifying-glass absolute z-10 left-3 top-1/2 -translate-y-1/2 text-xs text-text-muted pointer-events-none sm:left-3.5 sm:text-sm"></i>
 
                 <!-- Search Button -->
-                <button id="search-btn" type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 flex justify-center items-center w-7 h-7 text-text-muted rounded-lg cursor-pointer sm:right-2">
+                <button id="search-btn" type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 flex justify-center items-center w-7 h-7 text-text-muted rounded-lg cursor-pointer sm:right-2 hover:bg-brand-surface/60 hover:text-accent-sky active:scale-95 active:text-accent-sky transition-all duration-200">
                     <i class="fa-solid fa-arrow-right text-xs sm:text-sm"></i>
                 </button>
             </form>
 
             <!-- Current Location Button -->
-            <button id="cur-loc-btn" type="button" title="Use current location" class="flex justify-center items-center shrink-0 w-10 h-10 text-text-muted bg-brand-surface border border-hairline/60 rounded-xl shadow-sm shadow-accent-sky/10 ring-1 ring-white/10 ring-inset cursor-pointer group sm:w-11 sm:h-11">
-                <i class="fa-solid fa-location-crosshairs text-sm sm:text-base"></i>
+            <button id="cur-loc-btn" type="button" title="Use current location" class="flex justify-center items-center shrink-0 w-10 h-10 text-text-muted bg-brand-surface border border-hairline/60 rounded-xl shadow-sm shadow-accent-sky/10 ring-1 ring-white/10 ring-inset cursor-pointer group sm:w-11 sm:h-11 hover:bg-brand-surface/90 hover:text-accent-sky hover:border-accent-sky-glow/50 hover:shadow-md hover:shadow-accent-sky-glow/20 active:scale-95 active:text-accent-sky active:border-accent-sky transition-all duration-300">
+                <i class="fa-solid fa-location-crosshairs text-sm sm:text-base group-hover:scale-110 transition-transform duration-300"></i>
             </button>
         </div>
     </header>
