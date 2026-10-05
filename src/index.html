@@ -45,6 +45,65 @@
         </div>
     </header>
 
+    <main class="flex flex-col gap-8 p-4 max-w-7xl w-full mx-auto">
+        <!-- Weather Hero -->
+        <section class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl">
+            <div class="flex justify-between items-start">
+                <!-- Current Location -->
+                <div class="flex flex-col gap-1">
+                    <h2 id="current-location" class="text-2xl font-bold text-text-main">Raleigh, NC, US</h2>
+                    <p id="time-stamp" class="text-sm text-text-muted">As of 7:30 PM EDT &middot; Live</p>
+                </div>
+    
+                <!-- Temperature Toggle Button -->
+                 <div class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full">
+                    <button id="c-toggle-btn" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer">&deg;C</button>
+    
+                    <button id="f-toggle-btn" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer">&deg;F</button>
+                 </div>
+            </div>
+
+            <div class="flex flex-col gap-2 py-3">
+                <!-- Current Temperature -->
+                <div class="flex justify-center items-center gap-3">
+                    <span id="current-temp" class="text-7xl font-extrabold text-text-main">62&deg;</span>
+                    <i class="fa-solid fa-sun text-6xl text-accent-sky"></i>
+                </div>
+
+                <!-- Weather Condition -->
+                <div class="flex flex-col justify-center items-center gap-0.5">
+                    <p id="weather-condition" class="font-medium text-text-main">Sunny <span class="text-text-muted">&bull; Feels like 62&deg;</span></p>
+                    <p id="highs-lows" class="text-sm text-text-muted">High: <span class="font-semibold text-text-main">65&deg;</span> &bull; Low: <span class="font-semibold text-text-main">53&deg;</span></p>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-hairline pt-4">
+                <!-- Weather Details Grid -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
+                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-wind text-accent-sky"></i> Wind</h3>
+                        <p id="wind" class="font-bold text-text-main">12 <span class="text-xs text-text-muted">mph NNE</span></p>
+                    </div>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
+                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-droplet text-accent-sky"></i> Humidity</h3>
+                        <p id="humidity" class="font-bold text-text-main">68%</p>
+                    </div>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
+                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-sun text-accent-sky"></i> UV Index</h3>
+                        <div class="flex items-center gap-2">
+                            <p id="uv-index" class="font-bold text-text-main">0</p>
+                            <span class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Low</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
+                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-cloud-rain text-accent-sky"></i> Precipitation</h3>
+                        <p id="precipitation" class="font-bold text-text-main">15%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     <script src="./app.js"></script>
 </body>
 </html>
