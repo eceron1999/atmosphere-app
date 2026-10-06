@@ -47,11 +47,11 @@
 
     <main class="flex flex-col gap-8 p-4 max-w-7xl w-full mx-auto">
         <!-- Weather Hero -->
-        <section class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl">
+        <section class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
             <div class="flex justify-between items-start">
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
-                    <h2 id="current-location" class="text-2xl font-bold text-text-main">Raleigh, NC, US</h2>
+                    <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl">Raleigh, NC, US</h2>
                     <p id="time-stamp" class="text-sm text-text-muted">As of 7:30 PM EDT &middot; Live</p>
                 </div>
     
@@ -63,42 +63,57 @@
                  </div>
             </div>
 
-            <div class="flex flex-col gap-2 py-3">
+            <div class="flex flex-col gap-2 py-3 md:flex-row md:items-center md:justify-center md:gap-12">
                 <!-- Current Temperature -->
-                <div class="flex justify-center items-center gap-3">
-                    <span id="current-temp" class="text-7xl font-extrabold text-text-main">62&deg;</span>
-                    <i class="fa-solid fa-sun text-6xl text-accent-sky"></i>
+                <div class="flex justify-center items-center gap-3 md:gap-0">
+                    <span id="current-temp" class="text-7xl font-extrabold text-text-main sm:text-8xl">62&deg;</span>
+                    <!-- Mobile Icon -->
+                     <div class="md:hidden">
+                         <i class="fa-solid fa-sun text-6xl text-accent-sky sm:text-7xl"></i>
+                     </div>
                 </div>
 
-                <!-- Weather Condition -->
                 <div class="flex flex-col justify-center items-center gap-0.5">
-                    <p id="weather-condition" class="font-medium text-text-main">Sunny <span class="text-text-muted">&bull; Feels like 62&deg;</span></p>
-                    <p id="highs-lows" class="text-sm text-text-muted">High: <span class="font-semibold text-text-main">65&deg;</span> &bull; Low: <span class="font-semibold text-text-main">53&deg;</span></p>
+                    <!-- Desktop Icon -->
+                    <div class="hidden mb-3 md:block">
+                        <i class="fa-solid fa-sun mb-1 text-5xl text-accent-sky"></i>
+                    </div>
+
+                    <!-- Weather Condition -->
+                    <p id="weather-condition" class="font-medium text-center text-text-main">Sunny <span class="text-text-muted">&bull; Feels like 62&deg;</span></p>
+                    <p id="highs-lows" class="text-sm text-center text-text-muted">High: <span class="font-semibold text-text-main">65&deg;</span> &bull; Low: <span class="font-semibold text-text-main">53&deg;</span></p>
                 </div>
             </div>
 
             <!-- Divider -->
-            <div class="border-t border-hairline pt-4">
+            <div class="border-t border-hairline pt-4 md:pt-6">
                 <!-- Weather Details Grid -->
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
-                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-wind text-accent-sky"></i> Wind</h3>
-                        <p id="wind" class="font-bold text-text-main">12 <span class="text-xs text-text-muted">mph NNE</span></p>
+                <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    <!-- Wind Stat -->
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-wind text-accent-sky"></i> Wind</p>
+                        <p id="wind" class="font-bold text-text-main md:text-lg">12 <span class="text-xs text-text-muted md:text-sm">mph NNE</span></p>
                     </div>
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
-                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-droplet text-accent-sky"></i> Humidity</h3>
-                        <p id="humidity" class="font-bold text-text-main">68%</p>
+
+                    <!-- Humidity Stat -->
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-droplet text-accent-sky"></i> Humidity</p>
+                        <p id="humidity" class="font-bold text-text-main md:text-lg">68%</p>
                     </div>
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
-                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-sun text-accent-sky"></i> UV Index</h3>
+
+                    <!-- UV-Index Stat -->
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-sun text-accent-sky"></i> UV Index</p>
                         <div class="flex items-center gap-2">
-                            <p id="uv-index" class="font-bold text-text-main">0</p>
+                            <p id="uv-index" class="font-bold text-text-main md:text-lg">0</p>
                             <span class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Low</span>
                         </div>
                     </div>
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg">
-                        <h3 class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-cloud-rain text-accent-sky"></i> Precipitation</h3>
-                        <p id="precipitation" class="font-bold text-text-main">15%</p>
+
+                    <!-- Precipitation Stat -->
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-cloud-rain text-accent-sky"></i> Precipitation</p>
+                        <p id="precipitation" class="font-bold text-text-main md:text-lg">15%</p>
                     </div>
                 </div>
             </div>
