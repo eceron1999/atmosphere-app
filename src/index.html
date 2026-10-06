@@ -47,7 +47,7 @@
 
     <main class="flex flex-col gap-8 p-4 max-w-7xl w-full mx-auto">
         <!-- Weather Hero -->
-        <section class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+        <section aria-labelledby="current-location" class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
             <div class="flex justify-between items-start">
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
@@ -56,10 +56,10 @@
                 </div>
     
                 <!-- Temperature Toggle Button -->
-                 <div class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full">
-                    <button id="c-toggle-btn" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer">&deg;C</button>
+                 <div role="group" aria-label="Temperature unit selection" class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full">
+                    <button id="c-toggle-btn" type="button" aria-pressed="false" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer">&deg;C</button>
     
-                    <button id="f-toggle-btn" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer">&deg;F</button>
+                    <button id="f-toggle-btn" type="button" aria-pressed="true" aria-label="Fahrenheit, selected" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer">&deg;F</button>
                  </div>
             </div>
 
@@ -69,14 +69,14 @@
                     <span id="current-temp" class="text-7xl font-extrabold text-text-main sm:text-8xl">62&deg;</span>
                     <!-- Mobile Icon -->
                      <div class="md:hidden">
-                         <i class="fa-solid fa-sun text-6xl text-accent-sky sm:text-7xl"></i>
+                         <i aria-hidden="true" class="fa-solid fa-sun text-6xl text-accent-sky sm:text-7xl"></i>
                      </div>
                 </div>
 
                 <div class="flex flex-col justify-center items-center gap-0.5">
                     <!-- Desktop Icon -->
                     <div class="hidden mb-3 md:block">
-                        <i class="fa-solid fa-sun mb-1 text-5xl text-accent-sky"></i>
+                        <i aria-hidden="true" class="fa-solid fa-sun text-5xl text-accent-sky"></i>
                     </div>
 
                     <!-- Weather Condition -->
@@ -91,19 +91,19 @@
                 <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     <!-- Wind Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-wind text-accent-sky"></i> Wind</p>
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky"></i> Wind</p>
                         <p id="wind" class="font-bold text-text-main md:text-lg">12 <span class="text-xs text-text-muted md:text-sm">mph NNE</span></p>
                     </div>
 
                     <!-- Humidity Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-droplet text-accent-sky"></i> Humidity</p>
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i> Humidity</p>
                         <p id="humidity" class="font-bold text-text-main md:text-lg">68%</p>
                     </div>
 
                     <!-- UV-Index Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-sun text-accent-sky"></i> UV Index</p>
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky"></i> UV Index</p>
                         <div class="flex items-center gap-2">
                             <p id="uv-index" class="font-bold text-text-main md:text-lg">0</p>
                             <span class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Low</span>
@@ -112,7 +112,7 @@
 
                     <!-- Precipitation Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i class="fa-solid fa-cloud-rain text-accent-sky"></i> Precipitation</p>
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky"></i> Precipitation</p>
                         <p id="precipitation" class="font-bold text-text-main md:text-lg">15%</p>
                     </div>
                 </div>
