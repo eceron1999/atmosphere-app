@@ -127,7 +127,31 @@
             </h2>
 
             <ul class="flex flex-col gap-3">
+                <li class="flex items-center justify-between gap-3 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg">
+                    <!-- Day -->
+                    <p class="w-16 shrink-0 font-bold text-text-main">Today</p>
 
+                    <!-- Condition -->
+                    <p class="flex items-center gap-2 min-w-0">
+                        <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
+                        <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
+                    </p>
+
+                    <!-- Precipitation % -->
+                    <p class="flex items-center gap-1 text-xs text-text-muted">
+                        <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
+                        <span class="text-sm">10%</span>
+                    </p>
+
+                    <!-- High/Low Range -->
+                     <div class="flex items-center gap-2.5">
+                        <span class="font-medium text-sm text-text-muted">53&deg;</span>
+
+                        <div aria-hidden="true" class="w-20 h-2 bg-hairline rounded-full sm:w-28"></div>
+
+                        <span class="font-semibold text-sm text-text-main">65&deg;</span>
+                     </div>
+                </li>
             </ul>
         </section> 
     </main>
