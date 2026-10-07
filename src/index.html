@@ -51,15 +51,15 @@
             <div class="flex justify-between items-start">
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
-                    <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl">Raleigh, NC, US</h2>
+                    <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors">Raleigh, NC, US</h2>
                     <p id="time-stamp" class="text-sm text-text-muted">As of 7:30 PM EDT &middot; Live</p>
                 </div>
     
                 <!-- Temperature Toggle Button -->
-                 <div role="group" aria-label="Temperature unit selection" class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full">
-                    <button id="c-toggle-btn" type="button" aria-pressed="false" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer">&deg;C</button>
+                 <div role="group" aria-label="Temperature unit selection" class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full transition-all duration-200">
+                    <button id="c-toggle-btn" type="button" aria-pressed="false" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-text-main hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;C</button>
     
-                    <button id="f-toggle-btn" type="button" aria-pressed="true" aria-label="Fahrenheit, selected" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer">&deg;F</button>
+                    <button id="f-toggle-btn" type="button" aria-pressed="true" aria-label="Fahrenheit, selected" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;F</button>
                  </div>
             </div>
 
@@ -90,29 +90,29 @@
                 <!-- Weather Details Grid -->
                 <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     <!-- Wind Stat -->
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky"></i> Wind</p>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Wind</p>
                         <p id="wind" class="font-bold text-text-main md:text-lg">12 <span class="text-xs text-text-muted md:text-sm">mph NNE</span></p>
                     </div>
 
                     <!-- Humidity Stat -->
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i> Humidity</p>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Humidity</p>
                         <p id="humidity" class="font-bold text-text-main md:text-lg">68%</p>
                     </div>
 
                     <!-- UV-Index Stat -->
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky"></i> UV Index</p>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> UV Index</p>
                         <div class="flex items-center gap-2">
                             <p id="uv-index" class="font-bold text-text-main md:text-lg">0</p>
-                            <span class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full">Low</span>
+                            <span class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors duration-200">Low</span>
                         </div>
                     </div>
 
                     <!-- Precipitation Stat -->
-                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4">
-                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky"></i> Precipitation</p>
+                    <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Precipitation</p>
                         <p id="precipitation" class="font-bold text-text-main md:text-lg">15%</p>
                     </div>
                 </div>
