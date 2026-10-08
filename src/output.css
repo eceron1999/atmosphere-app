@@ -16,9 +16,13 @@
     --color-emerald-500: oklch(69.6% 0.17 162.48);
     --color-teal-400: oklch(77.7% 0.152 181.912);
     --color-cyan-500: oklch(71.5% 0.143 215.221);
+    --color-sky-200: oklch(90.1% 0.058 230.902);
     --color-sky-300: oklch(82.8% 0.111 230.318);
+    --color-sky-400: oklch(74.6% 0.16 232.661);
     --color-indigo-400: oklch(67.3% 0.182 276.935);
+    --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-rose-400: oklch(71.2% 0.194 13.428);
+    --color-slate-300: oklch(86.9% 0.022 252.894);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-xs: 20rem;
@@ -277,8 +281,17 @@
   .right-1\.5 {
     right: calc(var(--spacing) * 1.5);
   }
+  .right-\[0\%\] {
+    right: 0%;
+  }
   .right-\[20\%\] {
     right: 20%;
+  }
+  .right-\[50\%\] {
+    right: 50%;
+  }
+  .right-\[75\%\] {
+    right: 75%;
   }
   .bottom-0 {
     bottom: 0px;
@@ -289,11 +302,20 @@
   .left-3 {
     left: calc(var(--spacing) * 3);
   }
+  .left-\[0\%\] {
+    left: 0%;
+  }
+  .left-\[10\%\] {
+    left: 10%;
+  }
   .left-\[25\%\] {
     left: 25%;
   }
   .left-\[30\%\] {
     left: 30%;
+  }
+  .left-\[45\%\] {
+    left: 45%;
   }
   .left-\[50\%\] {
     left: 50%;
@@ -489,6 +511,33 @@
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-cols-\[3\.5rem_1fr_auto\] {
+    grid-template-columns: 3.5rem 1fr auto;
+  }
+  .grid-cols-\[3\.5rem_1fr_auto_auto\] {
+    grid-template-columns: 3.5rem 1fr auto auto;
+  }
+  .grid-cols-\[3\.5rem_3rem_1fr_auto\] {
+    grid-template-columns: 3.5rem 3rem 1fr auto;
+  }
+  .grid-cols-\[3\.5rem_auto_1fr_auto\] {
+    grid-template-columns: 3.5rem auto 1fr auto;
+  }
+  .grid-cols-\[3rem_1fr_auto\] {
+    grid-template-columns: 3rem 1fr auto;
+  }
+  .grid-cols-\[4rem_1fr_9rem\] {
+    grid-template-columns: 4rem 1fr 9rem;
+  }
+  .grid-cols-\[4rem_1fr_10rem\] {
+    grid-template-columns: 4rem 1fr 10rem;
+  }
+  .grid-cols-\[4rem_1fr_auto\] {
+    grid-template-columns: 4rem 1fr auto;
+  }
   .flex-col {
     flex-direction: column;
   }
@@ -536,6 +585,12 @@
   }
   .gap-8 {
     gap: calc(var(--spacing) * 8);
+  }
+  .justify-self-center {
+    justify-self: center;
+  }
+  .justify-self-end {
+    justify-self: flex-end;
   }
   .truncate {
     overflow: hidden;
@@ -755,6 +810,18 @@
     --tw-gradient-from: var(--color-cyan-500);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .from-emerald-400 {
+    --tw-gradient-from: var(--color-emerald-400);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-indigo-500 {
+    --tw-gradient-from: var(--color-indigo-500);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-sky-400 {
+    --tw-gradient-from: var(--color-sky-400);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   .from-teal-400 {
     --tw-gradient-from: var(--color-teal-400);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -786,6 +853,16 @@
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
+  .via-sky-400 {
+    --tw-gradient-via: var(--color-sky-400);
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops);
+  }
+  .via-teal-400 {
+    --tw-gradient-via: var(--color-teal-400);
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops);
+  }
   .via-yellow-400 {
     --tw-gradient-via: var(--color-yellow-400);
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
@@ -810,6 +887,10 @@
     --tw-gradient-to: var(--color-amber-700);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .to-emerald-400 {
+    --tw-gradient-to: var(--color-emerald-400);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   .to-orange-400 {
     --tw-gradient-to: var(--color-orange-400);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -820,6 +901,10 @@
   }
   .to-rose-400 {
     --tw-gradient-to: var(--color-rose-400);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-teal-400 {
+    --tw-gradient-to: var(--color-teal-400);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-yellow-400 {
@@ -963,6 +1048,15 @@
   }
   .text-rose-400 {
     color: var(--color-rose-400);
+  }
+  .text-sky-200 {
+    color: var(--color-sky-200);
+  }
+  .text-sky-400 {
+    color: var(--color-sky-400);
+  }
+  .text-slate-300 {
+    color: var(--color-slate-300);
   }
   .text-text-main {
     color: var(--color-text-main);
@@ -1357,11 +1451,23 @@
     .sm\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+    .sm\:grid-cols-\[4rem_1fr_1fr_auto\] {
+      grid-template-columns: 4rem 1fr 1fr auto;
+    }
+    .sm\:grid-cols-\[4rem_1fr_3\.5rem_auto\] {
+      grid-template-columns: 4rem 1fr 3.5rem auto;
+    }
+    .sm\:grid-cols-\[4rem_1fr_4rem_auto\] {
+      grid-template-columns: 4rem 1fr 4rem auto;
+    }
     .sm\:gap-3 {
       gap: calc(var(--spacing) * 3);
     }
     .sm\:gap-4 {
       gap: calc(var(--spacing) * 4);
+    }
+    .sm\:justify-self-start {
+      justify-self: flex-start;
     }
     .sm\:p-4 {
       padding: calc(var(--spacing) * 4);
