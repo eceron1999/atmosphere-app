@@ -143,11 +143,17 @@
                         <span class="text-sm">10%</span>
                     </p>
 
-                    <!-- High/Low Range -->
+                    <!-- High/Low Temp Range -->
                      <div class="flex items-center gap-2.5">
                         <span class="font-medium text-sm text-text-muted">53&deg;</span>
 
-                        <div aria-hidden="true" class="w-20 h-2 bg-hairline rounded-full sm:w-28"></div>
+                        <!-- Outer Track Range -->
+                        <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
+                            <!-- Todays Range -->
+                            <div class="absolute inset-y-0 left-[25%] right-[20%] bg-linear-to-r from-teal-400 via-emerald-400 to-yellow-400 rounded-full"></div>
+                            <!-- Current Temp Dot -->
+                            <div class="absolute top-1/2 -translate-y-1/2 left-[62.5%] -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>
+                        </div>
 
                         <span class="font-semibold text-sm text-text-main">65&deg;</span>
                      </div>
