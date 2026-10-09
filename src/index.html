@@ -126,157 +126,167 @@
                 <span>5-Day Forecast</span>
             </h2>
 
-            <ul class="flex flex-col gap-3">
+            <ul aria-label="5-day weather forecast" class="flex flex-col gap-3">
                 <!-- Today/Day 1 -->
-                <li class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
-                    <!-- Day -->
-                    <p class="font-bold text-text-main">Today</p>
-
-                    <!-- Condition -->
-                    <p class="flex items-center justify-self-center gap-2 min-w-0">
-                        <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
-                        <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
-                    </p>
-
-                    <!-- Precipitation % -->
-                    <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
-                        <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
-                        <span class="text-sm">10%</span>
-                    </p>
-
-                    <!-- High/Low Temp Range -->
-                     <div class="flex items-center gap-2 justify-self-end">
-                        <span class="font-medium text-sm text-text-muted">53&deg;</span>
-
-                        <!-- Outer Track Range -->
-                        <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
-                            <!-- Todays Range -->
-                            <div class="absolute inset-y-0 left-[25%] right-[20%] bg-linear-to-r from-teal-400 via-emerald-400 to-yellow-400 rounded-full"></div>
-                            <!-- Current Temp Dot -->
-                            <div class="absolute top-1/2 -translate-y-1/2 left-[62.5%] -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>
-                        </div>
-                        <span class="font-semibold text-sm text-text-main">65&deg;</span>
-                     </div>
+                <li aria-label="Today's forecast: sunny, high of 65, low of 53, 10% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                    <div aria-hidden="true" class="contents">
+                        <!-- Day -->
+                        <time datetime="2026-10-09" class="font-bold text-text-main">Today</time>
+    
+                        <!-- Condition -->
+                        <p class="flex items-center justify-self-center gap-2 min-w-0">
+                            <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
+                            <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
+                        </p>
+    
+                        <!-- Precipitation % -->
+                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
+                            <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
+                            <span class="text-sm">10%</span>
+                        </p>
+    
+                        <!-- High/Low Temp Range -->
+                         <div class="flex items-center gap-2 justify-self-end">
+                            <span class="font-medium text-sm text-text-muted">53&deg;</span>
+    
+                            <!-- Outer Track Range -->
+                            <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
+                                <!-- Todays Range -->
+                                <div class="absolute inset-y-0 left-[25%] right-[20%] bg-linear-to-r from-teal-400 via-emerald-400 to-yellow-400 rounded-full"></div>
+                                <!-- Current Temp Dot -->
+                                <div class="absolute top-1/2 -translate-y-1/2 left-[62.5%] -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>
+                            </div>
+                            <span class="font-semibold text-sm text-text-main">65&deg;</span>
+                         </div>
+                    </div>
                 </li>
 
                 <!-- Day 2 -->
-                <li class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
-                    <!-- Day -->
-                    <p class="font-bold text-text-main">Fri</p>
-
-                    <!-- Condition -->
-                    <p class="flex items-center justify-self-center gap-2 min-w-0">
-                        <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
-                        <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
-                    </p>
-
-                    <!-- Precipitation % -->
-                    <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
-                        <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
-                        <span class="text-sm">0%</span>
-                    </p>
-
-                    <!-- High/Low Temp Range -->
-                     <div class="flex items-center gap-2 justify-self-end">
-                        <span class="font-medium text-sm text-text-muted">42&deg;</span>
-
-                        <!-- Outer Track Range -->
-                        <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
-                            <!-- Inner Range -->
-                            <div class="absolute inset-y-0 left-[10%] right-[50%] bg-linear-to-r from-sky-400 via-teal-400 to-emerald-400 rounded-full"></div>
+                <li aria-label="Friday's forecast: sunny, high of 58, low of 42, 0% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                    <div aria-hidden="true" class="contents">
+                        <!-- Day -->
+                        <time datetime="2026-10-10" class="font-bold text-text-main">Fri</time>
+    
+                        <!-- Condition -->
+                        <p class="flex items-center justify-self-center gap-2 min-w-0">
+                            <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
+                            <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
+                        </p>
+    
+                        <!-- Precipitation % -->
+                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
+                            <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
+                            <span class="text-sm">0%</span>
+                        </p>
+    
+                        <!-- High/Low Temp Range -->
+                        <div class="flex items-center gap-2 justify-self-end">
+                            <span class="font-medium text-sm text-text-muted">42&deg;</span>
+    
+                            <!-- Outer Track Range -->
+                            <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
+                                <!-- Inner Range -->
+                                <div class="absolute inset-y-0 left-[10%] right-[50%] bg-linear-to-r from-sky-400 via-teal-400 to-emerald-400 rounded-full"></div>
+                            </div>
+                            <span class="font-semibold text-sm text-text-main">58&deg;</span>
                         </div>
-                        <span class="font-semibold text-sm text-text-main">58&deg;</span>
-                     </div>
+                    </div>
                 </li>
 
                 <!-- Day 3 -->
-                <li class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
-                    <!-- Day -->
-                    <p class="font-bold text-text-main">Sat</p>
-
-                    <!-- Condition -->
-                    <p class="flex items-center justify-self-center gap-2 min-w-0">
-                        <i aria-hidden="true" class="fa-solid fa-cloud-sun text-sky-200"></i>
-                        <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Partly Cloudy</span>
-                    </p>
-
-                    <!-- Precipitation % -->
-                    <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
-                        <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
-                        <span class="text-sm">20%</span>
-                    </p>
-
-                    <!-- High/Low Temp Range -->
-                     <div class="flex items-center gap-2 justify-self-end">
-                        <span class="font-medium text-sm text-text-muted">50&deg;</span>
-
-                        <!-- Outer Track Range -->
-                        <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
-                            <!-- Inner Range -->
-                            <div class="absolute inset-y-0 left-[30%] right-[20%] bg-linear-to-r from-teal-400 via-emerald-400 to-yellow-400 rounded-full"></div>
-                        </div>
-                        <span class="font-semibold text-sm text-text-main">70&deg;</span>
-                     </div>
+                <li aria-label="Saturday's forecast: partly cloudy, high of 70, low of 50, 20% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                    <div aria-hidden="true" class="contents">
+                        <!-- Day -->
+                        <time datetime="2026-10-11" class="font-bold text-text-main">Sat</time>
+    
+                        <!-- Condition -->
+                        <p class="flex items-center justify-self-center gap-2 min-w-0">
+                            <i aria-hidden="true" class="fa-solid fa-cloud-sun text-sky-200"></i>
+                            <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Partly Cloudy</span>
+                        </p>
+    
+                        <!-- Precipitation % -->
+                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
+                            <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
+                            <span class="text-sm">20%</span>
+                        </p>
+    
+                        <!-- High/Low Temp Range -->
+                         <div class="flex items-center gap-2 justify-self-end">
+                            <span class="font-medium text-sm text-text-muted">50&deg;</span>
+    
+                            <!-- Outer Track Range -->
+                            <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
+                                <!-- Inner Range -->
+                                <div class="absolute inset-y-0 left-[30%] right-[20%] bg-linear-to-r from-teal-400 via-emerald-400 to-yellow-400 rounded-full"></div>
+                            </div>
+                            <span class="font-semibold text-sm text-text-main">70&deg;</span>
+                         </div>
+                    </div>
                 </li>
 
                 <!-- Day 4 -->
-                <li class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
-                    <!-- Day -->
-                    <p class="font-bold text-text-main">Sun</p>
-
-                    <!-- Condition -->
-                    <p class="flex items-center justify-self-center gap-2 min-w-0">
-                        <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
-                        <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
-                    </p>
-
-                    <!-- Precipitation % -->
-                    <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
-                        <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
-                        <span class="text-sm">10%</span>
-                    </p>
-
-                    <!-- High/Low Temp Range -->
-                     <div class="flex items-center gap-2 justify-self-end">
-                        <span class="font-medium text-sm text-text-muted">56&deg;</span>
-
-                        <!-- Outer Track Range -->
-                        <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
-                            <!-- Inner Range -->
-                            <div class="absolute inset-y-0 left-[45%] right-[0%] bg-linear-to-r from-emerald-400 via-yellow-400 to-orange-400 rounded-full"></div>
-                        </div>
-                        <span class="font-semibold text-sm text-text-main">78&deg;</span>
-                     </div>
+                <li aria-label="Sunday's forecast: sunny, high of 78, low of 56, 10% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                    <div aria-hidden="true" class="contents">
+                        <!-- Day -->
+                        <time datetime="2026-10-12" class="font-bold text-text-main">Sun</time>
+    
+                        <!-- Condition -->
+                        <p class="flex items-center justify-self-center gap-2 min-w-0">
+                            <i aria-hidden="true" class="fa-solid fa-sun text-amber-400"></i>
+                            <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Sunny</span>
+                        </p>
+    
+                        <!-- Precipitation % -->
+                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
+                            <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
+                            <span class="text-sm">10%</span>
+                        </p>
+    
+                        <!-- High/Low Temp Range -->
+                         <div class="flex items-center gap-2 justify-self-end">
+                            <span class="font-medium text-sm text-text-muted">56&deg;</span>
+    
+                            <!-- Outer Track Range -->
+                            <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
+                                <!-- Inner Range -->
+                                <div class="absolute inset-y-0 left-[45%] right-[0%] bg-linear-to-r from-emerald-400 via-yellow-400 to-orange-400 rounded-full"></div>
+                            </div>
+                            <span class="font-semibold text-sm text-text-main">78&deg;</span>
+                         </div>
+                    </div>
                 </li>
 
                 <!-- Day 5 -->
-                <li class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
-                    <!-- Day -->
-                    <p class="font-bold text-text-main">Mon</p>
-
-                    <!-- Condition -->
-                    <p class="flex items-center justify-self-center gap-2 min-w-0">
-                        <i aria-hidden="true" class="fa-solid fa-cloud-rain text-sky-400"></i>
-                        <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Showers</span>
-                    </p>
-
-                    <!-- Precipitation % -->
-                    <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
-                        <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
-                        <span class="text-sm">80%</span>
-                    </p>
-
-                    <!-- High/Low Temp Range -->
-                     <div class="flex items-center gap-2 justify-self-end">
-                        <span class="font-medium text-sm text-text-muted">38&deg;</span>
-
-                        <!-- Outer Track Range -->
-                        <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
-                            <!-- Inner Range -->
-                            <div class="absolute inset-y-0 left-[0%] right-[75%] bg-linear-to-r from-indigo-500 via-sky-400 to-teal-400 rounded-full"></div>
-                        </div>
-                        <span class="font-semibold text-sm text-text-main">48&deg;</span>
-                     </div>
+                <li aria-label="Monday's forecast: showers, high of 48, low of 38, 80% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                    <div aria-hidden="true" class="contents">
+                        <!-- Day -->
+                        <time datetime="2026-10-13" class="font-bold text-text-main">Mon</time>
+    
+                        <!-- Condition -->
+                        <p class="flex items-center justify-self-center gap-2 min-w-0">
+                            <i aria-hidden="true" class="fa-solid fa-cloud-rain text-sky-400"></i>
+                            <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">Showers</span>
+                        </p>
+    
+                        <!-- Precipitation % -->
+                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
+                            <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
+                            <span class="text-sm">80%</span>
+                        </p>
+    
+                        <!-- High/Low Temp Range -->
+                         <div class="flex items-center gap-2 justify-self-end">
+                            <span class="font-medium text-sm text-text-muted">38&deg;</span>
+    
+                            <!-- Outer Track Range -->
+                            <div aria-hidden="true" class="relative w-20 h-2 bg-white/10 border border-white/20 rounded-full sm:w-28">
+                                <!-- Inner Range -->
+                                <div class="absolute inset-y-0 left-[0%] right-[75%] bg-linear-to-r from-indigo-500 via-sky-400 to-teal-400 rounded-full"></div>
+                            </div>
+                            <span class="font-semibold text-sm text-text-main">48&deg;</span>
+                         </div>
+                    </div>
                 </li>
             </ul>
         </section> 
