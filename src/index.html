@@ -290,6 +290,67 @@
                 </li>
             </ul>
         </section> 
+
+        <!-- Air Quality Index -->
+         <section aria-labelledby="aqi-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+            <h2 id="aqi-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
+                <i aria-hidden="true" class="fa-solid fa-smog text-accent-sky"></i>
+                <span>Air Quality Index</span>
+            </h2>
+
+            <!-- AQI #/Status -->
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14">
+                <div class="flex items-center gap-3">
+                    <p class="font-extrabold text-4xl tracking-tight text-text-main sm:text-5xl">42</p>
+                    <span class="inline-flex items-center px-3 py-1 font-semibold text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full sm:text-sm">Good</span>
+                </div>
+
+                <!-- Main Pollutant Chip -->
+                <div class="inline-flex items-center px-2.5 py-1 bg-brand-bg/60 border border-hairline rounded-md">
+                    <p class="font-medium text-xs text-text-muted">Main pollutant: <span class="text-text-main">PM2.5</span></p>
+                </div>
+            </div>
+
+            <!-- Advisory Message -->
+            <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
+                <p class="text-center text-sm leading-relaxed text-slate-200">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
+            </div>
+
+            <!-- AQI Scale -->
+            <div role="progressbar" aria-label="Air Quality Index Scale" aria-valuenow="42" aria-valuemin="0" aria-valuemax="500" aria-valuetext="42, Good" class="relative w-full h-3 my-1 bg-white/10 border border-white/20 rounded-full overflow-visible">
+                <!-- Gradient Colors -->
+                <div aria-hidden="true" class="absolute left-0 inset-y-0 w-full rounded-full bg-[linear-gradient(to_right,#10b981,#eab308,#f97316,#ef4444,#9333ea)]"></div>
+                <!-- Marker Placement -->
+                <div aria-hidden="true" class="absolute left-[8%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-text-main border-2 border-brand-surface shadow-md"></div>
+            </div> 
+
+            <!-- Sub Metrics Grid -->
+            <dl aria-label="Key pollutant breakdown" class="grid grid-cols-2 gap-3 pt-3 border-t border-hairline sm:grid-cols-4">
+                <!-- Card 1 -->
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                    <dt class="text-xs font-medium text-text-muted">PM2.5</dt>
+                    <dd class="text-base font-bold text-text-main">8.4 µg/m³</dd>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                    <dt class="text-xs font-medium text-text-muted">PM10</dt>
+                    <dd class="text-base font-bold text-text-main">18.2 µg/m³</dd>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                    <dt class="text-xs font-medium text-text-muted">O3</dt>
+                    <dd class="text-base font-bold text-text-main">32 ppb</dd>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                    <dt class="text-xs font-medium text-text-muted">NO2</dt>
+                    <dd class="text-base font-bold text-text-main">12 ppb</dd>
+                </div>
+            </dl> 
+         </section>
     </main>
     <script src="./app.js"></script>
 </body>
