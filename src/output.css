@@ -6,6 +6,7 @@
     --font-sans: 'Inter', sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-orange-400: oklch(75% 0.183 55.934);
     --color-amber-400: oklch(82.8% 0.189 84.429);
@@ -532,6 +533,9 @@
   .resize {
     resize: both;
   }
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -610,6 +614,9 @@
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
+  .gap-3\.5 {
+    gap: calc(var(--spacing) * 3.5);
+  }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
@@ -648,6 +655,9 @@
   .overflow-visible {
     overflow: visible;
   }
+  .rounded {
+    border-radius: 0.25rem;
+  }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
@@ -678,6 +688,24 @@
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
+  }
+  .border-accent-sky {
+    border-color: var(--color-accent-sky);
+  }
+  .border-accent-sky\/30 {
+    border-color: color-mix(in srgb, #38bdf8 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-accent-sky) 30%, transparent);
+    }
+  }
+  .border-amber-500 {
+    border-color: var(--color-amber-500);
+  }
+  .border-amber-500\/30 {
+    border-color: color-mix(in srgb, oklch(76.9% 0.188 70.08) 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-amber-500) 30%, transparent);
+    }
   }
   .border-brand-surface {
     border-color: var(--color-brand-surface);
@@ -785,6 +813,24 @@
     border-bottom-color: color-mix(in srgb, #334155 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-bottom-color: color-mix(in oklab, var(--color-hairline) 60%, transparent);
+    }
+  }
+  .bg-accent-sky {
+    background-color: var(--color-accent-sky);
+  }
+  .bg-accent-sky\/10 {
+    background-color: color-mix(in srgb, #38bdf8 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-accent-sky) 10%, transparent);
+    }
+  }
+  .bg-amber-500 {
+    background-color: var(--color-amber-500);
+  }
+  .bg-amber-500\/15 {
+    background-color: color-mix(in srgb, oklch(76.9% 0.188 70.08) 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-amber-500) 15%, transparent);
     }
   }
   .bg-brand-bg {
@@ -999,6 +1045,9 @@
   .p-1 {
     padding: var(--spacing);
   }
+  .p-1\.5 {
+    padding: calc(var(--spacing) * 1.5);
+  }
   .p-2 {
     padding: calc(var(--spacing) * 2);
   }
@@ -1037,6 +1086,9 @@
   }
   .py-1 {
     padding-block: var(--spacing);
+  }
+  .py-1\.5 {
+    padding-block: calc(var(--spacing) * 1.5);
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
@@ -1139,6 +1191,9 @@
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
   }
   .text-accent-sky {
     color: var(--color-accent-sky);
@@ -1315,6 +1370,10 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .duration-150 {
+    --tw-duration: 150ms;
+    transition-duration: 150ms;
+  }
   .duration-200 {
     --tw-duration: 200ms;
     transition-duration: 200ms;
@@ -1339,6 +1398,9 @@
     }
     .group-hover\:border-hairline-hover:is(:where(.group):hover *) {
       border-color: var(--color-hairline-hover);
+    }
+    .group-hover\:text-accent-sky:is(:where(.group):hover *) {
+      color: var(--color-accent-sky);
     }
     .group-hover\:shadow-accent-sky-glow\/30:is(:where(.group):hover *) {
       --tw-shadow-color: color-mix(in srgb, #0ea5e9 30%, transparent);
@@ -1369,6 +1431,14 @@
         border-color: color-mix(in oklab, var(--color-accent-sky-glow) 50%, transparent);
       }
     }
+    .hover\:border-accent-sky\/40:hover {
+      border-color: color-mix(in srgb, #38bdf8 40%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:border-accent-sky\/40:hover {
+        border-color: color-mix(in oklab, var(--color-accent-sky) 40%, transparent);
+      }
+    }
     .hover\:border-emerald-500\/30:hover {
       border-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 30%, transparent);
     }
@@ -1390,6 +1460,14 @@
     }
     .hover\:border-hairline-hover:hover {
       border-color: var(--color-hairline-hover);
+    }
+    .hover\:bg-accent-sky\/20:hover {
+      background-color: color-mix(in srgb, #38bdf8 20%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-accent-sky\/20:hover {
+        background-color: color-mix(in oklab, var(--color-accent-sky) 20%, transparent);
+      }
     }
     .hover\:bg-brand-bg\/60:hover {
       background-color: color-mix(in srgb, #0f172a 60%, transparent);
@@ -1458,8 +1536,27 @@
         background-color: color-mix(in oklab, var(--color-emerald-500) 20%, transparent);
       }
     }
+    .hover\:bg-red-500\/10:hover {
+      background-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 10%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-red-500\/10:hover {
+        background-color: color-mix(in oklab, var(--color-red-500) 10%, transparent);
+      }
+    }
     .hover\:text-accent-sky:hover {
       color: var(--color-accent-sky);
+    }
+    .hover\:text-accent-sky\/80:hover {
+      color: color-mix(in srgb, #38bdf8 80%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:text-accent-sky\/80:hover {
+        color: color-mix(in oklab, var(--color-accent-sky) 80%, transparent);
+      }
+    }
+    .hover\:text-red-400:hover {
+      color: var(--color-red-400);
     }
     .hover\:text-text-main:hover {
       color: var(--color-text-main);
@@ -1510,6 +1607,9 @@
   .focus-visible\:ring-accent-sky:focus-visible {
     --tw-ring-color: var(--color-accent-sky);
   }
+  .focus-visible\:ring-red-400:focus-visible {
+    --tw-ring-color: var(--color-red-400);
+  }
   .focus-visible\:ring-offset-2:focus-visible {
     --tw-ring-offset-width: 2px;
     --tw-ring-offset-shadow: var(--tw-ring-inset,) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -1548,6 +1648,9 @@
     }
     .sm\:flex {
       display: flex;
+    }
+    .sm\:inline {
+      display: inline;
     }
     .sm\:inline-block {
       display: inline-block;
@@ -1599,6 +1702,9 @@
     }
     .sm\:p-8 {
       padding: calc(var(--spacing) * 8);
+    }
+    .sm\:px-3 {
+      padding-inline: calc(var(--spacing) * 3);
     }
     .sm\:px-6 {
       padding-inline: calc(var(--spacing) * 6);
