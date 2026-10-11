@@ -350,7 +350,91 @@
                     <dd class="text-base font-bold text-text-main">12 ppb</dd>
                 </div>
             </dl> 
-         </section>
+        </section>
+
+        <!-- Saved Locations -->
+        <section aria-labelledby="saved-locations-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+            <!-- Header -->
+            <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-2.5">
+                    <h2 id="saved-locations-heading" class="inline-flex items-center gap-2.5 whitespace-nowrap font-bold text-lg text-text-main sm:text-xl">
+                        <i aria-hidden="true" class="fa-solid fa-bookmark text-accent-sky"></i>
+                        <span>Saved Locations</span>
+                    </h2>
+
+                    <span class="px-2 py-0.5 font-semibold text-xs text-text-muted bg-brand-bg border border-hairline rounded-md">3</span>
+                </div>
+
+                <button type="button" aria-label="Add current location to saved list" class="inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg sm:text-sm sm:px-3 hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
+                    <i aria-hidden="true" class="fa-solid fa-plus"></i>
+                    <span class="hidden sm:inline">Save Current</span>
+                </button>
+            </div>
+
+            <!-- List -->
+             <ul aria-label="Saved locations list" class="grid grid-cols-1 gap-3">
+                <li class="flex items-center justify-between gap-3.5 p-3 bg-brand-bg/50 border border-hairline rounded-lg sm:p-4 hover:border-accent-sky/40 transition-colors group">
+                    <div class="flex items-center gap-3">
+                        <i aria-hidden="true" class="fa-solid fa-sun text-lg text-amber-400 sm:text-xl"></i>
+
+                        <div>
+                            <p class="text-sm font-bold text-text-main group-hover:text-accent-sky transition-colors">Raleigh</p>
+
+                            <p class="text-xs text-text-muted">NC &bull; 72&deg;F</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2.5">
+                        <span class="px-2 py-0.5 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 rounded-full">42 AQI</span>
+
+                        <button type="button" aria-label="Remove Raleigh from saved locations" class="p-1.5 text-text-muted rounded-md hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
+                            <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="flex items-center justify-between gap-3.5 p-3 bg-brand-bg/50 border border-hairline rounded-lg sm:p-4 hover:border-accent-sky/40 transition-colors group">
+                    <div class="flex items-center gap-3">
+                        <i aria-hidden="true" class="fa-solid fa-sun text-lg text-amber-400 sm:text-xl"></i>
+
+                        <div>
+                            <p class="text-sm font-bold text-text-main group-hover:text-accent-sky transition-colors">Fuquay-Varina</p>
+
+                            <p class="text-xs text-text-muted">NC &bull; 68&deg;F</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2.5">
+                        <span class="px-2 py-0.5 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 rounded-full">38 AQI</span>
+
+                        <button type="button" aria-label="Remove Fuquay-Varina from saved locations" class="p-1.5 text-text-muted rounded-md hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
+                            <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="flex items-center justify-between gap-3.5 p-3 bg-brand-bg/50 border border-hairline rounded-lg sm:p-4 hover:border-accent-sky/40 transition-colors group">
+                    <div class="flex items-center gap-3">
+                        <i aria-hidden="true" class="fa-solid fa-cloud-sun text-lg text-sky-200 sm:text-xl"></i>
+
+                        <div>
+                            <p class="text-sm font-bold text-text-main group-hover:text-accent-sky transition-colors">Los Angeles</p>
+
+                            <p class="text-xs text-text-muted">CA &bull; 78&deg;F</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2.5">
+                        <span class="px-2 py-0.5 text-xs font-semibold text-amber-400 bg-amber-500/15 border border-amber-500/30 rounded-full">65 AQI</span>
+
+                        <button type="button" aria-label="Remove Los Angeles from saved locations" class="p-1.5 text-text-muted rounded-md hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
+                            <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                </li>
+
+             </ul>
+        </section>
     </main>
     <script src="./app.js"></script>
 </body>
