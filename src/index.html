@@ -45,9 +45,9 @@
         </div>
     </header>
 
-    <main class="flex flex-col gap-8 p-4 max-w-7xl w-full mx-auto">
+    <main class="flex flex-col gap-5 p-4 max-w-7xl w-full mx-auto sm:gap-6 lg:grid lg:grid-cols-12 lg:gap-6">
         <!-- Weather Hero -->
-        <section aria-labelledby="current-location" class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+        <section aria-labelledby="current-location" class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-8 lg:row-start-1">
             <div class="flex justify-between items-start">
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
@@ -120,7 +120,7 @@
         </section>
 
         <!-- 5 Day Forecast -->
-        <section aria-labelledby="forecast-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+        <section aria-labelledby="forecast-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-8 lg:row-start-2">
             <h2 id="forecast-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                 <i aria-hidden="true" class="fa-solid fa-calendar-days text-accent-sky"></i>
                 <span>5-Day Forecast</span>
@@ -292,28 +292,28 @@
         </section> 
 
         <!-- Air Quality Index -->
-         <section aria-labelledby="aqi-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+         <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-4 lg:row-start-1 lg:col-start-9 lg:gap-4">
             <h2 id="aqi-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                 <i aria-hidden="true" class="fa-solid fa-smog text-accent-sky"></i>
                 <span>Air Quality Index</span>
             </h2>
 
             <!-- AQI #/Status -->
-            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14">
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 lg:gap-4">
                 <div class="flex items-center gap-3">
                     <p class="font-extrabold text-4xl tracking-tight text-text-main sm:text-5xl">42</p>
                     <span class="inline-flex items-center px-3 py-1 font-semibold text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full sm:text-sm">Good</span>
                 </div>
 
                 <!-- Main Pollutant Chip -->
-                <div class="inline-flex items-center px-2.5 py-1 bg-brand-bg/60 border border-hairline rounded-md">
+                <div class="inline-flex items-center px-2.5 py-1 bg-brand-bg/60 border border-hairline rounded-md lg:p-0 lg:bg-brand-surface lg:border-none">
                     <p class="font-medium text-xs text-text-muted">Main pollutant: <span class="text-text-main">PM2.5</span></p>
                 </div>
             </div>
 
             <!-- Advisory Message -->
-            <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
-                <p class="text-center text-sm leading-relaxed text-slate-200">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
+            <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg lg:p-1">
+                <p class="text-center text-sm leading-relaxed text-slate-200 lg:text-xs">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
             </div>
 
             <!-- AQI Scale -->
@@ -325,35 +325,35 @@
             </div> 
 
             <!-- Sub Metrics Grid -->
-            <dl aria-label="Key pollutant breakdown" class="grid grid-cols-2 gap-3 pt-3 border-t border-hairline sm:grid-cols-4">
+            <dl aria-label="Key pollutant breakdown" class="grid grid-cols-2 gap-3 pt-3 border-t border-hairline sm:grid-cols-4 lg:gap-1 lg:pt-6.5">
                 <!-- Card 1 -->
-                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">PM2.5</dt>
-                    <dd class="text-base font-bold text-text-main">8.4 µg/m³</dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">8.4 <span class="text-xs text-text-muted">µg/m³</span></dd>
                 </div>
                 
                 <!-- Card 2 -->
-                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">PM10</dt>
-                    <dd class="text-base font-bold text-text-main">18.2 µg/m³</dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">18.2 <span class="text-xs text-text-muted">µg/m³</span></dd>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">O3</dt>
-                    <dd class="text-base font-bold text-text-main">32 ppb</dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">32 <span class="text-xs text-text-muted">ppb</span></dd>
                 </div>
                 
                 <!-- Card 4 -->
-                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50">
+                <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">NO2</dt>
-                    <dd class="text-base font-bold text-text-main">12 ppb</dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">12 <span class="text-xs text-text-muted">ppb</span></dd>
                 </div>
             </dl> 
         </section>
 
         <!-- Saved Locations -->
-        <section aria-labelledby="saved-locations-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6">
+        <section aria-labelledby="saved-locations-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-4 lg:row-start-2 lg:col-start-9">
             <!-- Header -->
             <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5">
