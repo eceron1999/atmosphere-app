@@ -294,6 +294,15 @@
   .right-\[20\%\] {
     right: 20%;
   }
+  .right-\[25\%\] {
+    right: 25%;
+  }
+  .right-\[32\%\] {
+    right: 32%;
+  }
+  .right-\[40\%\] {
+    right: 40%;
+  }
   .right-\[50\%\] {
     right: 50%;
   }
@@ -321,8 +330,17 @@
   .left-\[25\%\] {
     left: 25%;
   }
+  .left-\[28\%\] {
+    left: 28%;
+  }
   .left-\[30\%\] {
     left: 30%;
+  }
+  .left-\[35\%\] {
+    left: 35%;
+  }
+  .left-\[38\%\] {
+    left: 38%;
   }
   .left-\[45\%\] {
     left: 45%;
@@ -422,6 +440,9 @@
   }
   .h-16 {
     height: calc(var(--spacing) * 16);
+  }
+  .min-h-0 {
+    min-height: 0px;
   }
   .w-1 {
     width: var(--spacing);
@@ -654,6 +675,9 @@
   }
   .overflow-visible {
     overflow: visible;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -1092,6 +1116,9 @@
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
+  }
+  .py-2\.5 {
+    padding-block: calc(var(--spacing) * 2.5);
   }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
@@ -1875,11 +1902,38 @@
     .lg\:grid {
       display: grid;
     }
+    .lg\:hidden {
+      display: none;
+    }
+    .lg\:inline-flex {
+      display: inline-flex;
+    }
+    .lg\:max-h-90 {
+      max-height: calc(var(--spacing) * 90);
+    }
+    .lg\:max-h-95 {
+      max-height: calc(var(--spacing) * 95);
+    }
+    .lg\:max-h-97 {
+      max-height: calc(var(--spacing) * 97);
+    }
+    .lg\:max-h-100 {
+      max-height: calc(var(--spacing) * 100);
+    }
+    .lg\:max-h-112\.5 {
+      max-height: calc(var(--spacing) * 112.5);
+    }
+    .lg\:max-h-\[450px\] {
+      max-height: 450px;
+    }
     .lg\:w-36 {
       width: calc(var(--spacing) * 36);
     }
     .lg\:w-40 {
       width: calc(var(--spacing) * 40);
+    }
+    .lg\:w-full {
+      width: 100%;
     }
     .lg\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1892,6 +1946,12 @@
     }
     .lg\:flex-nowrap {
       flex-wrap: nowrap;
+    }
+    .lg\:items-center {
+      align-items: center;
+    }
+    .lg\:justify-center {
+      justify-content: center;
     }
     .lg\:gap-1 {
       gap: var(--spacing);
@@ -1964,6 +2024,11 @@
     .lg\:text-xs {
       font-size: var(--text-xs);
       line-height: var(--tw-leading, var(--text-xs--line-height));
+    }
+  }
+  @media (width >= 80rem) {
+    .xl\:inline {
+      display: inline;
     }
   }
 }
