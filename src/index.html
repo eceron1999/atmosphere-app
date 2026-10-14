@@ -45,9 +45,9 @@
         </div>
     </header>
 
-    <main class="flex flex-col gap-5 p-4 max-w-7xl w-full mx-auto sm:gap-6 lg:grid lg:grid-cols-12 lg:gap-6">
+    <main class="flex flex-col gap-5 p-4 max-w-7xl w-full mx-auto sm:gap-6 min-[900px]:grid min-[900px]:grid-cols-12 min-[900px]:gap-6">
         <!-- Weather Hero -->
-        <section aria-labelledby="current-location" class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-8 lg:row-start-1">
+        <section aria-labelledby="current-location" class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-8 min-[900px]:row-start-1">
             <div class="flex justify-between items-start">
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
@@ -120,7 +120,7 @@
         </section>
 
         <!-- 7 Day Forecast -->
-        <section aria-labelledby="forecast-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-8 lg:row-start-2">
+        <section aria-labelledby="forecast-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-8 min-[900px]:row-start-2">
             <h2 id="forecast-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                 <i aria-hidden="true" class="fa-solid fa-calendar-days text-accent-sky"></i>
                 <span>7-Day Forecast</span>
@@ -258,7 +258,7 @@
                 </li>
 
                 <!-- Day 5 -->
-                <li aria-label="Monday's forecast: showers, high of 48, low of 38, 80% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                <li aria-label="Monday's forecast: showers, high of 48, low of 38, 80% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
                     <div aria-hidden="true" class="contents">
                         <!-- Day -->
                         <time datetime="2026-10-13" class="font-bold text-text-main">Mon</time>
@@ -290,7 +290,7 @@
                 </li>
 
                 <!-- Day 6 -->
-                <li aria-label="Tuesday's forecast: partly cloudy, high of 73, low of 54, 15% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                <li aria-label="Tuesday's forecast: partly cloudy, high of 73, low of 54, 15% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
                     <div aria-hidden="true" class="contents">
                         <!-- Day -->
                         <time datetime="2026-10-13" class="font-bold text-text-main">Tue</time>
@@ -324,7 +324,7 @@
                 </li>
 
                 <!-- Day 7 -->
-                <li aria-label="Wednesday's forecast: showers, high of 68, low of 52, 60% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto]">
+                <li aria-label="Wednesday's forecast: showers, high of 68, low of 52, 60% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
                     <div aria-hidden="true" class="contents">
                         <!-- Day -->
                         <time datetime="2026-10-13" class="font-bold text-text-main">Wed</time>
@@ -360,7 +360,7 @@
         </section> 
 
         <!-- Air Quality Index -->
-         <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-4 lg:row-start-1 lg:col-start-9 lg:gap-4">
+         <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-1 min-[900px]:col-start-9 min-[900px]:gap-4">
             <h2 id="aqi-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                 <i aria-hidden="true" class="fa-solid fa-smog text-accent-sky"></i>
                 <span>Air Quality Index</span>
@@ -421,7 +421,7 @@
         </section>
 
         <!-- Saved Locations -->
-        <section aria-labelledby="saved-locations-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 lg:col-span-4 lg:row-start-2 lg:col-start-9 lg:max-h-100">
+        <section aria-labelledby="saved-locations-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-2 min-[900px]:col-start-9 min-[900px]:max-h-129">
             <!-- Header -->
             <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5 min-w-0">
@@ -435,68 +435,82 @@
                 </div>
 
                 <!-- Mobile Save Button -->
-                <button type="button" aria-label="Add current location to saved list" class="inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg sm:text-sm sm:px-3 lg:hidden hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
+                <button type="button" aria-label="Add current location to saved list" class="inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg sm:text-sm sm:px-3 min-[900px]:hidden hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
                     <i aria-hidden="true" class="fa-solid fa-plus"></i>
                     <span class="hidden sm:inline">Save Current</span>
                 </button>
             </div>
 
             <!-- List -->
-             <ul aria-label="Saved locations list" class="grid grid-cols-1 gap-3 min-h-0 overflow-y-auto">
-                <li class="flex items-center justify-between gap-3.5 p-3 bg-brand-bg/50 border border-hairline rounded-lg sm:p-4 hover:border-accent-sky/40 transition-colors group">
-                    <div class="flex items-center gap-3">
-                        <i aria-hidden="true" class="fa-solid fa-sun text-lg text-amber-400 sm:text-xl"></i>
+             <ul aria-label="Saved locations list" class="grid grid-cols-1 gap-3 min-h-0 overflow-y-auto min-[900px]:grow">
+                <li class="grid grid-cols-[100px_1fr_auto] items-center gap-2 px-3 py-4 bg-brand-bg/40 border border-hairline/60 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 hover:bg-brand-bg/80 hover:border-accent-sky/40 hover:shadow-md transition-all duration-200 group cursor-pointer">
+                    <div class="flex flex-col justify-center min-w-0">
+                        <!-- City -->
+                        <p class="text-sm font-bold text-text-main sm:text-base group-hover:text-accent-sky transition-colors truncate">Raleigh</p>
+                        <!-- State/Country -->
+                        <p class="text-xs text-text-muted truncate">NC, US</p>
+                    </div>
 
-                        <div>
-                            <p class="text-sm font-bold text-text-main group-hover:text-accent-sky transition-colors">Raleigh</p>
-
-                            <p class="text-xs text-text-muted">NC &bull; 72&deg;F</p>
+                    <div class="flex flex-col items-center justify-center px-1">
+                        <div class="flex items-center gap-1.5">
+                            <!-- Weather Icon -->
+                            <i aria-hidden="true" class="fa-solid fa-sun shrink-0 w-6 text-center text-lg text-amber-400 min-[400px]:text-xl"></i>
+                            <!-- Current Temp -->
+                            <p class="text-base font-bold text-text-main sm:text-lg">62&deg;</p>
                         </div>
+
+                        <!-- High/Low -->
+                        <p class="text-[10px] text-text-muted min-[400px]:text-xs">H: 65&deg; L: 53&deg;</p>
                     </div>
 
-                    <div class="flex items-center gap-2.5">
-                        <span class="px-2 py-0.5 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 rounded-full">42 AQI</span>
-
-                        <button type="button" aria-label="Remove Raleigh from saved locations" class="p-1.5 text-text-muted rounded-md hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
-                            <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
-                        </button>
+                    <!-- Precipitation % -->
+                    <div class="hidden min-[400px]:inline-flex items-center justify-center justify-self-center gap-1 px-1 py-0.5 text-xs font-semibold text-accent-sky bg-accent-sky/10 border border-accent-sky/30 rounded-full tabular-nums">
+                        <i class="fa-solid fa-droplet"></i>
+                        <span>15%</span>
                     </div>
+
+                    <!-- Remove Button -->
+                    <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted rounded-full hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
+                        <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
+                    </button>
                 </li>
 
-                <li class="flex items-center justify-between gap-3.5 p-3 bg-brand-bg/50 border border-hairline rounded-lg sm:p-4 hover:border-accent-sky/40 transition-colors group">
+                <li class="grid grid-cols-[auto_1fr_auto] items-center gap-3 px-3 py-2 bg-brand-bg/40 border border-hairline/60 rounded-xl hover:bg-brand-bg/80 hover:border-accent-sky/40 hover:shadow-md transition-all duration-200 group cursor-pointer">
                     <div class="flex items-center gap-3">
                         <i aria-hidden="true" class="fa-solid fa-sun text-lg text-amber-400 sm:text-xl"></i>
 
-                        <div>
-                            <p class="text-sm font-bold text-text-main group-hover:text-accent-sky transition-colors">Fuquay-Varina</p>
+                        <div class="min-w-0">
+                            <p class="text-sm font-bold text-text-main truncate group-hover:text-accent-sky transition-colors">Fuquay-Varina</p>
 
                             <p class="text-xs text-text-muted">NC &bull; 68&deg;F</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2.5">
-                        <span class="px-2 py-0.5 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 rounded-full">38 AQI</span>
-
+                        <!-- AQI Badge -->
+                        <span class="w-14 py-0.5 text-xs font-semibold text-center text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 rounded-full">38 AQI</span>
+                        <!-- Remove Button -->
                         <button type="button" aria-label="Remove Fuquay-Varina from saved locations" class="p-1.5 text-text-muted rounded-md hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
                             <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
                         </button>
                     </div>
                 </li>
 
-                <li class="flex items-center justify-between gap-3.5 p-3 bg-brand-bg/50 border border-hairline rounded-lg sm:p-4 hover:border-accent-sky/40 transition-colors group">
+                <li class="grid grid-cols-[auto_1fr_auto] items-center gap-3 p-3 bg-brand-bg/40 border border-hairline/60 rounded-xl sm:p-3 hover:bg-brand-bg/80 hover:border-accent-sky/40 hover:shadow-md transition-all duration-200 group cursor-pointer">
                     <div class="flex items-center gap-3">
                         <i aria-hidden="true" class="fa-solid fa-cloud-sun text-lg text-sky-200 sm:text-xl"></i>
 
-                        <div>
-                            <p class="text-sm font-bold text-text-main group-hover:text-accent-sky transition-colors">Los Angeles</p>
+                        <div class="min-w-0">
+                            <p class="text-sm font-bold text-text-main truncate group-hover:text-accent-sky transition-colors">Los Angeles</p>
 
                             <p class="text-xs text-text-muted">CA &bull; 78&deg;F</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2.5">
-                        <span class="px-2 py-0.5 text-xs font-semibold text-amber-400 bg-amber-500/15 border border-amber-500/30 rounded-full">65 AQI</span>
-
+                        <!-- AQI Badge -->
+                        <span class="w-14 py-0.5 text-xs font-semibold text-center text-amber-400 bg-amber-500/15 border border-amber-500/30 rounded-full">65 AQI</span>
+                        <!-- Remove Button -->
                         <button type="button" aria-label="Remove Los Angeles from saved locations" class="p-1.5 text-text-muted rounded-md hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors">
                             <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
                         </button>
@@ -505,7 +519,7 @@
              </ul>
 
              <!-- Desktop Save Location Button -->
-             <button type="button" aria-label="Add current location to saved list" class="hidden gap-1.5 px-4 py-2.5 text-sm font-semibold lg:inline-flex lg:items-center lg:justify-center lg:w-full bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
+             <button type="button" aria-label="Add current location to saved list" class="hidden min-[900px]:inline-flex items-center justify-center gap-1.5 w-full px-4 py-2.5 text-sm font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
                     <i aria-hidden="true" class="fa-solid fa-plus"></i>
                     <span class="hidden sm:inline">Save Current</span>
                 </button>
