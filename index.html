@@ -7,15 +7,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="./output.css">
-    <link rel="icon" href="./images/weather-svgrepo-com (1).svg">
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="icon" href="./src/images/weather-svgrepo-com (1).svg">
     <title>AtmoSphere | Weather Forecast</title>
 </head>
 <body>
     <header class="sticky top-0 z-50 flex justify-between items-center w-full h-16 px-4 gap-2 bg-brand-bg/80 backdrop-blur-md border-b border-b-hairline/60 sm:h-20 sm:px-6 sm:gap-4">
         <a href="#" class="flex items-center gap-2 group active:opacity-80 transition-opacity">
             <div class="hidden sm:flex justify-center items-center shrink-0 w-12 h-12 bg-brand-surface/80 border border-hairline/60 rounded-xl ring-1 ring-white/10 ring-inset shadow-sm shadow-accent-sky-glow/15 md:w-14 md:h-14 group-hover:border-hairline-hover group-hover:shadow-accent-sky-glow/30 transition-all duration-300">
-                <img src="./images/weather-svgrepo-com (1).svg" alt="AtmoSphere Logo" class="w-9 h-9 mt-2 object-contain md:w-10 md:h-10">
+                <img src="./src/images/weather-svgrepo-com (1).svg" alt="AtmoSphere Logo" class="w-9 h-9 mt-2 object-contain md:w-10 md:h-10">
             </div>
 
             <h1 class="font-medium text-2xl tracking-tight sm:text-3xl md:text-4xl">
@@ -643,6 +643,6 @@
             </button>
         </section>
     </main>
-    <script src="./app.js"></script>
+    <script type="module" src="./src/app.js"></script>
 </body>
 </html>
