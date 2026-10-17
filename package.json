@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "dev": "vite",
+    "build": "vite build"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,5 +14,16 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "tailwindcss": "^4.3.3"
-  }
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eceron1999/atmosphere-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eceron1999/atmosphere-app/issues"
+  },
+  "homepage": "https://github.com/eceron1999/atmosphere-app#readme"
 }
