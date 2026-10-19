@@ -1,0 +1,46 @@
+const elements = {
+    // Header
+    searchForm: document.getElementById('search-form'),
+    searchInput: document.getElementById('search-input'),
+    searchBtn: document.getElementById('search-btn'),
+    currentLocBtn: document.getElementById('cur-loc-btn'),
+    currentLocation: document.getElementById('current-location'),
+
+    // Main Weather Hero
+    timeStamp: document.getElementById('time-stamp'),
+    celsiusBtn: document.getElementById('c-toggle-btn'),
+    fahrenheitBtn: document.getElementById('f-toggle-btn'),
+    currentTemp: document.getElementById('current-temp'),
+    mobileIcon: document.getElementById('mobile-icon'),
+    desktopIcon: document.getElementById('desktop-icon'),
+    weatherCondition: document.getElementById('weather-condition'),
+    apparentTemp: document.getElementById('apparent-temp'),
+    highTemp: document.getElementById('high-temp'),
+    lowTemp: document.getElementById('low-temp'),
+    windSpeed: document.getElementById('wind-speed'),
+    windDirection: document.getElementById('wind-direction'),
+    humidityPercent: document.getElementById('humidity'),
+    uvIndex: document.getElementById('uv-index'),
+    uvIndexCondition: document.getElementById('uv-index-condition'),
+    precipitationPercent: document.getElementById('precipitation'),
+
+    // 7 Day Forecast
+    weeklyForecastContainer: document.getElementById('forecast-container'),
+
+    // AQI Section
+    aqiNumber: document.getElementById('aqi-num'),
+    aqiCondition: document.getElementById('aqi-condition'),
+    mainPollutant: document.getElementById('main-pollutant'),
+    aqiMessage: document.getElementById('aqi-message'),
+    aqiScaleMarker: document.getElementById('aqi-scale-marker'),
+    pm25: document.getElementById('pm2-5'),
+    pm10: document.getElementById('pm10'),
+    ozone: document.getElementById('ozone'),
+    no2: document.getElementById('no2'),
+
+    // Saved Locations
+    savedLocationsNum: document.getElementById('saved-locations-num'),
+    mobileSaveBtn: document.getElementById('mobile-save-btn'),
+    savedLocationsContainer: document.getElementById('saved-locations'),
+    desktopSaveBtn: document.getElementById('desktop-save-btn')
+}
