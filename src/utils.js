@@ -101,3 +101,11 @@ export function formatDayName(dateString) {
 
     return date.toLocaleDateString('en-US', { weekday: 'short' })
 }
+
+export function getWindDirection(degree) {
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+
+    const degreeIndex = Math.round(degree / 45) % 8
+
+    return directions[degreeIndex]
+}

@@ -1,12 +1,14 @@
-const elements = {
+import { getWeatherInfo, getWindDirection } from "./utils"
+
+export const elements = {
     // Header
     searchForm: document.getElementById('search-form'),
     searchInput: document.getElementById('search-input'),
     searchBtn: document.getElementById('search-btn'),
     currentLocBtn: document.getElementById('cur-loc-btn'),
-    currentLocation: document.getElementById('current-location'),
 
     // Main Weather Hero
+    currentLocation: document.getElementById('current-location'),
     timeStamp: document.getElementById('time-stamp'),
     celsiusBtn: document.getElementById('c-toggle-btn'),
     fahrenheitBtn: document.getElementById('f-toggle-btn'),
@@ -43,4 +45,17 @@ const elements = {
     mobileSaveBtn: document.getElementById('mobile-save-btn'),
     savedLocationsContainer: document.getElementById('saved-locations'),
     desktopSaveBtn: document.getElementById('desktop-save-btn')
+}
+
+export function renderCurrentWeather(weatherData) {
+    const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
+
+    elements.currentTemp.innerText = `${Math.round(weatherData.current.temperature_2m)}`
+    elements.mobileIcon.classList.add(weatherInfo.icon)
+    elements.desktopIcon.classList.add(weatherInfo.icon)
+    elements.weatherCondition.innerText = weatherInfo.description
+    elements.apparentTemp.innerText = `${Math.round(weatherData.current.apparent_temperature)}`
+    elements.humidityPercent.innerText = weatherData.current.relative_humidity_2m
+    elements.windSpeed.innerText = weatherData.current.wind_speed_10m
+    elements.windDirection.innerText = getWindDirection(weatherData.current.wind_direction_10m)
 }
