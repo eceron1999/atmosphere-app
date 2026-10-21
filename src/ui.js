@@ -1,4 +1,5 @@
-import { getWeatherInfo, getWindDirection } from "./utils"
+import { getLocationData } from "./api.js"
+import { getWeatherInfo, formatLocation, getWindDirection } from "./utils.js"
 
 export const elements = {
     // Header
@@ -47,12 +48,13 @@ export const elements = {
     desktopSaveBtn: document.getElementById('desktop-save-btn')
 }
 
-export function renderCurrentWeather(weatherData) {
+export function renderCurrentWeather(weatherData, locationData) {
     const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
 
+    elements.currentLocation.innerText = formatLocation(locationData)
     elements.currentTemp.innerText = `${Math.round(weatherData.current.temperature_2m)}`
-    elements.mobileIcon.classList.add(weatherInfo.icon)
-    elements.desktopIcon.classList.add(weatherInfo.icon)
+    elements.mobileIcon.className = `fa-solid ${weatherInfo.icon} text-6xl text-amber-400 sm:text-7xl`
+    elements.desktopIcon.className = `fa-solid ${weatherInfo.icon} text-5xl text-amber-400`
     elements.weatherCondition.innerText = weatherInfo.description
     elements.apparentTemp.innerText = `${Math.round(weatherData.current.apparent_temperature)}`
     elements.humidityPercent.innerText = weatherData.current.relative_humidity_2m

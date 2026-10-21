@@ -1,4 +1,4 @@
-export async function getCoordinates(cityName) {
+export async function getLocationData(cityName) {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}`
     const res = await fetch(url)
 
@@ -7,15 +7,14 @@ export async function getCoordinates(cityName) {
     }
 
     const data = await res.json()
-
+     
     if (!data.results || data.results.length === 0) {
         throw new Error('City not found!')
     }
 
-    const latitude = data.results[0].latitude
-    const longitude = data.results[0].longitude
+    const { latitude, longitude, name, admin1, country_code } = data.results[0]
 
-    return { latitude, longitude }
+    return { latitude, longitude, name, admin1, country: country_code }
 }
 
 export async function getWeather(latitude, longitude) {
@@ -27,7 +26,7 @@ export async function getWeather(latitude, longitude) {
     }
 
     const data = await res.json()
-
+    
     return data
 }
 

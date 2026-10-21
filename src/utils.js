@@ -96,6 +96,10 @@ export function getWeatherInfo(code) {
     }
 }
 
+export function formatLocation({ name, admin1, country }) {
+    return [name, admin1, country].filter(Boolean).join(', ')
+}
+
 export function formatDayName(dateString) {
     const date = new Date(dateString)
 
