@@ -1,5 +1,5 @@
 import { getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection } from "./utils.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime } from "./utils.js"
 
 export const elements = {
     // Header
@@ -60,4 +60,8 @@ export function renderCurrentWeather(weatherData, locationData) {
     elements.humidityPercent.innerText = weatherData.current.relative_humidity_2m
     elements.windSpeed.innerText = weatherData.current.wind_speed_10m
     elements.windDirection.innerText = getWindDirection(weatherData.current.wind_direction_10m)
+}
+
+export function updateTime() {
+    elements.timeStamp.innerText = getFormattedCurrentTime()
 }

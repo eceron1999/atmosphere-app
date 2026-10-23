@@ -1,5 +1,5 @@
 import './input.css';
-import { elements, renderCurrentWeather } from "./ui.js";
+import { elements, renderCurrentWeather, updateTime } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality } from "./api.js";
 
 async function onSubmit(e) {
@@ -16,5 +16,12 @@ async function onSubmit(e) {
     renderCurrentWeather(weatherData, locationData)
 }
 
-// Event Listeners
-elements.searchForm.addEventListener('submit', onSubmit)
+function init() {
+    updateTime()
+    setInterval(updateTime, 1000)
+
+    // Event Listeners
+    elements.searchForm.addEventListener('submit', onSubmit)
+}
+
+init()

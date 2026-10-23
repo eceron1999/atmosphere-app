@@ -111,6 +111,18 @@ export function formatLocation({ name, admin1, country_code }) {
     return html.trim()
 }
 
+export function getFormattedCurrentTime() {
+    const currentTime = new Date()
+
+    const formattedTime = currentTime.toLocaleTimeString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+    })
+
+    return formattedTime
+}
+
 export function formatDayName(dateString) {
     const date = new Date(dateString)
 
