@@ -60,6 +60,7 @@ export function renderCurrentWeather(weatherData, locationData) {
     elements.humidityPercent.innerText = weatherData.current.relative_humidity_2m
     elements.windSpeed.innerText = weatherData.current.wind_speed_10m
     elements.windDirection.innerText = getWindDirection(weatherData.current.wind_direction_10m)
+    elements.precipitationPercent.innerText = weatherData.daily.precipitation_probability_max[0]
 }
 
 export function updateTime() {
