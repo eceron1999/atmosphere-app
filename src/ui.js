@@ -1,5 +1,5 @@
 import { getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime } from "./utils.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails } from "./utils.js"
 
 export const elements = {
     // Header
@@ -50,6 +50,8 @@ export const elements = {
 
 export function renderCurrentWeather(weatherData, locationData) {
     const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
+    const uvMax = weatherData.daily.uv_index_max[0]
+    const uvDetails = getUvDetails(uvMax)
 
     elements.currentLocation.innerHTML = formatLocation(locationData)
     elements.currentTemp.innerText = `${Math.round(weatherData.current.temperature_2m)}`
@@ -57,9 +59,14 @@ export function renderCurrentWeather(weatherData, locationData) {
     elements.desktopIcon.className = `fa-solid ${weatherInfo.icon} text-5xl text-amber-400`
     elements.weatherCondition.innerText = weatherInfo.description
     elements.apparentTemp.innerText = `${Math.round(weatherData.current.apparent_temperature)}`
+    elements.highTemp.innerText = `${Math.round(weatherData.daily.temperature_2m_max[0])}`
+    elements.lowTemp.innerText = `${Math.round(weatherData.daily.temperature_2m_min[0])}`
     elements.humidityPercent.innerText = weatherData.current.relative_humidity_2m
     elements.windSpeed.innerText = weatherData.current.wind_speed_10m
     elements.windDirection.innerText = getWindDirection(weatherData.current.wind_direction_10m)
+    elements.uvIndex.innerText = uvMax
+    elements.uvIndexCondition.innerText = uvDetails.text
+    elements.uvIndexCondition.className = uvDetails.className
     elements.precipitationPercent.innerText = weatherData.daily.precipitation_probability_max[0]
 }
 

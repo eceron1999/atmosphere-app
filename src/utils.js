@@ -122,17 +122,43 @@ export function getFormattedCurrentTime() {
 
     return formattedTime
 }
-
-export function formatDayName(dateString) {
-    const date = new Date(dateString)
-
-    return date.toLocaleDateString('en-US', { weekday: 'short' })
-}
-
 export function getWindDirection(degree) {
     const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
 
     const degreeIndex = Math.round(degree / 45) % 8
 
     return directions[degreeIndex]
+}
+
+export function getUvDetails(uvIndex) {
+    const levels = [
+        { max: 2, text: 'Low', color: 'emerald' },
+        { max: 5, text: 'Moderate', color: 'amber' },
+        { max: 7, text: 'High', color: 'orange' },
+        { max: 10, text: 'Very High', color: 'red' },
+        { max: Infinity, text: 'Extreme', color: 'purple' },
+    ]
+
+    const currentLevel = levels.find(l => uvIndex <= l.max)
+
+    const colorMap = {
+        emerald: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40",
+        amber: "text-amber-400 bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/20 hover:border-amber-500/40",
+        orange: "text-orange-400 bg-orange-500/10 border-orange-500/20 hover:bg-orange-500/20 hover:border-orange-500/40",
+        red: "text-red-400 bg-red-500/10 border-red-500/20 hover:bg-red-500/20 hover:border-red-500/40",
+        purple: "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/40"
+    }
+
+    const baseClasses = 'px-2 py-0.5 text-[10px] font-medium border rounded-full transition-colors duration-200'
+
+    return {
+        text: currentLevel.text,
+        className: `${baseClasses} ${colorMap[currentLevel.color]}`
+    }
+}
+
+export function formatDayName(dateString) {
+    const date = new Date(dateString)
+
+    return date.toLocaleDateString('en-US', { weekday: 'short' })
 }
