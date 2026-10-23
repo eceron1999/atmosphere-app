@@ -42,3 +42,14 @@
     --color-accent-sky-glow: #0ea5e9; /* Hover borders & shadow glows (sky-500) */
     --color-accent-cyan: #a5f3fc; /* Gradient clip (cyan-200) */
 }
+
+/* Custom Utility Classes */
+.show-country {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .show-country {
+        display: inline !important;
+    }
+}

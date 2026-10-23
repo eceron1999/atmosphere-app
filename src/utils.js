@@ -96,8 +96,19 @@ export function getWeatherInfo(code) {
     }
 }
 
-export function formatLocation({ name, admin1, country }) {
-    return [name, admin1, country].filter(Boolean).join(', ')
+export function formatLocation({ name, admin1, country_code }) {
+    console.log(name, admin1, country_code)
+    let html = `<span>${name}</span>`
+
+    if (admin1) {
+        html += `<span class='hidden sm:inline'>, ${admin1}</span>`
+    }
+
+    if (country_code) {
+        html += `<span class='show-country'>, ${country_code}</span>`
+    }
+
+    return html.trim()
 }
 
 export function formatDayName(dateString) {

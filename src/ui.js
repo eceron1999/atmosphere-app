@@ -51,7 +51,7 @@ export const elements = {
 export function renderCurrentWeather(weatherData, locationData) {
     const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
 
-    elements.currentLocation.innerText = formatLocation(locationData)
+    elements.currentLocation.innerHTML = formatLocation(locationData)
     elements.currentTemp.innerText = `${Math.round(weatherData.current.temperature_2m)}`
     elements.mobileIcon.className = `fa-solid ${weatherInfo.icon} text-6xl text-amber-400 sm:text-7xl`
     elements.desktopIcon.className = `fa-solid ${weatherInfo.icon} text-5xl text-amber-400`

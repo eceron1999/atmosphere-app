@@ -14,7 +14,7 @@ export async function getLocationData(cityName) {
 
     const { latitude, longitude, name, admin1, country_code } = data.results[0]
 
-    return { latitude, longitude, name, admin1, country: country_code }
+    return { latitude, longitude, name, admin1, country_code }
 }
 
 export async function getWeather(latitude, longitude) {
