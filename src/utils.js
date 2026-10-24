@@ -1,88 +1,37 @@
+const weatherStyles = {
+    clear: { icon: 'fa-sun', color: 'text-amber-400' },
+    partlyCloudy: { icon: "fa-cloud-sun", color: "text-amber-300" },
+    overcast: { icon: "fa-cloud", color: "text-slate-400" },
+    fog: { icon: "fa-smog", color: "text-slate-300" },
+    drizzle: { icon: "fa-cloud-sun-rain", color: "text-sky-400" },
+    rain: { icon: "fa-cloud-rain", color: "text-blue-400" },
+    heavyRain: { icon: "fa-cloud-showers-heavy", color: "text-blue-500" },
+    snow: { icon: "fa-snowflake", color: "text-cyan-300" },
+    thunder: { icon: "fa-cloud-bolt", color: "text-purple-400" }
+}
+
 const weatherCodes = {
-    0: {
-        description: 'Clear Sky',
-        icon: 'fa-sun'
-    },
-    1: {
-        description: 'Mainly Clear',
-        icon: 'fa-cloud-sun'
-    },
-    2: {
-        description: 'Partly Cloudy',
-        icon: 'fa-cloud-sun'
-    },
-    3: {
-        description: 'Overcast',
-        icon: 'fa-cloud-sun'
-    },
-    45: {
-        description: 'Foggy',
-        icon: 'fa-smog'
-    },
-    48: {
-        description: 'Depositing Rime Fogt',
-        icon: 'fa-smog'
-    },
-    51: {
-        description: 'Light Drizzle',
-        icon: 'fa-cloud-rain'
-    },
-    53: {
-        description: 'Moderate Drizzle',
-        icon: 'fa-cloud-rain'
-    },
-    55: {
-        description: 'Dense Drizzle',
-        icon: 'fa-cloud-rain'
-    },
-    61: {
-        description: 'Slight Rain',
-        icon: 'fa-cloud-rain'
-    },
-    63: {
-        description: 'Moderate Rain',
-        icon: 'fa-cloud-rain'
-    },
-    65: {
-        description: 'Heavy Rain',
-        icon: 'fa-cloud-showers-heavy'
-    },
-    71: {
-        description: 'Slight Snow',
-        icon: 'fa-snowflake'
-    },
-    73: {
-        description: 'Moderate Snow',
-        icon: 'fa-snowflake'
-    },
-    75: {
-        description: 'Heavy Snow',
-        icon: 'fa-snowflake'
-    },
-    80: {
-        description: 'Slight Rain Showers',
-        icon: 'fa-cloud-rain'
-    },
-    81: {
-        description: 'Moderate Rain Showers',
-        icon: 'fa-cloud-showers-heavy'
-    },
-    82: {
-        description: 'Violent Rain Showers',
-        icon: 'fa-cloud-showers-heavy'
-    },
-    95: {
-        description: 'Thunderstorm',
-        icon: 'fa-bolt'
-    },
-    96: {
-        description: 'Thunderstorm With Slight Hail',
-        icon: 'fa-bolt'
-    },
-    99: {
-        description: 'Thunderstorm With Heavy Hail',
-        icon: 'fa-bolt'
-    },
+    0: { description: 'Clear Sky', ...weatherStyles.clear },
+    1: { description: 'Mainly Clear', ...weatherStyles.clear },
+    2: { description: 'Partly Cloudy', ...weatherStyles.partlyCloudy },
+    3: { description: 'Overcast', ...weatherStyles.overcast },
+    45: { description: 'Foggy', ...weatherStyles.fog },
+    48: { description: 'Smog', ...weatherStyles.fog },
+    51: { description: 'Light Drizzle', ...weatherStyles.drizzle },
+    53: { description: 'Moderate Drizzle', ...weatherStyles.drizzle },
+    55: { description: 'Dense Drizzle', ...weatherStyles.drizzle },
+    61: { description: 'Slight Rain', ...weatherStyles.rain },
+    63: { description: 'Moderate Rain', ...weatherStyles.rain },
+    65: { description: 'Heavy Rain', ...weatherStyles.heavyRain},
+    71: { description: 'Slight Snow', ...weatherStyles.snow },
+    73: { description: 'Moderate Snow', ...weatherStyles.snow },
+    75: { description: 'Heavy Snow', ...weatherStyles.snow },
+    80: { description: 'Slight Rain Showers', ...weatherStyles.rain },
+    81: { description: 'Moderate Rain Showers', ...weatherStyles.heavyRain },
+    82: { description: 'Violent Rain Showers', ...weatherStyles.heavyRain },
+    95: { description: 'Thunderstorm', ...weatherStyles.thunder },
+    96: { description: 'Thunderstorm With Slight Hail', ...weatherStyles.thunder },
+    99: { description: 'Thunderstorm With Heavy Hail', ...weatherStyles.thunder },
 }
 
 export function getWeatherInfo(code) {
@@ -91,7 +40,8 @@ export function getWeatherInfo(code) {
     } else {
         return {
             description: 'Unknown',
-            icon: 'fa-question'
+            icon: 'fa-question',
+            color: 'text-slate-400'
         }
     }
 }

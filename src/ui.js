@@ -55,8 +55,8 @@ export function renderCurrentWeather(weatherData, locationData) {
 
     elements.currentLocation.innerHTML = formatLocation(locationData)
     elements.currentTemp.innerText = `${Math.round(weatherData.current.temperature_2m)}`
-    elements.mobileIcon.className = `fa-solid ${weatherInfo.icon} text-6xl text-amber-400 sm:text-7xl`
-    elements.desktopIcon.className = `fa-solid ${weatherInfo.icon} text-5xl text-amber-400`
+    elements.mobileIcon.className = `fa-solid ${weatherInfo.icon} text-6xl ${weatherInfo.color} sm:text-7xl`
+    elements.desktopIcon.className = `fa-solid ${weatherInfo.icon} text-5xl ${weatherInfo.color}`
     elements.weatherCondition.innerText = weatherInfo.description
     elements.apparentTemp.innerText = `${Math.round(weatherData.current.apparent_temperature)}`
     elements.highTemp.innerText = `${Math.round(weatherData.daily.temperature_2m_max[0])}`
