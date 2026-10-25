@@ -47,7 +47,6 @@ export function getWeatherInfo(code) {
 }
 
 export function formatLocation({ name, admin1, country_code }) {
-    console.log(name, admin1, country_code)
     let html = `<span>${name}</span>`
 
     if (admin1) {

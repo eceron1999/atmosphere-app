@@ -1,5 +1,5 @@
 import './input.css';
-import { elements, renderCurrentWeather, updateTime, updateUnitToggleUI } from "./ui.js";
+import { elements, renderCurrentWeather, renderWeeklyForecast, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality } from "./api.js";
 
 let currentUnit = 'fahrenheit'
@@ -22,6 +22,7 @@ async function onSubmit(e) {
     const airQualityData = await getAirQuality(latitude, longitude)
 
     renderCurrentWeather(weatherData, currentLocationData)
+    renderWeeklyForecast(weatherData)
 }
 
 async function handleUnitToggle(e) {

@@ -94,6 +94,7 @@ export function updateUnitToggleUI(currentUnit) {
 }
 
 export function renderWeeklyForecast(weatherData) {
+    
     const forecastHTML = weatherData.daily.time.map((date, index) => {
         const weatherCode = weatherData.daily.weather_code[index]
         const weatherInfo = getWeatherInfo(weatherCode)
@@ -106,14 +107,14 @@ export function renderWeeklyForecast(weatherData) {
         const maxTemp = Math.round(weatherData.daily.temperature_2m_max[index])
 
         return `
-        <li aria-label="${dayLabel}'s forecast: ${weatherInfo.description}, high of ${maxTemp}, low of ${lowTemp}, ${dailyPrecipitation}% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
+        <li aria-label="${dayLabel}'s forecast: ${weatherInfo.description}, high of ${maxTemp}, low of ${minTemp}, ${dailyPrecipitation}% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
                     <div aria-hidden="true" class="contents">
                         <!-- Day -->
                         <time datetime="${date}" class="font-bold text-text-main">${dayLabel}</time>
     
                         <!-- Condition -->
                         <p class="flex items-center justify-self-center gap-2 min-w-0">
-                            <i aria-hidden="true" class="${weatherInfo.icon}"></i>
+                            <i aria-hidden="true" class="fa-solid ${weatherInfo.icon} ${weatherInfo.color}"></i>
                             <span class="hidden font-medium text-sm text-text-main truncate sm:inline-block">${weatherInfo.description}</span>
                         </p>
     
