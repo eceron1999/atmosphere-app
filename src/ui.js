@@ -73,3 +73,22 @@ export function renderCurrentWeather(weatherData, locationData) {
 export function updateTime() {
     elements.timeStamp.innerText = getFormattedCurrentTime()
 }
+
+function setButtonState(button, isActive) {
+    button.setAttribute('aria-pressed', isActive)
+    button.classList.toggle('text-text-main', isActive)
+    button.classList.toggle('font-semibold', isActive)
+    button.classList.toggle('bg-brand-surface', isActive)
+    button.classList.toggle('hover:shadow-sm', isActive)
+    button.classList.toggle('text-text-muted', !isActive)
+    button.classList.toggle('bg-transparent', !isActive)
+    button.classList.toggle('hover:text-text-main', !isActive)
+    button.classList.toggle('hover:bg-brand-surface/50', !isActive)
+}
+
+export function updateUnitToggleUI(currentUnit) {
+    const isCelsius = currentUnit === 'celsius'
+    
+    setButtonState(elements.celsiusBtn, isCelsius)
+    setButtonState(elements.fahrenheitBtn, !isCelsius)
+}

@@ -1,6 +1,11 @@
 import './input.css';
-import { elements, renderCurrentWeather, updateTime } from "./ui.js";
+import { elements, renderCurrentWeather, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality } from "./api.js";
+
+let currentUnit = 'fahrenheit'
+let currentLat = null
+let currentLong = null
+let currentLocationData = null
 
 async function onSubmit(e) {
     e.preventDefault()
@@ -9,11 +14,30 @@ async function onSubmit(e) {
 
     const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
 
-    const locationData = { name, admin1, country_code}
-    const weatherData = await getWeather(latitude, longitude)
+    currentLat = latitude
+    currentLong = longitude
+    currentLocationData = { name, admin1, country_code }
+
+    const weatherData = await getWeather(latitude, longitude, currentUnit)
     const airQualityData = await getAirQuality(latitude, longitude)
 
-    renderCurrentWeather(weatherData, locationData)
+    renderCurrentWeather(weatherData, currentLocationData)
+}
+
+async function handleUnitToggle(e) {
+    const selectedUnit = e.currentTarget.dataset.unit
+
+    if (selectedUnit === currentUnit) {
+        return
+    } 
+
+    currentUnit = selectedUnit
+
+    const weatherData = await getWeather(currentLat, currentLong, currentUnit)
+
+    renderCurrentWeather(weatherData, currentLocationData)
+
+    updateUnitToggleUI(currentUnit)
 }
 
 function init() {
@@ -22,6 +46,8 @@ function init() {
 
     // Event Listeners
     elements.searchForm.addEventListener('submit', onSubmit)
+    elements.fahrenheitBtn.addEventListener('click', handleUnitToggle)
+    elements.celsiusBtn.addEventListener('click', handleUnitToggle)
 }
 
 init()
