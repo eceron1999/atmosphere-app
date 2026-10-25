@@ -25,7 +25,7 @@
 
         <div class="flex items-center gap-2 w-auto md:gap-3">
             <!-- Search Form -->
-            <form class="flex-1 relative w-full max-w-44 sm:max-w-xs">
+            <form id="search-form" class="flex-1 relative w-full max-w-44 sm:max-w-xs">
                 <label for="search-input" class="sr-only">Search for a city</label>
                 <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-10 pl-9 pr-9 text-xs text-text-main placeholder:text-text-muted bg-brand-input/60 border border-hairline/60 rounded-xl sm:h-11 sm:pl-10 sm:pr-10 sm:text-sm hover:border-hairline-hover focus:outline-none focus:border-accent-sky focus:ring-2 focus:ring-accent-sky/20 focus:transition-all duration-300">
 
@@ -52,36 +52,36 @@
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
                     <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors">Raleigh, NC, US</h2>
-                    <p id="time-stamp" class="text-sm text-text-muted">As of 7:30 PM EDT &middot; Live</p>
+                    <p class="text-sm text-text-muted">As of <span id="time-stamp">7:30 PM EDT</span> &middot; Live</p>
                 </div>
     
                 <!-- Temperature Toggle Button -->
                  <div role="group" aria-label="Temperature unit selection" class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full transition-all duration-200">
-                    <button id="c-toggle-btn" type="button" aria-pressed="false" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-text-main hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;C</button>
+                    <button id="c-toggle-btn" data-unit="celsius" type="button" aria-pressed="false" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-text-main hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;C</button>
     
-                    <button id="f-toggle-btn" type="button" aria-pressed="true" aria-label="Fahrenheit, selected" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;F</button>
+                    <button id="f-toggle-btn" data-unit="fahrenheit" type="button" aria-pressed="true" aria-label="Fahrenheit, selected" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;F</button>
                  </div>
             </div>
 
             <div class="flex flex-col gap-2 py-3 md:flex-row md:items-center md:justify-center md:gap-12">
                 <!-- Current Temperature -->
                 <div class="flex justify-center items-center gap-3 md:gap-0">
-                    <span id="current-temp" class="text-7xl font-extrabold text-text-main sm:text-8xl">62&deg;</span>
+                    <span class="text-7xl font-extrabold text-text-main sm:text-8xl"><span id="current-temp">62</span>&deg;</span>
                     <!-- Mobile Icon -->
                      <div class="md:hidden">
-                         <i aria-hidden="true" class="fa-solid fa-sun text-6xl text-amber-400 sm:text-7xl"></i>
+                         <i id="mobile-icon" aria-hidden="true" class="fa-solid fa-sun text-6xl text-amber-400 sm:text-7xl"></i>
                      </div>
                 </div>
 
                 <div class="flex flex-col justify-center items-center gap-0.5">
                     <!-- Desktop Icon -->
                     <div class="hidden mb-3 md:block">
-                        <i aria-hidden="true" class="fa-solid fa-sun text-5xl text-amber-400"></i>
+                        <i id="desktop-icon" aria-hidden="true" class="fa-solid fa-sun text-5xl text-amber-400"></i>
                     </div>
 
                     <!-- Weather Condition -->
-                    <p id="weather-condition" class="font-medium text-center text-text-main">Sunny <span class="text-text-muted">&bull; Feels like 62&deg;</span></p>
-                    <p id="highs-lows" class="text-sm text-center text-text-muted">High: <span class="font-semibold text-text-main">65&deg;</span> &bull; Low: <span class="font-semibold text-text-main">53&deg;</span></p>
+                    <p class="font-medium text-center text-text-main"><span id="weather-condition">Sunny</span> <span class="text-text-muted">&bull; Feels like <span id="apparent-temp">62</span>&deg;</span></p>
+                    <p class="text-sm text-center text-text-muted">High: <span class="font-semibold text-text-main"><span id="high-temp">65</span>&deg;</span> &bull; Low: <span class="font-semibold text-text-main"><span id="low-temp">53</span>&deg;</span></p>
                 </div>
             </div>
 
@@ -92,13 +92,13 @@
                     <!-- Wind Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Wind</p>
-                        <p id="wind" class="font-bold text-text-main md:text-lg">12 <span class="text-xs text-text-muted md:text-sm">mph NNE</span></p>
+                        <p class="font-bold text-text-main md:text-lg"><span id="wind-speed">12</span> <span class="text-xs text-text-muted md:text-sm">mph <span id="wind-direction">NE</span></span></p>
                     </div>
 
                     <!-- Humidity Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Humidity</p>
-                        <p id="humidity" class="font-bold text-text-main md:text-lg">68%</p>
+                        <p class="font-bold text-text-main md:text-lg"><span id="humidity">68</span>%</p>
                     </div>
 
                     <!-- UV-Index Stat -->
@@ -106,14 +106,14 @@
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> UV Index</p>
                         <div class="flex items-center gap-2">
                             <p id="uv-index" class="font-bold text-text-main md:text-lg">0</p>
-                            <span class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors duration-200">Low</span>
+                            <span id="uv-index-condition" class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors duration-200">Low</span>
                         </div>
                     </div>
 
                     <!-- Precipitation Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Precipitation</p>
-                        <p id="precipitation" class="font-bold text-text-main md:text-lg">15%</p>
+                        <p class="font-bold text-text-main md:text-lg"><span id="precipitation">15</span>%</p>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 <span>7-Day Forecast</span>
             </h2>
 
-            <ul aria-label="7-day weather forecast" class="flex flex-col gap-3">
+            <ul id="forecast-container" aria-label="7-day weather forecast" class="flex flex-col gap-3">
                 <!-- Today/Day 1 -->
                 <li aria-label="Today's forecast: sunny, high of 65, low of 53, 10% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
                     <div aria-hidden="true" class="contents">
@@ -369,19 +369,19 @@
             <!-- AQI #/Status -->
             <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 lg:gap-4">
                 <div class="flex items-center gap-3">
-                    <p class="font-extrabold text-4xl tracking-tight text-text-main sm:text-5xl">42</p>
-                    <span class="inline-flex items-center px-3 py-1 font-semibold text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full sm:text-sm">Good</span>
+                    <p id="aqi-num" class="font-extrabold text-4xl tracking-tight text-text-main sm:text-5xl">42</p>
+                    <span id="aqi-condition" class="inline-flex items-center px-3 py-1 font-semibold text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full sm:text-sm">Good</span>
                 </div>
 
                 <!-- Main Pollutant Chip -->
                 <div class="inline-flex items-center px-2.5 py-1 bg-brand-bg/60 border border-hairline rounded-md lg:p-0 lg:bg-brand-surface lg:border-none">
-                    <p class="font-medium text-xs text-text-muted">Main pollutant: <span class="text-text-main">PM2.5</span></p>
+                    <p class="font-medium text-xs text-text-muted">Main pollutant: <span id="main-pollutant" class="text-text-main">PM2.5</span></p>
                 </div>
             </div>
 
             <!-- Advisory Message -->
             <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg lg:p-1">
-                <p class="text-center text-sm leading-relaxed text-slate-200 lg:text-xs">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
+                <p id="aqi-message" class="text-center text-sm leading-relaxed text-slate-200 lg:text-xs">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
             </div>
 
             <!-- AQI Scale -->
@@ -389,7 +389,7 @@
                 <!-- Gradient Colors -->
                 <div aria-hidden="true" class="absolute left-0 inset-y-0 w-full rounded-full bg-[linear-gradient(to_right,#10b981,#eab308,#f97316,#ef4444,#9333ea)]"></div>
                 <!-- Marker Placement -->
-                <div aria-hidden="true" class="absolute left-[8%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-text-main border-2 border-brand-surface shadow-md"></div>
+                <div id="aqi-scale-marker" aria-hidden="true" class="absolute left-[8%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-text-main border-2 border-brand-surface shadow-md"></div>
             </div> 
 
             <!-- Sub Metrics Grid -->
@@ -397,25 +397,25 @@
                 <!-- Card 1 -->
                 <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">PM2.5</dt>
-                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">8.4 <span class="text-xs text-text-muted">µg/m³</span></dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="pm2-5">8.4</span> <span class="text-xs text-text-muted">µg/m³</span></dd>
                 </div>
                 
                 <!-- Card 2 -->
                 <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">PM10</dt>
-                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">18.2 <span class="text-xs text-text-muted">µg/m³</span></dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="pm10">18.2</span> <span class="text-xs text-text-muted">µg/m³</span></dd>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">O3</dt>
-                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">32 <span class="text-xs text-text-muted">ppb</span></dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="ozone">32</span> <span class="text-xs text-text-muted">ppb</span></dd>
                 </div>
                 
                 <!-- Card 4 -->
                 <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
                     <dt class="text-xs font-medium text-text-muted">NO2</dt>
-                    <dd class="text-base font-bold text-center text-text-main lg:text-sm">12 <span class="text-xs text-text-muted">ppb</span></dd>
+                    <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="no2">12</span> <span class="text-xs text-text-muted">ppb</span></dd>
                 </div>
             </dl> 
         </section>
@@ -431,18 +431,18 @@
                     </h2>
 
                     <!-- Saved Locations Badge -->
-                    <span class="px-2 py-0.5 font-semibold text-xs text-text-muted bg-brand-bg border border-hairline rounded-md">3</span>
+                    <span id="saved-locations-num" class="px-2 py-0.5 font-semibold text-xs text-text-muted bg-brand-bg border border-hairline rounded-md">3</span>
                 </div>
 
                 <!-- Mobile Save Button -->
-                <button type="button" aria-label="Add current location to saved list" class="inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg sm:text-sm sm:px-3 min-[900px]:hidden hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
+                <button id="mobile-save-btn" type="button" aria-label="Add current location to saved list" class="inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg sm:text-sm sm:px-3 min-[900px]:hidden hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
                     <i aria-hidden="true" class="fa-solid fa-plus"></i>
                     <span class="hidden sm:inline">Save Current</span>
                 </button>
             </div>
 
             <!-- List -->
-            <ul aria-label="Saved locations list" class="grid grid-cols-1 auto-rows-min content-center gap-3 w-full min-w-0 min-h-0 overflow-x-hidden overflow-y-auto min-[900px]:content-start min-[900px]:grow">
+            <ul id="saved-locations" aria-label="Saved locations list" class="grid grid-cols-1 auto-rows-min content-center gap-3 w-full min-w-0 min-h-0 overflow-x-hidden overflow-y-auto min-[900px]:content-start min-[900px]:grow">
                 <!-- Location #1 -->
                 <li class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 border border-hairline/60 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5 transition-all duration-200 group cursor-pointer overflow-hidden">
                     <div class="flex flex-col justify-center min-w-0 overflow-hidden">
@@ -637,7 +637,7 @@
             </ul>        
 
             <!-- Desktop Save Location Button -->
-            <button type="button" aria-label="Add current location to saved list" class="hidden min-[900px]:inline-flex items-center justify-center gap-1.5 w-full px-4 py-2.5 text-sm font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
+            <button id="desktop-save-btn" type="button" aria-label="Add current location to saved list" class="hidden min-[900px]:inline-flex items-center justify-center gap-1.5 w-full px-4 py-2.5 text-sm font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
                 <i aria-hidden="true" class="fa-solid fa-plus"></i>
                 <span class="hidden sm:inline">Save Current</span>
             </button>
