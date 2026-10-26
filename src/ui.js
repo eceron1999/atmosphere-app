@@ -119,7 +119,7 @@ export function renderWeeklyForecast(weatherData) {
                         </p>
     
                         <!-- Precipitation % -->
-                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted">
+                        <p class="hidden sm:flex items-center justify-self-center gap-1 text-xs text-text-muted tabular-nums">
                             <i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky"></i>
                             <span class="text-sm">${dailyPrecipitation}%</span>
                         </p>
