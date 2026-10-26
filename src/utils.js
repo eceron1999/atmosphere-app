@@ -112,3 +112,12 @@ export function formatDayName(dateString) {
 
     return date.toLocaleDateString('en-US', { weekday: 'short' })
 }
+
+export function getTempPercent(current, min, max) {
+    if (min === max) return 50
+
+    const tempPercent = ((current - min) / (max - min)) * 100
+    const clampedPercent = Math.max(0, Math.min(100, tempPercent))
+
+    return clampedPercent
+}

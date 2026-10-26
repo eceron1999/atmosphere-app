@@ -1,5 +1,5 @@
 import { getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName } from "./utils.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent } from "./utils.js"
 
 export const elements = {
     // Header
@@ -94,7 +94,8 @@ export function updateUnitToggleUI(currentUnit) {
 }
 
 export function renderWeeklyForecast(weatherData) {
-    
+    const currentTemp = Math.round(weatherData.current.temperature_2m)
+
     const forecastHTML = weatherData.daily.time.map((date, index) => {
         const weatherCode = weatherData.daily.weather_code[index]
         const weatherInfo = getWeatherInfo(weatherCode)
@@ -105,6 +106,9 @@ export function renderWeeklyForecast(weatherData) {
 
         const minTemp = Math.round(weatherData.daily.temperature_2m_min[index])
         const maxTemp = Math.round(weatherData.daily.temperature_2m_max[index])
+
+        const percent = getTempPercent(currentTemp, minTemp, maxTemp)
+        const currentTempDot = index === 0 ? `<div style="left: ${percent}%" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>` : ''
 
         return `
         <li aria-label="${dayLabel}'s forecast: ${weatherInfo.description}, high of ${maxTemp}, low of ${minTemp}, ${dailyPrecipitation}% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
@@ -133,7 +137,7 @@ export function renderWeeklyForecast(weatherData) {
                                 <!-- Todays Range -->
                                 <div class="absolute inset-y-0 left-[38%] right-[32%] bg-linear-to-r from-teal-400 via-emerald-400 to-yellow-400 rounded-full"></div>
                                 <!-- Current Temp Dot -->
-                                <div class="absolute top-1/2 -translate-y-1/2 left-[62.5%] -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>
+                                ${currentTempDot}
                             </div>
                             <span class="font-semibold text-sm text-text-main">${maxTemp}&deg;</span>
                          </div>
