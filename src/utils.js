@@ -26,9 +26,9 @@ const weatherCodes = {
     71: { description: 'Slight Snow', ...weatherStyles.snow },
     73: { description: 'Moderate Snow', ...weatherStyles.snow },
     75: { description: 'Heavy Snow', ...weatherStyles.snow },
-    80: { description: 'Slight Rain Showers', ...weatherStyles.rain },
-    81: { description: 'Moderate Rain Showers', ...weatherStyles.heavyRain },
-    82: { description: 'Violent Rain Showers', ...weatherStyles.heavyRain },
+    80: { description: 'Slight Showers', ...weatherStyles.rain },
+    81: { description: 'Moderate Showers', ...weatherStyles.heavyRain },
+    82: { description: 'Violent Showers', ...weatherStyles.heavyRain },
     95: { description: 'Thunderstorm', ...weatherStyles.thunder },
     96: { description: 'Thunderstorm With Slight Hail', ...weatherStyles.thunder },
     99: { description: 'Thunderstorm With Heavy Hail', ...weatherStyles.thunder },
@@ -47,7 +47,6 @@ export function getWeatherInfo(code) {
 }
 
 export function formatLocation({ name, admin1, country_code }) {
-    console.log(name, admin1, country_code)
     let html = `<span>${name}</span>`
 
     if (admin1) {
@@ -108,7 +107,17 @@ export function getUvDetails(uvIndex) {
 }
 
 export function formatDayName(dateString) {
-    const date = new Date(dateString)
+    const [year, month, day] = dateString.split('-').map(Number)
+    const date = new Date(year, month - 1, day)
 
     return date.toLocaleDateString('en-US', { weekday: 'short' })
+}
+
+export function getTempPercent(current, min, max) {
+    if (min === max) return 50
+
+    const tempPercent = ((current - min) / (max - min)) * 100
+    const clampedPercent = Math.max(0, Math.min(100, tempPercent))
+
+    return clampedPercent
 }

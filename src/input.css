@@ -43,6 +43,9 @@
     --color-accent-cyan: #a5f3fc; /* Gradient clip (cyan-200) */
 }
 
+/* Explicitly safelist dynamic weather icon colors for the build compiler */
+@source inline("text-amber-400 text-amber-300 text-slate-400 text-slate-300 text-sky-400 text-blue-400 text-blue-500 text-cyan-300 text-purple-400");
+
 /* Custom Utility Classes */
 .show-country {
     display: none !important;
