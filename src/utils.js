@@ -116,7 +116,7 @@ export function getUvDetails(uvIndex) {
 }
 
 export function getAqiStatus(aqiValue) {
-
+    return AQI_THRESHOLDS.find(threshold => threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI)
 }
 
 export function formatDayName(dateString) {
