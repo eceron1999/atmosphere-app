@@ -1,5 +1,5 @@
-import { getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent } from "./utils.js"
+import { getAirQuality, getLocationData } from "./api.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus } from "./utils.js"
 
 export const elements = {
     // Header
@@ -68,6 +68,12 @@ export function renderCurrentWeather(weatherData, locationData) {
     elements.uvIndexCondition.innerText = uvDetails.text
     elements.uvIndexCondition.className = uvDetails.className
     elements.precipitationPercent.innerText = weatherData.daily.precipitation_probability_max[0]
+}
+
+export function renderAQI(airQualityData) {
+    const aqiInfo = airQualityData.current
+
+    elements.aqiNumber.innerText = aqiInfo.us_aqi
 }
 
 export function updateTime() {
