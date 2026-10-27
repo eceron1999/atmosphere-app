@@ -72,8 +72,14 @@ export function renderCurrentWeather(weatherData, locationData) {
 
 export function renderAQI(airQualityData) {
     const aqiInfo = airQualityData.current
+    const aqiStatus = getAqiStatus(aqiInfo.us_aqi)
 
     elements.aqiNumber.innerText = aqiInfo.us_aqi
+    elements.aqiMessage.innerText = aqiStatus.description
+    elements.pm25.innerText = aqiInfo.pm2_5
+    elements.pm10.innerText = aqiInfo.pm10
+    elements.ozone.innerText = aqiInfo.ozone
+    elements.no2.innerText = aqiInfo.nitrogen_dioxide
 }
 
 export function updateTime() {
