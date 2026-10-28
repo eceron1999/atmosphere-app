@@ -1,5 +1,5 @@
 import { getAirQuality, getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant } from "./utils.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent } from "./utils.js"
 
 export const elements = {
     // Header
@@ -75,6 +75,7 @@ export function renderAQI(airQualityData) {
     const aqiInfo = airQualityData.current
     const aqiStatus = getAqiStatus(aqiInfo.us_aqi)
     const mainPollutant = getMainPollutant(airQualityData)
+    const aqiMarkerPercent = getAqiPercent(aqiInfo.us_aqi)
 
     elements.aqiNumber.innerText = aqiInfo.us_aqi
     elements.aqiCondition.innerText = aqiStatus.status
@@ -82,6 +83,7 @@ export function renderAQI(airQualityData) {
     elements.mainPollutant.innerText = mainPollutant.name
     elements.aqiMessage.innerText = aqiStatus.description
     elements.aqiMessageBg.className = `p-2.5 ${aqiStatus.messageColor} border rounded-lg lg:p-1`
+    elements.aqiScaleMarker.style.left = `${aqiMarkerPercent}%`
     elements.pm25.innerText = aqiInfo.pm2_5
     elements.pm10.innerText = aqiInfo.pm10
     elements.ozone.innerText = aqiInfo.ozone

@@ -131,6 +131,11 @@ export function getMainPollutant(airQualityData) {
         current.value > acc.value ? current : acc)
 }
 
+export function getAqiPercent(aqiNum) {
+    const aqiPercent = (aqiNum / 500) * 100
+    return Math.max(0, Math.min(100, aqiPercent))
+}
+
 export function formatDayName(dateString) {
     const [year, month, day] = dateString.split('-').map(Number)
     const date = new Date(year, month - 1, day)
