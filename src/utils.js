@@ -119,6 +119,18 @@ export function getAqiStatus(aqiValue) {
     return AQI_THRESHOLDS.find(threshold => threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI)
 }
 
+export function getMainPollutant(airQualityData) {
+    const aqiValues = [
+        {name: 'PM2.5', value: airQualityData.current.pm2_5},
+        {name: 'PM10', value: airQualityData.current.pm10},
+        {name: 'O3', value: airQualityData.current.ozone},
+        {name: 'NO2', value: airQualityData.current.nitrogen_dioxide},
+    ]
+
+    return aqiValues.reduce((acc, current) => 
+        current.value > acc.value ? current : acc)
+}
+
 export function formatDayName(dateString) {
     const [year, month, day] = dateString.split('-').map(Number)
     const date = new Date(year, month - 1, day)
