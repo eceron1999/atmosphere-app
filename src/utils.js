@@ -1,4 +1,4 @@
-const weatherStyles = {
+const WEATHER_STYLES = {
     clear: { icon: 'fa-sun', color: 'text-amber-400' },
     partlyCloudy: { icon: "fa-cloud-sun", color: "text-amber-300" },
     overcast: { icon: "fa-cloud", color: "text-slate-400" },
@@ -10,33 +10,42 @@ const weatherStyles = {
     thunder: { icon: "fa-cloud-bolt", color: "text-purple-400" }
 }
 
-const weatherCodes = {
-    0: { description: 'Clear Sky', ...weatherStyles.clear },
-    1: { description: 'Mainly Clear', ...weatherStyles.clear },
-    2: { description: 'Partly Cloudy', ...weatherStyles.partlyCloudy },
-    3: { description: 'Overcast', ...weatherStyles.overcast },
-    45: { description: 'Foggy', ...weatherStyles.fog },
-    48: { description: 'Smog', ...weatherStyles.fog },
-    51: { description: 'Light Drizzle', ...weatherStyles.drizzle },
-    53: { description: 'Moderate Drizzle', ...weatherStyles.drizzle },
-    55: { description: 'Dense Drizzle', ...weatherStyles.drizzle },
-    61: { description: 'Slight Rain', ...weatherStyles.rain },
-    63: { description: 'Moderate Rain', ...weatherStyles.rain },
-    65: { description: 'Heavy Rain', ...weatherStyles.heavyRain},
-    71: { description: 'Slight Snow', ...weatherStyles.snow },
-    73: { description: 'Moderate Snow', ...weatherStyles.snow },
-    75: { description: 'Heavy Snow', ...weatherStyles.snow },
-    80: { description: 'Slight Showers', ...weatherStyles.rain },
-    81: { description: 'Moderate Showers', ...weatherStyles.heavyRain },
-    82: { description: 'Violent Showers', ...weatherStyles.heavyRain },
-    95: { description: 'Thunderstorm', ...weatherStyles.thunder },
-    96: { description: 'Thunderstorm With Slight Hail', ...weatherStyles.thunder },
-    99: { description: 'Thunderstorm With Heavy Hail', ...weatherStyles.thunder },
+const WEATHER_CODES = {
+    0: { description: 'Clear Sky', ...WEATHER_STYLES.clear },
+    1: { description: 'Mainly Clear', ...WEATHER_STYLES.clear },
+    2: { description: 'Partly Cloudy', ...WEATHER_STYLES.partlyCloudy },
+    3: { description: 'Overcast', ...WEATHER_STYLES.overcast },
+    45: { description: 'Foggy', ...WEATHER_STYLES.fog },
+    48: { description: 'Smog', ...WEATHER_STYLES.fog },
+    51: { description: 'Light Drizzle', ...WEATHER_STYLES.drizzle },
+    53: { description: 'Moderate Drizzle', ...WEATHER_STYLES.drizzle },
+    55: { description: 'Dense Drizzle', ...WEATHER_STYLES.drizzle },
+    61: { description: 'Slight Rain', ...WEATHER_STYLES.rain },
+    63: { description: 'Moderate Rain', ...WEATHER_STYLES.rain },
+    65: { description: 'Heavy Rain', ...WEATHER_STYLES.heavyRain},
+    71: { description: 'Slight Snow', ...WEATHER_STYLES.snow },
+    73: { description: 'Moderate Snow', ...WEATHER_STYLES.snow },
+    75: { description: 'Heavy Snow', ...WEATHER_STYLES.snow },
+    80: { description: 'Slight Showers', ...WEATHER_STYLES.rain },
+    81: { description: 'Moderate Showers', ...WEATHER_STYLES.heavyRain },
+    82: { description: 'Violent Showers', ...WEATHER_STYLES.heavyRain },
+    95: { description: 'Thunderstorm', ...WEATHER_STYLES.thunder },
+    96: { description: 'Thunderstorm With Slight Hail', ...WEATHER_STYLES.thunder },
+    99: { description: 'Thunderstorm With Heavy Hail', ...WEATHER_STYLES.thunder },
 }
 
+const AQI_THRESHOLDS = [
+    { minAQI: 0, maxAQI: 50, status: 'Good', description: 'Air quality is satisfactory, and air pollution poses little or no risk.', badgeColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', messageColor: 'bg-emerald-500/10 border-emerald-500/20' },
+    { minAQI: 51, maxAQI: 100, status: 'Moderate', description: 'Air quality is acceptable. However, sensitive groups may experience a moderate health concern.', badgeColor: 'bg-amber-500/15 text-amber-400 border-amber-500/30', messageColor: 'bg-amber-500/10 border-amber-500/20' },
+    { minAQI: 101, maxAQI: 150, status: 'Unhealthy for Sensitive Groups', description: 'Members of sensitive groups may experience health effects. The general public is less likely to be affected.', badgeColor: 'bg-orange-500/15 text-orange-400 border-orange-500/30', messageColor: 'bg-orange-500/10 border-orange-500/20' },
+    { minAQI: 151, maxAQI: 200, status: 'Unhealthy', description: 'Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.', badgeColor: 'bg-red-500/15 text-red-400 border-red-500/30', messageColor: 'bg-red-500/10 border-red-500/20' },
+    { minAQI: 201, maxAQI: 300, status: 'Very Unhealthy', description: 'Health alert: everyone may experience more serious health effects.', badgeColor: 'bg-rose-500/15 text-rose-400 border-rose-500/30', messageColor: 'bg-rose-500/10 border-rose-500/20' },
+    { minAQI: 301, maxAQI: 500, status: 'Hazardous', description: 'Health warnings of emergency conditions. The entire population is more likely to be affected.', badgeColor: 'bg-purple-500/15 text-purple-400 border-purple-500/30', messageColor: 'bg-purple-500/10 border-purple-500/20' },
+]
+
 export function getWeatherInfo(code) {
-    if (code in weatherCodes) {
-        return weatherCodes[code]
+    if (code in WEATHER_CODES) {
+        return WEATHER_CODES[code]
     } else {
         return {
             description: 'Unknown',
@@ -104,6 +113,27 @@ export function getUvDetails(uvIndex) {
         text: currentLevel.text,
         className: `${baseClasses} ${colorMap[currentLevel.color]}`
     }
+}
+
+export function getAqiStatus(aqiValue) {
+    return AQI_THRESHOLDS.find(threshold => threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI)
+}
+
+export function getMainPollutant(airQualityData) {
+    const aqiValues = [
+        {name: 'PM2.5', value: airQualityData.current.pm2_5},
+        {name: 'PM10', value: airQualityData.current.pm10},
+        {name: 'O3', value: airQualityData.current.ozone},
+        {name: 'NO2', value: airQualityData.current.nitrogen_dioxide},
+    ]
+
+    return aqiValues.reduce((acc, current) => 
+        current.value > acc.value ? current : acc)
+}
+
+export function getAqiPercent(aqiNum) {
+    const aqiPercent = (aqiNum / 500) * 100
+    return Math.max(0, Math.min(100, aqiPercent))
 }
 
 export function formatDayName(dateString) {

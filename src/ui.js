@@ -1,5 +1,5 @@
-import { getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent } from "./utils.js"
+import { getAirQuality, getLocationData } from "./api.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent } from "./utils.js"
 
 export const elements = {
     // Header
@@ -35,6 +35,7 @@ export const elements = {
     aqiCondition: document.getElementById('aqi-condition'),
     mainPollutant: document.getElementById('main-pollutant'),
     aqiMessage: document.getElementById('aqi-message'),
+    aqiMessageBg: document.getElementById('aqi-message-bg'),
     aqiScaleMarker: document.getElementById('aqi-scale-marker'),
     pm25: document.getElementById('pm2-5'),
     pm10: document.getElementById('pm10'),
@@ -68,6 +69,25 @@ export function renderCurrentWeather(weatherData, locationData) {
     elements.uvIndexCondition.innerText = uvDetails.text
     elements.uvIndexCondition.className = uvDetails.className
     elements.precipitationPercent.innerText = weatherData.daily.precipitation_probability_max[0]
+}
+
+export function renderAQI(airQualityData) {
+    const aqiInfo = airQualityData.current
+    const aqiStatus = getAqiStatus(aqiInfo.us_aqi)
+    const mainPollutant = getMainPollutant(airQualityData)
+    const aqiMarkerPercent = getAqiPercent(aqiInfo.us_aqi)
+
+    elements.aqiNumber.innerText = Math.round(aqiInfo.us_aqi)
+    elements.aqiCondition.innerText = aqiStatus.status
+    elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.badgeColor} border rounded-full sm:text-sm`
+    elements.mainPollutant.innerText = mainPollutant.name
+    elements.aqiMessage.innerText = aqiStatus.description
+    elements.aqiMessageBg.className = `p-2.5 ${aqiStatus.messageColor} border rounded-lg lg:p-1`
+    elements.aqiScaleMarker.style.left = `${aqiMarkerPercent}%`
+    elements.pm25.innerText = Math.round(aqiInfo.pm2_5)
+    elements.pm10.innerText = Math.round(aqiInfo.pm10)
+    elements.ozone.innerText = Math.round(aqiInfo.ozone)
+    elements.no2.innerText = Math.round(aqiInfo.nitrogen_dioxide)
 }
 
 export function updateTime() {

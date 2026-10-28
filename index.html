@@ -150,16 +150,16 @@
             </div>
 
             <!-- Advisory Message -->
-            <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg lg:p-1">
+            <div id="aqi-message-bg" class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg lg:p-1">
                 <p id="aqi-message" class="text-center text-sm leading-relaxed text-slate-200 lg:text-xs">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
             </div>
 
             <!-- AQI Scale -->
             <div role="progressbar" aria-label="Air Quality Index Scale" aria-valuenow="42" aria-valuemin="0" aria-valuemax="500" aria-valuetext="42, Good" class="relative w-full h-3 my-1 bg-white/10 border border-white/20 rounded-full overflow-visible">
                 <!-- Gradient Colors -->
-                <div aria-hidden="true" class="absolute left-0 inset-y-0 w-full rounded-full bg-[linear-gradient(to_right,#10b981,#eab308,#f97316,#ef4444,#9333ea)]"></div>
+                <div aria-hidden="true" class="absolute left-0 inset-y-0 w-full rounded-full bg-[linear-gradient(to_right,#10b981_0%,#10b981_10%,#f59e0b_20%,#f97316_30%,#ef4444_40%,#f43f5e_60%,#a855f7_100%)]"></div>
                 <!-- Marker Placement -->
-                <div id="aqi-scale-marker" aria-hidden="true" class="absolute left-[8%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-text-main border-2 border-brand-surface shadow-md"></div>
+                <div id="aqi-scale-marker" aria-hidden="true" class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-text-main border-2 border-brand-surface shadow-md"></div>
             </div> 
 
             <!-- Sub Metrics Grid -->

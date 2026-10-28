@@ -31,7 +31,7 @@ export async function getWeather(latitude, longitude, currentUnit) {
 }
 
 export async function getAirQuality(latitude, longitude) {
-    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?current=ozone,nitrogen_dioxide,pm10,pm2_5&timezone=auto&latitude=${latitude}&longitude=${longitude}`
+    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?current=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide&timezone=auto&latitude=${latitude}&longitude=${longitude}`
     const res = await fetch(url)
 
     if (!res.ok) {
