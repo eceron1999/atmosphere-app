@@ -35,12 +35,12 @@ const WEATHER_CODES = {
 }
 
 const AQI_THRESHOLDS = [
-    { minAQI: 0, maxAQI: 50, status: 'Good', description: 'Air quality is satisfactory, and air pollution poses little or no risk.', color: 'bg-emerald-500' },
-    { minAQI: 51, maxAQI: 100, status: 'Moderate', description: 'Air quality is acceptable. However, sensitive groups may experience a moderate health concern.', color: 'bg-amber-400' },
-    { minAQI: 101, maxAQI: 150, status: 'Unhealthy for Sensitive Groups', description: 'Members of sensitive groups may experience health effects. The general public is less likely to be affected.', color: 'bg-orange-500' },
-    { minAQI: 151, maxAQI: 200, status: 'Unhealthy', description: 'Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.', color: 'bg-red-500' },
-    { minAQI: 201, maxAQI: 300, status: 'Very Unhealthy', description: 'Health alert: everyone may experience more serious health effects.', color: 'bg-rose-500' },
-    { minAQI: 301, maxAQI: 500, status: 'Hazardous', description: 'Health warnings of emergency conditions. The entire population is more likely to be affected.', color: 'bg-purple-600' },
+    { minAQI: 0, maxAQI: 50, status: 'Good', description: 'Air quality is satisfactory, and air pollution poses little or no risk.', color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' },
+    { minAQI: 51, maxAQI: 100, status: 'Moderate', description: 'Air quality is acceptable. However, sensitive groups may experience a moderate health concern.', color: 'bg-amber-500/15 text-amber-400 border-amber-500/30' },
+    { minAQI: 101, maxAQI: 150, status: 'Unhealthy for Sensitive Groups', description: 'Members of sensitive groups may experience health effects. The general public is less likely to be affected.', color: 'bg-orange-500/15 text-orange-400 border-orange-500/30' },
+    { minAQI: 151, maxAQI: 200, status: 'Unhealthy', description: 'Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.', color: 'bg-red-500/15 text-red-400 border-red-500/30' },
+    { minAQI: 201, maxAQI: 300, status: 'Very Unhealthy', description: 'Health alert: everyone may experience more serious health effects.', color: 'bg-rose-500/15 text-rose-400 border-rose-500/30' },
+    { minAQI: 301, maxAQI: 500, status: 'Hazardous', description: 'Health warnings of emergency conditions. The entire population is more likely to be affected.', color: 'bg-purple-500/15 text-purple-400 border-purple-500/30' },
 ]
 
 export function getWeatherInfo(code) {

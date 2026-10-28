@@ -75,6 +75,8 @@ export function renderAQI(airQualityData) {
     const aqiStatus = getAqiStatus(aqiInfo.us_aqi)
 
     elements.aqiNumber.innerText = aqiInfo.us_aqi
+    elements.aqiCondition.innerText = aqiStatus.status
+    elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.color} border rounded-full sm:text-sm`
     elements.aqiMessage.innerText = aqiStatus.description
     elements.pm25.innerText = aqiInfo.pm2_5
     elements.pm10.innerText = aqiInfo.pm10
