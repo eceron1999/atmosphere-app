@@ -35,6 +35,7 @@ export const elements = {
     aqiCondition: document.getElementById('aqi-condition'),
     mainPollutant: document.getElementById('main-pollutant'),
     aqiMessage: document.getElementById('aqi-message'),
+    aqiMessageBg: document.getElementById('aqi-message-bg'),
     aqiScaleMarker: document.getElementById('aqi-scale-marker'),
     pm25: document.getElementById('pm2-5'),
     pm10: document.getElementById('pm10'),
@@ -77,9 +78,10 @@ export function renderAQI(airQualityData) {
 
     elements.aqiNumber.innerText = aqiInfo.us_aqi
     elements.aqiCondition.innerText = aqiStatus.status
-    elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.color} border rounded-full sm:text-sm`
+    elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.badgeColor} border rounded-full sm:text-sm`
     elements.mainPollutant.innerText = mainPollutant.name
     elements.aqiMessage.innerText = aqiStatus.description
+    elements.aqiMessageBg.className = `p-2.5 ${aqiStatus.messageColor} border rounded-lg lg:p-1`
     elements.pm25.innerText = aqiInfo.pm2_5
     elements.pm10.innerText = aqiInfo.pm10
     elements.ozone.innerText = aqiInfo.ozone
