@@ -10,22 +10,27 @@ let currentLocationData = null
 async function onSubmit(e) {
     e.preventDefault()
 
-    const cityName = elements.searchInput.value
-
-    const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
-
-    currentLat = latitude
-    currentLong = longitude
-    currentLocationData = { name, admin1, country_code }
-
-    const [weatherData, airQualityData] = await Promise.all([
-        getWeather(latitude, longitude, currentUnit),
-        getAirQuality(latitude, longitude),
-    ])
-
-    renderCurrentWeather(weatherData, currentLocationData)
-    renderAQI(airQualityData)
-    renderWeeklyForecast(weatherData)
+    try {
+        const cityName = elements.searchInput.value
+    
+        const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
+    
+        currentLat = latitude
+        currentLong = longitude
+        currentLocationData = { name, admin1, country_code }
+    
+        const [weatherData, airQualityData] = await Promise.all([
+            getWeather(latitude, longitude, currentUnit),
+            getAirQuality(latitude, longitude),
+        ])
+    
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderAQI(airQualityData)
+        renderWeeklyForecast(weatherData)
+    } catch (error) {
+        console.error('Error loading weather data:', error)
+        alert(`Could not load weather:`, ${error.message})
+    }
 }
 
 async function getCurrentPosition() {
@@ -50,7 +55,8 @@ async function handleCurrentLocationClick(e) {
         renderWeeklyForecast(weatherData)
         
     } catch (error) {
-        console.error('Could not get location:', error.message)
+        console.error('Error loading weather data:', error)
+        alert(`Could not load weather: ${error.message}`)
     }
 }
 
