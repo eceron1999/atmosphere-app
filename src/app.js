@@ -1,6 +1,6 @@
 import './input.css';
 import { elements, renderAQI, renderCurrentWeather, renderWeeklyForecast, updateTime, updateUnitToggleUI } from "./ui.js";
-import { getLocationData, getWeather, getAirQuality } from "./api.js";
+import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
 
 let currentUnit = 'fahrenheit'
 let currentLat = null
@@ -10,20 +10,54 @@ let currentLocationData = null
 async function onSubmit(e) {
     e.preventDefault()
 
-    const cityName = elements.searchInput.value
+    try {
+        const cityName = elements.searchInput.value
+    
+        const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
+    
+        currentLat = latitude
+        currentLong = longitude
+        currentLocationData = { name, admin1, country_code }
+    
+        const [weatherData, airQualityData] = await Promise.all([
+            getWeather(latitude, longitude, currentUnit),
+            getAirQuality(latitude, longitude),
+        ])
+    
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderAQI(airQualityData)
+        renderWeeklyForecast(weatherData)
+    } catch (error) {
+        console.error('Error loading weather data:', error)
+        alert(`Could not load weather: ${error.message}`)
+    }
+}
 
-    const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
+async function getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
+}
 
-    currentLat = latitude
-    currentLong = longitude
-    currentLocationData = { name, admin1, country_code }
+async function handleCurrentLocationClick(e) {
+    try {
+        const currentPosition = await getCurrentPosition()
+        const { latitude, longitude } = currentPosition.coords
+        
+        const [weatherData, currentLocationData, airQualityData] = await Promise.all([
+            getWeather(latitude, longitude, currentUnit),
+            getReverseLocationData(latitude, longitude),
+            getAirQuality(latitude, longitude),
+        ])
 
-    const weatherData = await getWeather(latitude, longitude, currentUnit)
-    const airQualityData = await getAirQuality(latitude, longitude)
-
-    renderCurrentWeather(weatherData, currentLocationData)
-    renderAQI(airQualityData)
-    renderWeeklyForecast(weatherData)
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderAQI(airQualityData)
+        renderWeeklyForecast(weatherData)
+        
+    } catch (error) {
+        console.error('Error loading weather data:', error)
+        alert(`Could not load weather: ${error.message}`)
+    }
 }
 
 async function handleUnitToggle(e) {
@@ -50,6 +84,7 @@ function init() {
     elements.searchForm.addEventListener('submit', onSubmit)
     elements.fahrenheitBtn.addEventListener('click', handleUnitToggle)
     elements.celsiusBtn.addEventListener('click', handleUnitToggle)
+    elements.currentLocBtn.addEventListener('click', handleCurrentLocationClick)
 }
 
 init()
