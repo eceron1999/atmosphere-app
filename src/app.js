@@ -1,6 +1,6 @@
 import './input.css';
 import { elements, renderAQI, renderCurrentWeather, renderWeeklyForecast, updateTime, updateUnitToggleUI } from "./ui.js";
-import { getLocationData, getWeather, getAirQuality } from "./api.js";
+import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
 
 let currentUnit = 'fahrenheit'
 let currentLat = null
@@ -18,8 +18,10 @@ async function onSubmit(e) {
     currentLong = longitude
     currentLocationData = { name, admin1, country_code }
 
-    const weatherData = await getWeather(latitude, longitude, currentUnit)
-    const airQualityData = await getAirQuality(latitude, longitude)
+    const [weatherData, airQualityData] = await Promise.all([
+        getWeather(latitude, longitude, currentUnit),
+        getAirQuality(latitude, longitude),
+    ])
 
     renderCurrentWeather(weatherData, currentLocationData)
     renderAQI(airQualityData)
@@ -36,8 +38,16 @@ async function handleCurrentLocationClick(e) {
     try {
         const currentPosition = await getCurrentPosition()
         const { latitude, longitude } = currentPosition.coords
+        
+        const [weatherData, currentLocationData, airQualityData] = await Promise.all([
+            getWeather(latitude, longitude, currentUnit),
+            getReverseLocationData(latitude, longitude),
+            getAirQuality(latitude, longitude),
+        ])
 
-        const weatherData = await getWeather(latitude, longitude, currentUnit)
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderAQI(airQualityData)
+        renderWeeklyForecast(weatherData)
         
     } catch (error) {
         console.error('Could not get location:', error.message)
