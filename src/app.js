@@ -26,6 +26,24 @@ async function onSubmit(e) {
     renderWeeklyForecast(weatherData)
 }
 
+async function getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
+}
+
+async function handleCurrentLocationClick(e) {
+    try {
+        const currentPosition = await getCurrentPosition()
+        const { latitude, longitude } = currentPosition.coords
+
+        const weatherData = await getWeather(latitude, longitude, currentUnit)
+        
+    } catch (error) {
+        console.error('Could not get location:', error.message)
+    }
+}
+
 async function handleUnitToggle(e) {
     const selectedUnit = e.currentTarget.dataset.unit
 
@@ -50,6 +68,7 @@ function init() {
     elements.searchForm.addEventListener('submit', onSubmit)
     elements.fahrenheitBtn.addEventListener('click', handleUnitToggle)
     elements.celsiusBtn.addEventListener('click', handleUnitToggle)
+    elements.currentLocBtn.addEventListener('click', handleCurrentLocationClick)
 }
 
 init()
