@@ -29,7 +29,7 @@ async function onSubmit(e) {
         renderWeeklyForecast(weatherData)
     } catch (error) {
         console.error('Error loading weather data:', error)
-        alert(`Could not load weather:`, ${error.message})
+        alert(`Could not load weather: ${error.message}`)
     }
 }
 
