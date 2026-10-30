@@ -51,7 +51,12 @@
             <div class="flex justify-between items-start">
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
-                    <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors">Raleigh, NC, US</h2>
+                    <div class="flex items-center gap-2">
+                        <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors">Raleigh, NC, US</h2>
+                        <button id="save-location-btn" type="button" aria-label="Save Location" class="flex justify-center items-center p-2 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-accent-sky hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">
+                            <i id="save-location-icon" class="fa-regular fa-bookmark text-lg sm:text-xl"></i>
+                        </button>
+                    </div>
                     <p class="text-sm text-text-muted">As of <span id="time-stamp">7:30 PM EDT</span> &middot; Live</p>
                 </div>
     
@@ -193,22 +198,14 @@
         <!-- Saved Locations -->
         <section aria-labelledby="saved-locations-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-2 min-[900px]:col-start-9 min-[900px]:max-h-129 min-[900px]:min-h-0 min-[900px]:p-3">
             <!-- Header -->
-            <div class="flex items-center justify-between gap-4">
-                <div class="flex items-center gap-2.5 min-w-0">
-                    <h2 id="saved-locations-heading" class="inline-flex items-center gap-2.5 whitespace-nowrap font-bold text-lg text-text-main sm:text-xl">
-                        <i aria-hidden="true" class="fa-solid fa-bookmark text-accent-sky"></i>
-                        <span>Saved Locations</span>
-                    </h2>
+            <div class="flex items-center gap-2.5 min-w-0">
+                <h2 id="saved-locations-heading" class="inline-flex items-center gap-2.5 whitespace-nowrap font-bold text-lg text-text-main sm:text-xl">
+                    <i aria-hidden="true" class="fa-solid fa-bookmark text-accent-sky"></i>
+                    <span>Saved Locations</span>
+                </h2>
 
-                    <!-- Saved Locations Badge -->
-                    <span id="saved-locations-num" class="px-2 py-0.5 font-semibold text-xs text-text-muted bg-brand-bg border border-hairline rounded-md">3</span>
-                </div>
-
-                <!-- Mobile Save Button -->
-                <button id="mobile-save-btn" type="button" aria-label="Add current location to saved list" class="inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg sm:text-sm sm:px-3 min-[900px]:hidden hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
-                    <i aria-hidden="true" class="fa-solid fa-plus"></i>
-                    <span class="hidden sm:inline">Save Current</span>
-                </button>
+                <!-- Saved Locations Badge -->
+                <span id="saved-locations-num" class="px-2 py-0.5 font-semibold text-xs text-text-muted bg-brand-bg border border-hairline rounded-md">3</span>
             </div>
 
             <!-- List -->
@@ -405,12 +402,6 @@
                     </button>
                 </li>    
             </ul>        
-
-            <!-- Desktop Save Location Button -->
-            <button id="desktop-save-btn" type="button" aria-label="Add current location to saved list" class="hidden min-[900px]:inline-flex items-center justify-center gap-1.5 w-full px-4 py-2.5 text-sm font-semibold bg-accent-sky/10 text-accent-sky border border-accent-sky/30 rounded-lg hover:bg-accent-sky/20 hover:text-accent-sky/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface transition-colors duration-150">
-                <i aria-hidden="true" class="fa-solid fa-plus"></i>
-                <span class="hidden sm:inline">Save Current</span>
-            </button>
         </section>
     </main>
     <script type="module" src="./src/app.js"></script>

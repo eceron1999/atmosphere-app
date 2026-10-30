@@ -10,6 +10,8 @@ export const elements = {
 
     // Main Weather Hero
     currentLocation: document.getElementById('current-location'),
+    saveLocationBtn: document.getElementById('save-location-btn'),
+    saveLocationIcon: document.getElementById('save-location-icon'),
     timeStamp: document.getElementById('time-stamp'),
     celsiusBtn: document.getElementById('c-toggle-btn'),
     fahrenheitBtn: document.getElementById('f-toggle-btn'),
@@ -44,9 +46,7 @@ export const elements = {
 
     // Saved Locations
     savedLocationsNum: document.getElementById('saved-locations-num'),
-    mobileSaveBtn: document.getElementById('mobile-save-btn'),
     savedLocationsContainer: document.getElementById('saved-locations'),
-    desktopSaveBtn: document.getElementById('desktop-save-btn')
 }
 
 export function renderCurrentWeather(weatherData, locationData) {
