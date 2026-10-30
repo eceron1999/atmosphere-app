@@ -10,3 +10,11 @@ export function getSavedLocations() {
         return []
     }
 }
+
+export function saveLocation(location) {
+    const savedLocations = getSavedLocations()
+
+    const updatedLocations = [...savedLocations, location]
+
+    localStorage.setItem('savedLocations', JSON.stringify(updatedLocations))
+}
