@@ -1,6 +1,7 @@
 import './input.css';
-import { elements, renderAQI, renderCurrentWeather, renderWeeklyForecast, updateTime, updateUnitToggleUI } from "./ui.js";
+import { elements, renderAQI, renderCurrentWeather, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
+import { getSavedLocations, removeLocation, saveLocation } from './storage.js';
 
 let currentUnit = 'fahrenheit'
 let currentLat = null
@@ -25,6 +26,7 @@ async function onSubmit(e) {
         ])
     
         renderCurrentWeather(weatherData, currentLocationData)
+        updateBookmarkUI(currentLocationData)
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
     } catch (error) {
@@ -60,6 +62,15 @@ async function handleCurrentLocationClick(e) {
     }
 }
 
+async function handleSaveLocationBtn(e) {
+    const savedLocations = getSavedLocations()
+    const isAlreadySaved = savedLocations.some(loc => loc.name === currentLocationData.name && loc.admin1 === currentLocationData.admin1)
+
+    isAlreadySaved ? removeLocation(currentLocationData) : saveLocation(currentLocationData)
+    
+    updateBookmarkUI(currentLocationData)
+}
+
 async function handleUnitToggle(e) {
     const selectedUnit = e.currentTarget.dataset.unit
 
@@ -85,6 +96,7 @@ function init() {
     elements.fahrenheitBtn.addEventListener('click', handleUnitToggle)
     elements.celsiusBtn.addEventListener('click', handleUnitToggle)
     elements.currentLocBtn.addEventListener('click', handleCurrentLocationClick)
+    elements.saveLocationBtn.addEventListener('click', handleSaveLocationBtn)
 }
 
 init()

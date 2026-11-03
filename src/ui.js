@@ -1,5 +1,6 @@
 import { getAirQuality, getLocationData } from "./api.js"
 import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent } from "./utils.js"
+import { getSavedLocations } from "./storage.js"
 
 export const elements = {
     // Header
@@ -104,6 +105,19 @@ function setButtonState(button, isActive) {
     button.classList.toggle('bg-transparent', !isActive)
     button.classList.toggle('hover:text-text-main', !isActive)
     button.classList.toggle('hover:bg-brand-surface/50', !isActive)
+}
+
+export function updateBookmarkUI(locationData) {
+    const savedLocations = getSavedLocations()
+    const isAlreadySaved = savedLocations.some(loc => loc.name === locationData.name && loc.admin1 === locationData.admin1)
+
+    if (isAlreadySaved) {
+        elements.saveLocationIcon.classList.remove('fa-regular')
+        elements.saveLocationIcon.classList.add('fa-solid')
+    } else {
+        elements.saveLocationIcon.classList.remove('fa-solid')
+        elements.saveLocationIcon.classList.add('fa-regular')
+    }
 }
 
 export function updateUnitToggleUI(currentUnit) {
