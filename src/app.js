@@ -1,5 +1,5 @@
 import './input.css';
-import { elements, renderAQI, renderCurrentWeather, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
+import { elements, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
 import { getSavedLocations, removeLocation, saveLocation } from './storage.js';
 
@@ -87,9 +87,17 @@ async function handleUnitToggle(e) {
     updateUnitToggleUI(currentUnit)
 }
 
+function loadSavedLocations() {
+    const savedLocations = getSavedLocations()
+
+    renderSavedLocations(savedLocations)
+}
+
 function init() {
     updateTime()
     setInterval(updateTime, 1000)
+
+    loadSavedLocations()
 
     // Event Listeners
     elements.searchForm.addEventListener('submit', onSubmit)
