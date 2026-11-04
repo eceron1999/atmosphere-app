@@ -66,6 +66,7 @@ async function handleSaveLocationBtn(e) {
     isAlreadySaved ? removeLocation(currentLocationData) : saveLocation(currentLocationData)
     
     updateBookmarkUI(currentLocationData)
+    loadSavedLocations()
 }
 
 async function handleUnitToggle(e) {
