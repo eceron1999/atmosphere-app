@@ -203,7 +203,15 @@ export function renderSavedLocations(savedLocations) {
         return
     } 
 
-    elements.savedLocationsContainer.innerHTML = savedLocations.map(loc => `
+    elements.savedLocationsContainer.innerHTML = savedLocations.map(loc => {
+        const { name, admin1, country_code, weatherData} = loc
+
+        const currentTemp = Math.round(weatherData.current.temperature_2m)
+        const highTemp = Math.round(weatherData.daily.temperature_2m_max[0])
+        const lowTemp = Math.round(weatherData.daily.temperature_2m_min[0])
+        const precipitation = weatherData.daily.precipitation_probability_max[0]
+        
+        return `
         <li class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 border border-hairline/60 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5 transition-all duration-200 group cursor-pointer overflow-hidden">
             <div class="flex flex-col justify-center min-w-0 overflow-hidden">
                 <!-- City -->
@@ -217,23 +225,23 @@ export function renderSavedLocations(savedLocations) {
                     <!-- Weather Icon -->
                     <i aria-hidden="true" class="fa-solid fa-sun shrink-0 w-6 text-center text-lg text-amber-400 min-[400px]:text-xl min-[900px]:text-lg group-hover:scale-110 transition-transform duration-200"></i>
                     <!-- Current Temp -->
-                    <p class="text-base font-bold tracking-tight tabular-nums text-text-main sm:text-lg min-[900px]:text-sm!">62&deg;</p>
+                    <p class="text-base font-bold tracking-tight tabular-nums text-text-main sm:text-lg min-[900px]:text-sm!">${currentTemp}&deg;</p>
                 </div>
     
                 <!-- High/Low -->
-                <p class="text-[10px] text-text-muted min-[400px]:text-xs">H: 65&deg; L: 53&deg;</p>
+                <p class="text-[10px] text-text-muted min-[400px]:text-xs">H: ${highTemp}&deg; L: ${lowTemp}&deg;</p>
             </div>
     
             <!-- Precipitation % -->
             <div class="hidden min-[400px]:inline-flex items-center justify-center justify-self-center shrink-0 gap-1 px-1 py-0.5 text-xs font-semibold text-accent-sky bg-accent-sky/10 border border-accent-sky/30 rounded-full tabular-nums min-[900px]:hidden min-[1200px]:inline-flex">
                 <i class="fa-solid fa-droplet"></i>
-                <span>15%</span>
+                <span>${precipitation}%</span>
             </div>
             <!-- Remove Button -->
             <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
                 <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
             </button>
         </li>
-        `
+        `}
     ).join('')
 }

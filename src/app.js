@@ -2,10 +2,9 @@ import './input.css';
 import { elements, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
 import { getSavedLocations, removeLocation, saveLocation } from './storage.js';
+import { getWeatherInfo } from './utils.js';
 
 let currentUnit = 'fahrenheit'
-let currentLat = null
-let currentLong = null
 let currentLocationData = null
 
 async function onSubmit(e) {
@@ -16,9 +15,7 @@ async function onSubmit(e) {
     
         const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
     
-        currentLat = latitude
-        currentLong = longitude
-        currentLocationData = { name, admin1, country_code }
+        currentLocationData = { latitude, longitude, name, admin1, country_code }
     
         const [weatherData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
@@ -87,10 +84,17 @@ async function handleUnitToggle(e) {
     updateUnitToggleUI(currentUnit)
 }
 
-function loadSavedLocations() {
+async function loadSavedLocations() {
     const savedLocations = getSavedLocations()
 
-    renderSavedLocations(savedLocations)
+    const hydratedLocations = await Promise.all(
+        savedLocations.map(async loc => {
+            const weatherData = await getWeather(loc.latitude, loc.longitude, currentUnit)
+            return { ...loc, weatherData}
+        })
+    )
+
+    renderSavedLocations(hydratedLocations)
 }
 
 function init() {
