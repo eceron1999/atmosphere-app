@@ -76,8 +76,9 @@ async function handleUnitToggle(e) {
     } 
 
     currentUnit = selectedUnit
+    const { latitude, longitude } = currentLocationData
 
-    const weatherData = await getWeather(currentLat, currentLong, currentUnit)
+    const weatherData = await getWeather(latitude, longitude, currentUnit)
 
     renderCurrentWeather(weatherData, currentLocationData)
 
