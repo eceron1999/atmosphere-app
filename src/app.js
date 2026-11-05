@@ -63,7 +63,17 @@ async function handleSaveLocationBtn(e) {
     const savedLocations = getSavedLocations()
     const isAlreadySaved = savedLocations.some(loc => loc.name === currentLocationData.name && loc.admin1 === currentLocationData.admin1)
 
-    isAlreadySaved ? removeLocation(currentLocationData) : saveLocation(currentLocationData)
+    if (isAlreadySaved) {
+        removeLocation(currentLocationData)
+    } else {
+        const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
+        const locationToSave = {
+            ...currentLocationData,
+            weatherData
+        }
+
+        saveLocation(locationToSave)
+    }
     
     updateBookmarkUI(currentLocationData)
     loadSavedLocations()
@@ -99,6 +109,32 @@ async function loadSavedLocations() {
     renderSavedLocations(hydratedLocations)
 }
 
+async function handleSavedLocationClick(e) {
+    const locationCard = e.target.closest('li')
+    if (!locationCard) return
+
+    const { lat, long } = locationCard.dataset
+    const savedLocations = getSavedLocations()
+
+    if (e.target.closest('button')) {
+        const filteredLocations = savedLocations.filter(loc => loc.latitude !== +lat && loc.longitude !== +long)
+
+        localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))
+        
+        renderSavedLocations(filteredLocations)
+    } else {
+        const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
+        if (!targetLocation) return
+
+        const weatherData = await getWeather(lat, long, currentUnit)
+        const aqiData = await getAirQuality(lat, long)
+
+        renderCurrentWeather(weatherData, targetLocation)
+        renderAQI(aqiData)
+        renderWeeklyForecast(weatherData)
+    }
+}
+
 function init() {
     updateTime()
     setInterval(updateTime, 1000)
@@ -111,6 +147,7 @@ function init() {
     elements.celsiusBtn.addEventListener('click', handleUnitToggle)
     elements.currentLocBtn.addEventListener('click', handleCurrentLocationClick)
     elements.saveLocationBtn.addEventListener('click', handleSaveLocationBtn)
+    elements.savedLocationsContainer.addEventListener('click', handleSavedLocationClick)
 }
 
 init()

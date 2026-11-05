@@ -204,15 +204,15 @@ export function renderSavedLocations(savedLocations) {
     } 
 
     elements.savedLocationsContainer.innerHTML = savedLocations.map(loc => {
-        const { name, admin1, country_code, weatherData} = loc
+        const { name, admin1, country_code, weatherData, latitude, longitude} = loc
 
-        const currentTemp = Math.round(weatherData.current.temperature_2m)
+        const currentTemp = Math.round(weatherData?.current.temperature_2m)
         const highTemp = Math.round(weatherData.daily.temperature_2m_max[0])
         const lowTemp = Math.round(weatherData.daily.temperature_2m_min[0])
         const precipitation = weatherData.daily.precipitation_probability_max[0]
         
         return `
-        <li class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 border border-hairline/60 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5 transition-all duration-200 group cursor-pointer overflow-hidden">
+        <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 border border-hairline/60 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5 transition-all duration-200 group cursor-pointer overflow-hidden">
             <div class="flex flex-col justify-center min-w-0 overflow-hidden">
                 <!-- City -->
                 <p class="text-sm font-bold tracking-tight text-text-main sm:text-base min-[900px]:text-sm group-hover:text-accent-sky transition-colors truncate">${loc.name}</p>
