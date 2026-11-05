@@ -122,6 +122,8 @@ async function handleSavedLocationClick(e) {
         localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))
         
         renderSavedLocations(filteredLocations)
+
+        if (currentLocationData) updateBookmarkUI(currentLocationData)
     } else {
         const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
         if (!targetLocation) return
