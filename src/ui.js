@@ -187,6 +187,9 @@ export function renderWeeklyForecast(weatherData) {
 }
 
 export function renderSavedLocations(savedLocations) {
+    const badge = elements.savedLocationsNum
+    if (badge) badge.textContent = savedLocations.length
+     
     elements.savedLocationsContainer.innerText = ''
 
     if (savedLocations.length === 0) {
