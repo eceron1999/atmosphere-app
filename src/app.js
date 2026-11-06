@@ -60,6 +60,7 @@ async function handleCurrentLocationClick(e) {
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
         loadSavedLocations()
+        updateBookmarkUI(currentLocationData)
         
     } catch (error) {
         console.error('Error loading weather data:', error)

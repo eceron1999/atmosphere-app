@@ -213,7 +213,7 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
     elements.savedLocationsContainer.innerHTML = savedLocations.map(loc => {
         const { name, admin1, country_code, weatherData, latitude, longitude} = loc
 
-        const isActive = currentLocationData && Math.abs(latitude - currentLocationData.latitude) < 0.01 && Math.abs(longitude - currentLocationData.longitude) < 0.01
+        const isActive = currentLocationData && currentLocationData.name === name && currentLocationData.admin1 === admin1
 
         const currentTemp = Math.round(weatherData?.current.temperature_2m)
         const highTemp = Math.round(weatherData.daily.temperature_2m_max[0])
