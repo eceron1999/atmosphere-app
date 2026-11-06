@@ -215,6 +215,8 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
         const highTemp = Math.round(weatherData.daily.temperature_2m_max[0])
         const lowTemp = Math.round(weatherData.daily.temperature_2m_min[0])
         const precipitation = weatherData.daily.precipitation_probability_max[0]
+
+        const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
         
         return `
         <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
@@ -228,7 +230,7 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
             <div class="flex flex-col items-center justify-center gap-0.5 min-w-0 px-1">
                 <div class="flex items-center gap-1.5 min-w-0">
                     <!-- Weather Icon -->
-                    <i aria-hidden="true" class="fa-solid fa-sun shrink-0 w-6 text-center text-lg text-amber-400 min-[400px]:text-xl min-[900px]:text-lg group-hover:scale-110 transition-transform duration-200"></i>
+                    <i aria-hidden="true" class="fa-solid ${weatherInfo.icon} shrink-0 w-6 text-center text-lg ${weatherInfo.color} min-[400px]:text-xl min-[900px]:text-lg group-hover:scale-110 transition-transform duration-200"></i>
                     <!-- Current Temp -->
                     <p class="text-base font-bold tracking-tight tabular-nums text-text-main sm:text-lg min-[900px]:text-sm!">${currentTemp}&deg;</p>
                 </div>
