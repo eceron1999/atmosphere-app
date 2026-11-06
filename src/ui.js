@@ -234,7 +234,7 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
                 </div>
     
                 <!-- High/Low -->
-                <p class="text-[10px] text-text-muted min-[400px]:text-xs">H: ${highTemp}&deg; L: ${lowTemp}&deg;</p>
+                <p class="whitespace-nowrap text-[10px] text-text-muted min-[400px]:text-xs">H: ${highTemp}&deg; L: ${lowTemp}&deg;</p>
             </div>
     
             <!-- Precipitation % -->
