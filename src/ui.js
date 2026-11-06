@@ -1,5 +1,6 @@
 import { getAirQuality, getLocationData } from "./api.js"
 import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent } from "./utils.js"
+import { getSavedLocations } from "./storage.js"
 
 export const elements = {
     // Header
@@ -10,6 +11,8 @@ export const elements = {
 
     // Main Weather Hero
     currentLocation: document.getElementById('current-location'),
+    saveLocationBtn: document.getElementById('save-location-btn'),
+    saveLocationIcon: document.getElementById('save-location-icon'),
     timeStamp: document.getElementById('time-stamp'),
     celsiusBtn: document.getElementById('c-toggle-btn'),
     fahrenheitBtn: document.getElementById('f-toggle-btn'),
@@ -44,9 +47,7 @@ export const elements = {
 
     // Saved Locations
     savedLocationsNum: document.getElementById('saved-locations-num'),
-    mobileSaveBtn: document.getElementById('mobile-save-btn'),
     savedLocationsContainer: document.getElementById('saved-locations'),
-    desktopSaveBtn: document.getElementById('desktop-save-btn')
 }
 
 export function renderCurrentWeather(weatherData, locationData) {
@@ -104,6 +105,23 @@ function setButtonState(button, isActive) {
     button.classList.toggle('bg-transparent', !isActive)
     button.classList.toggle('hover:text-text-main', !isActive)
     button.classList.toggle('hover:bg-brand-surface/50', !isActive)
+}
+
+export function updateBookmarkUI(locationData) {
+    const savedLocations = getSavedLocations()
+    const isAlreadySaved = savedLocations.some(loc => loc.name === locationData.name && loc.admin1 === locationData.admin1)
+
+    if (isAlreadySaved) {
+        elements.saveLocationIcon.classList.remove('fa-regular')
+        elements.saveLocationIcon.classList.remove('text-text-muted')
+        elements.saveLocationIcon.classList.add('fa-solid')
+        elements.saveLocationIcon.classList.add('text-accent-sky')
+    } else {
+        elements.saveLocationIcon.classList.remove('fa-solid')
+        elements.saveLocationIcon.classList.remove('text-accent-sky')
+        elements.saveLocationIcon.classList.add('fa-regular')
+        elements.saveLocationIcon.classList.add('text-text-muted')
+    }
 }
 
 export function updateUnitToggleUI(currentUnit) {
@@ -170,4 +188,71 @@ export function renderWeeklyForecast(weatherData) {
     }).join('')
 
     elements.weeklyForecastContainer.innerHTML = forecastHTML
+}
+
+export function renderSavedLocations(savedLocations, currentLocationData) {
+    const badge = elements.savedLocationsNum
+    if (badge) badge.textContent = savedLocations.length
+     
+    elements.savedLocationsContainer.innerText = ''
+
+    if (savedLocations.length === 0) {
+        elements.savedLocationsContainer.innerHTML = `
+        <div class="flex flex-col items-center justify-center gap-2 w-full p-8 text-center bg-brand-bg/40 border border-hairline/60 rounded-xl">
+            <h3 class="font-bold text-text-main">
+                No saved locations yet
+            </h3>
+            <p class="text-xs text-text-muted">
+                Search for a city above and tap the bookmark icon to save it for quick access.
+            </p>
+        </div>
+        `
+        return
+    } 
+
+    elements.savedLocationsContainer.innerHTML = savedLocations.map(loc => {
+        const { name, admin1, country_code, weatherData, latitude, longitude} = loc
+
+        const isActive = currentLocationData && currentLocationData.name === name && currentLocationData.admin1 === admin1
+
+        const currentTemp = Math.round(weatherData?.current.temperature_2m)
+        const highTemp = Math.round(weatherData.daily.temperature_2m_max[0])
+        const lowTemp = Math.round(weatherData.daily.temperature_2m_min[0])
+        const precipitation = weatherData.daily.precipitation_probability_max[0]
+
+        const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
+        
+        return `
+        <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
+            <div class="flex flex-col justify-center min-w-0 overflow-hidden">
+                <!-- City -->
+                <p class="text-sm font-bold tracking-tight text-text-main sm:text-base min-[900px]:text-sm group-hover:text-accent-sky transition-colors truncate ${isActive ? 'text-accent-sky' : 'group-hover:text-accent-sky'}">${loc.name}</p>
+                <!-- State/Country -->
+                <p class="text-xs text-text-muted/80 truncate">${loc.admin1}, ${loc.country_code}</p>
+            </div>
+    
+            <div class="flex flex-col items-center justify-center gap-0.5 min-w-0 px-1">
+                <div class="flex items-center gap-1.5 min-w-0">
+                    <!-- Weather Icon -->
+                    <i aria-hidden="true" class="fa-solid ${weatherInfo.icon} shrink-0 w-6 text-center text-lg ${weatherInfo.color} min-[400px]:text-xl min-[900px]:text-lg group-hover:scale-110 transition-transform duration-200"></i>
+                    <!-- Current Temp -->
+                    <p class="text-base font-bold tracking-tight tabular-nums text-text-main sm:text-lg min-[900px]:text-sm!">${currentTemp}&deg;</p>
+                </div>
+    
+                <!-- High/Low -->
+                <p class="whitespace-nowrap text-[10px] text-text-muted min-[400px]:text-xs">H: ${highTemp}&deg; L: ${lowTemp}&deg;</p>
+            </div>
+    
+            <!-- Precipitation % -->
+            <div class="hidden min-[400px]:inline-flex items-center justify-center justify-self-center shrink-0 gap-1 px-1 py-0.5 text-xs font-semibold text-accent-sky bg-accent-sky/10 border border-accent-sky/30 rounded-full tabular-nums min-[900px]:hidden min-[1200px]:inline-flex">
+                <i class="fa-solid fa-droplet"></i>
+                <span>${precipitation}%</span>
+            </div>
+            <!-- Remove Button -->
+            <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
+                <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
+            </button>
+        </li>
+        `}
+    ).join('')
 }
