@@ -26,6 +26,7 @@ async function onSubmit(e) {
         updateBookmarkUI(currentLocationData)
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
+        loadSavedLocations()
     } catch (error) {
         console.error('Error loading weather data:', error)
         alert(`Could not load weather: ${error.message}`)
@@ -43,15 +44,22 @@ async function handleCurrentLocationClick(e) {
         const currentPosition = await getCurrentPosition()
         const { latitude, longitude } = currentPosition.coords
         
-        const [weatherData, currentLocationData, airQualityData] = await Promise.all([
+        const [weatherData, locationData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
             getReverseLocationData(latitude, longitude),
             getAirQuality(latitude, longitude),
         ])
 
+        currentLocationData = {
+            latitude,
+            longitude,
+            ...locationData
+        }
+
         renderCurrentWeather(weatherData, currentLocationData)
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
+        loadSavedLocations()
         
     } catch (error) {
         console.error('Error loading weather data:', error)
@@ -106,7 +114,7 @@ async function loadSavedLocations() {
         })
     )
 
-    renderSavedLocations(hydratedLocations)
+    renderSavedLocations(hydratedLocations, currentLocationData)
 }
 
 async function handleSavedLocationClick(e) {
@@ -121,12 +129,14 @@ async function handleSavedLocationClick(e) {
 
         localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))
         
-        renderSavedLocations(filteredLocations)
+        renderSavedLocations(filteredLocations, currentLocationData)
 
         if (currentLocationData) updateBookmarkUI(currentLocationData)
     } else {
         const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
         if (!targetLocation) return
+
+        currentLocationData = targetLocation
 
         const weatherData = await getWeather(lat, long, currentUnit)
         const aqiData = await getAirQuality(lat, long)
@@ -134,6 +144,8 @@ async function handleSavedLocationClick(e) {
         renderCurrentWeather(weatherData, targetLocation)
         renderAQI(aqiData)
         renderWeeklyForecast(weatherData)
+        updateBookmarkUI(currentLocationData)
+        loadSavedLocations()
     }
 }
 
