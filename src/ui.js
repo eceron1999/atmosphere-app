@@ -153,7 +153,7 @@ export function renderWeeklyForecast(weatherData) {
         const currentTempDot = index === 0 ? `<div style="left: ${percent}%" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>` : ''
 
         return `
-        <li aria-label="${dayLabel}'s forecast: ${weatherInfo.description}, high of ${maxTemp}, low of ${minTemp}, ${dailyPrecipitation}% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80">
+        <li aria-label="${dayLabel}'s forecast: ${weatherInfo.description}, high of ${maxTemp}, low of ${minTemp}, ${dailyPrecipitation}% chance of rain" class="grid grid-cols-[4rem_1fr_9rem] items-center gap-2 p-3 bg-brand-bg/50 border border-hairline/50 rounded-lg sm:grid-cols-[4rem_1fr_1fr_auto] hover:bg-brand-bg/80 active:bg-brand-bg/90 active:scale-[0.99] transition-all duration-150">
                     <div aria-hidden="true" class="contents">
                         <!-- Day -->
                         <time datetime="${date}" class="font-bold text-text-main">${dayLabel}</time>
@@ -223,7 +223,7 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
         const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
         
         return `
-        <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
+        <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden active:scale-[0.98] active:bg-brand-bg/95 ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
             <div class="flex flex-col justify-center min-w-0 overflow-hidden">
                 <!-- City -->
                 <p class="text-sm font-bold tracking-tight text-text-main sm:text-base min-[900px]:text-sm group-hover:text-accent-sky transition-colors truncate ${isActive ? 'text-accent-sky' : 'group-hover:text-accent-sky'}">${loc.name}</p>
@@ -249,7 +249,7 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
                 <span>${precipitation}%</span>
             </div>
             <!-- Remove Button -->
-            <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
+            <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full active:text-red-500 active:bg-red-500/20 active:scale-90 hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
                 <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
             </button>
         </li>
