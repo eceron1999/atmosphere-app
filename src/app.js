@@ -184,8 +184,8 @@ async function init() {
     updateTime()
     setInterval(updateTime, 1000)
 
-    loadSavedLocations()
     await loadInitialLocation()
+    await loadSavedLocations()
 
     // Event Listeners
     elements.searchForm.addEventListener('submit', onSubmit)
