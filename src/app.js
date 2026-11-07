@@ -1,7 +1,7 @@
 import './input.css';
 import { elements, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
-import { getSavedLocations, removeLocation, saveLocation } from './storage.js';
+import { getLastLocation, getSavedLocations, removeLocation, saveLocation } from './storage.js';
 import { getWeatherInfo } from './utils.js';
 
 let currentUnit = 'fahrenheit'
@@ -30,6 +30,16 @@ async function onSubmit(e) {
     } catch (error) {
         console.error('Error loading weather data:', error)
         alert(`Could not load weather: ${error.message}`)
+    }
+}
+
+async function loadInitialLocation() {
+    const lastLocation = getLastLocation()
+
+    if (lastLocation) {
+        await getWeather(lastLocation.latitude, lastLocation.longitude, currentUnit)
+    } else {
+        await handleCurrentLocationClick()
     }
 }
 
@@ -154,6 +164,7 @@ function init() {
     updateTime()
     setInterval(updateTime, 1000)
 
+    loadInitialLocation()
     loadSavedLocations()
 
     // Event Listeners
