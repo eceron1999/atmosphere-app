@@ -130,8 +130,8 @@ async function handleUnitToggle(e) {
     const weatherData = await getWeather(latitude, longitude, currentUnit)
 
     renderCurrentWeather(weatherData, currentLocationData)
-
     updateUnitToggleUI(currentUnit)
+    loadSavedLocations()
 }
 
 async function loadSavedLocations() {
