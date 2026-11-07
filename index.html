@@ -13,7 +13,7 @@
 </head>
 <body>
     <header class="sticky top-0 z-50 flex justify-between items-center w-full h-16 px-4 gap-2 bg-brand-bg/80 backdrop-blur-md border-b border-b-hairline/60 sm:h-20 sm:px-6 sm:gap-4">
-        <a href="#" class="flex items-center gap-2 group active:opacity-80 transition-opacity">
+        <a href="index.html" class="flex items-center gap-2 group active:opacity-80 transition-opacity">
             <div class="hidden sm:flex justify-center items-center shrink-0 w-12 h-12 bg-brand-surface/80 border border-hairline/60 rounded-xl ring-1 ring-white/10 ring-inset shadow-sm shadow-accent-sky-glow/15 md:w-14 md:h-14 group-hover:border-hairline-hover group-hover:shadow-accent-sky-glow/30 transition-all duration-300">
                 <img src="./src/images/weather-svgrepo-com (1).svg" alt="AtmoSphere Logo" class="w-9 h-9 mt-2 object-contain md:w-10 md:h-10">
             </div>
@@ -52,12 +52,12 @@
                 <!-- Current Location -->
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center gap-2">
-                        <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors">Raleigh, NC, US</h2>
+                        <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors"></h2>
                         <button id="save-location-btn" type="button" aria-label="Save Location" class="flex justify-center items-center p-2 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-accent-sky hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">
                             <i id="save-location-icon" class="fa-regular fa-bookmark text-lg sm:text-xl"></i>
                         </button>
                     </div>
-                    <p class="text-sm text-text-muted">As of <span id="time-stamp">7:30 PM EDT</span> &middot; Live</p>
+                    <p class="text-sm text-text-muted">As of <span id="time-stamp"></span> &middot; Live</p>
                 </div>
     
                 <!-- Temperature Toggle Button -->
@@ -71,22 +71,22 @@
             <div class="flex flex-col gap-2 py-3 md:flex-row md:items-center md:justify-center md:gap-12">
                 <!-- Current Temperature -->
                 <div class="flex justify-center items-center gap-3 md:gap-0">
-                    <span class="text-7xl font-extrabold text-text-main sm:text-8xl"><span id="current-temp">62</span>&deg;</span>
+                    <span class="text-7xl font-extrabold text-text-main sm:text-8xl"><span id="current-temp"></span>&deg;</span>
                     <!-- Mobile Icon -->
                      <div class="md:hidden">
-                         <i id="mobile-icon" aria-hidden="true" class="fa-solid fa-sun text-6xl text-amber-400 sm:text-7xl"></i>
+                         <i id="mobile-icon" aria-hidden="true" class="fa-solid text-6xl sm:text-7xl"></i>
                      </div>
                 </div>
 
                 <div class="flex flex-col justify-center items-center gap-0.5">
                     <!-- Desktop Icon -->
                     <div class="hidden mb-3 md:block">
-                        <i id="desktop-icon" aria-hidden="true" class="fa-solid fa-sun text-5xl text-amber-400"></i>
+                        <i id="desktop-icon" aria-hidden="true" class="fa-solid text-5xl"></i>
                     </div>
 
                     <!-- Weather Condition -->
-                    <p class="font-medium text-center text-text-main"><span id="weather-condition">Sunny</span> <span class="text-text-muted">&bull; Feels like <span id="apparent-temp">62</span>&deg;</span></p>
-                    <p class="text-sm text-center text-text-muted">High: <span class="font-semibold text-text-main"><span id="high-temp">65</span>&deg;</span> &bull; Low: <span class="font-semibold text-text-main"><span id="low-temp">53</span>&deg;</span></p>
+                    <p class="font-medium text-center text-text-main"><span id="weather-condition"></span> <span class="text-text-muted">&bull; Feels like <span id="apparent-temp"></span>&deg;</span></p>
+                    <p class="text-sm text-center text-text-muted">High: <span class="font-semibold text-text-main"><span id="high-temp"></span>&deg;</span> &bull; Low: <span class="font-semibold text-text-main"><span id="low-temp"></span>&deg;</span></p>
                 </div>
             </div>
 
@@ -97,28 +97,28 @@
                     <!-- Wind Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Wind</p>
-                        <p class="font-bold text-text-main md:text-lg"><span id="wind-speed">12</span> <span class="text-xs text-text-muted md:text-sm">mph <span id="wind-direction">NE</span></span></p>
+                        <p class="font-bold text-text-main md:text-lg"><span id="wind-speed"></span> <span class="text-xs text-text-muted md:text-sm">mph <span id="wind-direction"></span></span></p>
                     </div>
 
                     <!-- Humidity Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Humidity</p>
-                        <p class="font-bold text-text-main md:text-lg"><span id="humidity">68</span>%</p>
+                        <p class="font-bold text-text-main md:text-lg"><span id="humidity"></span>%</p>
                     </div>
 
                     <!-- UV-Index Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> UV Index</p>
                         <div class="flex items-center gap-2">
-                            <p id="uv-index" class="font-bold text-text-main md:text-lg">0</p>
-                            <span id="uv-index-condition" class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors duration-200">Low</span>
+                            <p id="uv-index" class="font-bold text-text-main md:text-lg"></p>
+                            <span id="uv-index-condition" class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors duration-200"></span>
                         </div>
                     </div>
 
                     <!-- Precipitation Stat -->
                     <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                         <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Precipitation</p>
-                        <p class="font-bold text-text-main md:text-lg"><span id="precipitation">15</span>%</p>
+                        <p class="font-bold text-text-main md:text-lg"><span id="precipitation"></span>%</p>
                     </div>
                 </div>
             </div>

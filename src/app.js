@@ -1,7 +1,7 @@
 import './input.css';
 import { elements, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
-import { getSavedLocations, removeLocation, saveLocation } from './storage.js';
+import { getLastLocation, getSavedLocations, removeLocation, saveLastLocation, saveLocation } from './storage.js';
 import { getWeatherInfo } from './utils.js';
 
 let currentUnit = 'fahrenheit'
@@ -16,6 +16,7 @@ async function onSubmit(e) {
         const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
     
         currentLocationData = { latitude, longitude, name, admin1, country_code }
+        saveLastLocation(currentLocationData)
     
         const [weatherData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
@@ -30,6 +31,33 @@ async function onSubmit(e) {
     } catch (error) {
         console.error('Error loading weather data:', error)
         alert(`Could not load weather: ${error.message}`)
+    }
+}
+
+async function loadInitialLocation() {
+    const lastLocation = getLastLocation()
+
+    if (lastLocation) {
+        const { latitude, longitude } = lastLocation
+
+        const [weatherData, locationData, airQualityData] = await Promise.all([
+            getWeather(latitude, longitude, currentUnit),
+            getReverseLocationData(latitude, longitude),
+            getAirQuality(latitude, longitude),
+        ])
+
+        currentLocationData = {
+            latitude,
+            longitude, 
+            ...locationData
+        }
+
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderAQI(airQualityData)
+        renderWeeklyForecast(weatherData)
+        updateBookmarkUI(currentLocationData)
+    } else {
+        await handleCurrentLocationClick()
     }
 }
 
@@ -55,6 +83,7 @@ async function handleCurrentLocationClick(e) {
             longitude,
             ...locationData
         }
+        saveLastLocation(currentLocationData)
 
         renderCurrentWeather(weatherData, currentLocationData)
         renderAQI(airQualityData)
@@ -138,6 +167,7 @@ async function handleSavedLocationClick(e) {
         if (!targetLocation) return
 
         currentLocationData = targetLocation
+        saveLastLocation(currentLocationData)
 
         const weatherData = await getWeather(lat, long, currentUnit)
         const aqiData = await getAirQuality(lat, long)
@@ -150,11 +180,12 @@ async function handleSavedLocationClick(e) {
     }
 }
 
-function init() {
+async function init() {
     updateTime()
     setInterval(updateTime, 1000)
 
-    loadSavedLocations()
+    await loadInitialLocation()
+    await loadSavedLocations()
 
     // Event Listeners
     elements.searchForm.addEventListener('submit', onSubmit)
