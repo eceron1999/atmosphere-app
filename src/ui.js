@@ -10,6 +10,7 @@ export const elements = {
     currentLocBtn: document.getElementById('cur-loc-btn'),
 
     // Main Weather Hero
+    errorBanner: document.getElementById('error-banner'),
     currentLocation: document.getElementById('current-location'),
     saveLocationBtn: document.getElementById('save-location-btn'),
     saveLocationIcon: document.getElementById('save-location-icon'),
@@ -89,6 +90,19 @@ export function renderAQI(airQualityData) {
     elements.pm10.innerText = Math.round(aqiInfo.pm10)
     elements.ozone.innerText = Math.round(aqiInfo.ozone)
     elements.no2.innerText = Math.round(aqiInfo.nitrogen_dioxide)
+}
+
+export function showError(message) {
+    if (!elements.errorBanner) return
+    
+    elements.errorBanner.textContent = message
+    elements.errorBanner.classList.remove('hidden')
+}
+
+export function hideError() {
+    if (!elements.errorBanner) return
+    elements.errorBanner.textContent = ''
+    elements.errorBanner.classList.add('hidden')
 }
 
 export function updateTime() {
