@@ -25,9 +25,9 @@
 
         <div class="flex items-center gap-2 w-auto md:gap-3">
             <!-- Search Form -->
-            <form id="search-form" class="flex-1 relative w-full max-w-44 sm:max-w-xs">
+            <form id="search-form" class="flex-1 relative w-full max-w-45 min-[390px]:max-w-48 sm:max-w-xs">
                 <label for="search-input" class="sr-only">Search for a city</label>
-                <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-10 pl-9 pr-9 text-xs text-text-main placeholder:text-text-muted bg-brand-input/60 border border-hairline/60 rounded-xl sm:h-11 sm:pl-10 sm:pr-10 sm:text-sm hover:border-hairline-hover focus:outline-none focus:border-accent-sky focus:ring-2 focus:ring-accent-sky/20 focus:transition-all duration-300">
+                <input type="text" id="search-input" placeholder="Search.." autocomplete="off" spellcheck="false" class="w-full h-11 pl-10 pr-10 text-sm text-text-main placeholder:text-text-muted bg-brand-input/70 border border-hairline/60 rounded-2xl sm:h-11 sm:pl-10 sm:pr-10 sm:text-sm hover:border-hairline-hover focus:outline-none focus:border-accent-sky focus:ring-2 focus:ring-accent-sky/20 focus:transition-all duration-300">
 
                 <!-- Search Icon -->
                 <i class="fa-solid fa-magnifying-glass absolute z-10 left-3 top-1/2 -translate-y-1/2 text-xs text-text-muted pointer-events-none sm:left-3.5 sm:text-sm"></i>
@@ -39,7 +39,7 @@
             </form>
 
             <!-- Current Location Button -->
-            <button id="cur-loc-btn" type="button" title="Use current location" aria-label="Use current location" class="flex justify-center items-center shrink-0 w-10 h-10 text-text-muted bg-brand-surface border border-hairline/60 rounded-xl shadow-sm shadow-accent-sky/10 ring-1 ring-white/10 ring-inset cursor-pointer group sm:w-11 sm:h-11 hover:bg-brand-surface/90 hover:text-accent-sky hover:border-accent-sky-glow/50 hover:shadow-md hover:shadow-accent-sky-glow/20 active:scale-95 active:text-accent-sky active:border-accent-sky transition-all duration-300">
+            <button id="cur-loc-btn" type="button" title="Use current location" aria-label="Use current location" class="flex justify-center items-center shrink-0 w-11 h-11 text-text-muted bg-brand-surface border border-hairline/60 rounded-2xl shadow-sm shadow-accent-sky/10 ring-1 ring-white/10 ring-inset cursor-pointer group hover:bg-brand-surface/90 hover:text-accent-sky hover:border-accent-sky-glow/50 hover:shadow-md hover:shadow-accent-sky-glow/20 active:scale-95 active:text-accent-sky active:border-accent-sky transition-all duration-300">
                 <i id="cur-loc-icon" class="fa-solid fa-location-crosshairs text-sm sm:text-base group-hover:scale-110 transition-transform duration-300"></i>
             </button>
         </div>
@@ -51,12 +51,12 @@
 
         <div class="flex flex-col gap-5 sm:gap-6 min-[900px]:grid min-[900px]:grid-cols-12 min-[900px]:gap-6">
             <!-- Weather Hero -->
-            <section aria-labelledby="current-location" class="flex flex-col gap-6 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-8 min-[900px]:row-start-1">
+            <section aria-labelledby="current-location" class="flex flex-col gap-6 px-5 py-8 bg-linear-to-b from-brand-surface to-brand-surface/70 border border-hairline/60 rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-white/5 sm:p-6 min-[900px]:col-span-8 min-[900px]:row-start-1">
                 <div class="flex justify-between items-start">
                     <!-- Current Location -->
                     <div class="flex flex-col gap-1">
                         <div class="flex items-center gap-2">
-                            <h2 id="current-location" class="text-2xl font-bold text-text-main sm:text-3xl hover:text-accent-sky cursor-pointer transition-colors"></h2>
+                            <h2 id="current-location" class="text-3xl font-extrabold tracking-tight text-text-main sm:text-4xl hover:text-accent-sky cursor-pointer transition-colors"></h2>
                             <button id="save-location-btn" type="button" aria-label="Save Location" class="flex justify-center items-center p-2 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-accent-sky hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">
                                 <i id="save-location-icon" class="fa-regular fa-bookmark text-lg sm:text-xl"></i>
                             </button>
@@ -74,11 +74,11 @@
     
                 <div class="flex flex-col gap-2 py-3 md:flex-row md:items-center md:justify-center md:gap-12">
                     <!-- Current Temperature -->
-                    <div class="flex justify-center items-center gap-3 md:gap-0">
-                        <span class="text-7xl font-extrabold text-text-main sm:text-8xl"><span id="current-temp"></span>&deg;</span>
+                    <div class="flex justify-center items-center gap-4 md:gap-0">
+                        <span class="text-8xl font-black tracking-tighter text-text-main sm:text-9xl"><span id="current-temp"></span>&deg;</span>
                         <!-- Mobile Icon -->
                          <div class="md:hidden">
-                             <i id="mobile-icon" aria-hidden="true" class="fa-solid text-6xl sm:text-7xl"></i>
+                             <i id="mobile-icon" aria-hidden="true" class="fa-solid text-7xl sm:text-8xl"></i>
                          </div>
                     </div>
     
@@ -89,8 +89,8 @@
                         </div>
     
                         <!-- Weather Condition -->
-                        <p class="font-medium text-center text-text-main"><span id="weather-condition"></span> <span class="text-text-muted">&bull; Feels like <span id="apparent-temp"></span>&deg;</span></p>
-                        <p class="text-sm text-center text-text-muted">High: <span class="font-semibold text-text-main"><span id="high-temp"></span>&deg;</span> &bull; Low: <span class="font-semibold text-text-main"><span id="low-temp"></span>&deg;</span></p>
+                        <p class="font-semibold text-lg text-center text-text-main"><span id="weather-condition"></span> <span class="font-normal text-text-muted">&bull; Feels like <span id="apparent-temp"></span>&deg;</span></p>
+                        <p class="text-sm text-center text-text-muted">High: <span class="font-bold text-text-main"><span id="high-temp"></span>&deg;</span> &bull; Low: <span class="font-bold text-text-main"><span id="low-temp"></span>&deg;</span></p>
                     </div>
                 </div>
     
@@ -99,19 +99,19 @@
                     <!-- Weather Details Grid -->
                     <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
                         <!-- Wind Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                             <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Wind</p>
                             <p class="font-bold text-text-main md:text-lg"><span id="wind-speed"></span> <span class="text-xs text-text-muted md:text-sm">mph <span id="wind-direction"></span></span></p>
                         </div>
     
                         <!-- Humidity Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                             <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Humidity</p>
                             <p class="font-bold text-text-main md:text-lg"><span id="humidity"></span>%</p>
                         </div>
     
                         <!-- UV-Index Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                             <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> UV Index</p>
                             <div class="flex items-center gap-2">
                                 <p id="uv-index" class="font-bold text-text-main md:text-lg"></p>
@@ -120,7 +120,7 @@
                         </div>
     
                         <!-- Precipitation Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3 bg-brand-bg border border-hairline/50 rounded-lg md:p-4 hover:border-hairline hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
                             <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Precipitation</p>
                             <p class="font-bold text-text-main md:text-lg"><span id="precipitation"></span>%</p>
                         </div>
@@ -129,7 +129,7 @@
             </section>
     
             <!-- 7 Day Forecast -->
-            <section aria-labelledby="forecast-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-8 min-[900px]:row-start-2">
+            <section aria-labelledby="forecast-heading" class="flex flex-col gap-5 p-5 bg-brand-surface border border-hairline/60 rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-white/5 sm:p-6 min-[900px]:col-span-8 min-[900px]:row-start-2">
                 <h2 id="forecast-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                     <i aria-hidden="true" class="fa-solid fa-calendar-days text-accent-sky"></i>
                     <span>7-Day Forecast</span>
@@ -139,7 +139,7 @@
             </section> 
     
             <!-- Air Quality Index -->
-             <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-1 min-[900px]:col-start-9 min-[900px]:gap-4">
+             <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline/60 rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-white/5 sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-1 min-[900px]:col-start-9 min-[900px]:gap-4">
                 <h2 id="aqi-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                     <i aria-hidden="true" class="fa-solid fa-smog text-accent-sky"></i>
                     <span>Air Quality Index</span>
@@ -174,25 +174,25 @@
                 <!-- Sub Metrics Grid -->
                 <dl aria-label="Key pollutant breakdown" class="grid grid-cols-2 gap-3 pt-3 border-t border-hairline sm:grid-cols-4 lg:gap-1 lg:pt-6.5">
                     <!-- Card 1 -->
-                    <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 lg:p-2.5">
                         <dt class="text-xs font-medium text-text-muted">PM2.5</dt>
                         <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="pm2-5">8.4</span> <span class="text-xs text-text-muted">µg/m³</span></dd>
                     </div>
                     
                     <!-- Card 2 -->
-                    <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 lg:p-2.5">
                         <dt class="text-xs font-medium text-text-muted">PM10</dt>
                         <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="pm10">18.2</span> <span class="text-xs text-text-muted">µg/m³</span></dd>
                     </div>
     
                     <!-- Card 3 -->
-                    <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 lg:p-2.5">
                         <dt class="text-xs font-medium text-text-muted">O3</dt>
                         <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="ozone">32</span> <span class="text-xs text-text-muted">ppb</span></dd>
                     </div>
                     
                     <!-- Card 4 -->
-                    <div class="flex flex-col gap-1 p-3 rounded-lg bg-brand-bg/50 border border-hairline/50 lg:p-2.5">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 lg:p-2.5">
                         <dt class="text-xs font-medium text-text-muted">NO2</dt>
                         <dd class="text-base font-bold text-center text-text-main lg:text-sm"><span id="no2">12</span> <span class="text-xs text-text-muted">ppb</span></dd>
                     </div>
@@ -200,7 +200,7 @@
             </section>
     
             <!-- Saved Locations -->
-            <aside aria-labelledby="saved-locations-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline rounded-xl shadow-xl sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-2 min-[900px]:col-start-9 min-[900px]:max-h-129 min-[900px]:min-h-0 min-[900px]:p-3">
+            <aside aria-labelledby="saved-locations-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline/60 rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-white/5 sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-2 min-[900px]:col-start-9 min-[900px]:max-h-129 min-[900px]:min-h-0 min-[900px]:p-3">
                 <!-- Header -->
                 <div class="flex items-center gap-2.5 min-w-0">
                     <h2 id="saved-locations-heading" class="inline-flex items-center gap-2.5 whitespace-nowrap font-bold text-lg text-text-main sm:text-xl">
