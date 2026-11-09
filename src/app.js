@@ -1,5 +1,5 @@
 import './input.css';
-import { elements, hideError, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, showError, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
+import { elements, hideError, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, setLoading, showError, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
 import { getLastLocation, getSavedLocations, removeLocation, saveLastLocation, saveLocation } from './storage.js';
 import { getWeatherInfo } from './utils.js';
@@ -10,6 +10,7 @@ let currentLocationData = null
 async function onSubmit(e) {
     e.preventDefault()
     hideError()
+    setLoading(true, 'search')
 
     try {
         const cityName = elements.searchInput.value
@@ -32,6 +33,8 @@ async function onSubmit(e) {
     } catch (error) {
         console.error('Error loading weather data:', error)
         showError(error.message)
+    } finally {
+        setLoading(false, 'search')
     }
 }
 
@@ -70,6 +73,7 @@ async function getCurrentPosition() {
 
 async function handleCurrentLocationClick(e) {
     hideError()
+    setLoading(true, 'location')
 
     try {
         const currentPosition = await getCurrentPosition()
@@ -97,6 +101,8 @@ async function handleCurrentLocationClick(e) {
     } catch (error) {
         console.error('Error loading weather data:', error)
         showError(error.message)
+    } finally {
+        setLoading(false, 'location')
     }
 }
 

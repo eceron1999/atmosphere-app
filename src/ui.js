@@ -7,7 +7,9 @@ export const elements = {
     searchForm: document.getElementById('search-form'),
     searchInput: document.getElementById('search-input'),
     searchBtn: document.getElementById('search-btn'),
+    searchBtnIcon: document.getElementById('search-btn-icon'),
     currentLocBtn: document.getElementById('cur-loc-btn'),
+    currentLocIcon: document.getElementById('cur-loc-icon'),
 
     // Main Weather Hero
     errorBanner: document.getElementById('error-banner'),
@@ -269,4 +271,25 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
         </li>
         `}
     ).join('')
+}
+
+export function setLoading(isLoading, source = 'search') {
+    const targetIcon = source === 'location' ? elements.currentLocIcon : elements.searchBtnIcon
+    const originalClass = source === 'location' ? 'fa-location-crosshairs' : 'fa-arrow-right'
+
+    if (isLoading) {
+        elements.searchInput.disabled = true
+        elements.searchBtn.disabled = true
+        elements.currentLocBtn.disabled = true
+
+        targetIcon.classList.replace(originalClass, 'fa-spinner')
+        targetIcon.classList.add('fa-spin')
+    } else {
+        elements.searchInput.disabled = false
+        elements.searchBtn.disabled = false
+        elements.currentLocBtn.disabled = false
+
+        targetIcon.classList.replace('fa-spinner', originalClass)
+        targetIcon.classList.remove('fa-spin')
+    }
 }
