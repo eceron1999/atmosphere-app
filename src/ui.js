@@ -67,7 +67,7 @@ export function renderCurrentWeather(weatherData, locationData) {
     elements.highTemp.innerText = `${Math.round(weatherData.daily.temperature_2m_max[0])}`
     elements.lowTemp.innerText = `${Math.round(weatherData.daily.temperature_2m_min[0])}`
     elements.humidityPercent.innerText = weatherData.current.relative_humidity_2m
-    elements.windSpeed.innerText = weatherData.current.wind_speed_10m
+    elements.windSpeed.innerText = `${Math.round(weatherData.current.wind_speed_10m)}`
     elements.windDirection.innerText = getWindDirection(weatherData.current.wind_direction_10m)
     elements.uvIndex.innerText = uvMax
     elements.uvIndexCondition.innerText = uvDetails.text
