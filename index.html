@@ -99,30 +99,30 @@
                     <!-- Weather Details Grid -->
                     <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
                         <!-- Wind Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
-                            <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-wind text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Wind</p>
-                            <p class="font-bold text-text-main md:text-lg"><span id="wind-speed"></span> <span class="text-xs text-text-muted md:text-sm">mph <span id="wind-direction"></span></span></p>
+                        <div class="flex flex-col items-center gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                            <p class="flex items-center gap-1.5 w-full font-medium text-left text-[11px] uppercase tracking-wider text-text-muted whitespace-nowrap truncate"><i aria-hidden="true" class="fa-solid fa-wind shrink-0 text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Wind</p>
+                            <p class="w-full font-bold text-center text-text-main md:text-lg"><span id="wind-speed"></span> <span class="text-xs text-text-muted md:text-sm">mph <span id="wind-direction"></span></span></p>
                         </div>
     
                         <!-- Humidity Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
-                            <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-droplet text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Humidity</p>
-                            <p class="font-bold text-text-main md:text-lg"><span id="humidity"></span>%</p>
+                        <div class="flex flex-col items-center gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                            <p class="flex items-center gap-1.5 w-full font-medium text-left text-[11px] uppercase tracking-wider text-text-muted whitespace-nowrap truncate"><i aria-hidden="true" class="fa-solid fa-droplet shrink-0 text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Humidity</p>
+                            <p class="w-full font-bold text-center text-text-main md:text-lg"><span id="humidity"></span>%</p>
                         </div>
     
                         <!-- UV-Index Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
-                            <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-sun text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> UV Index</p>
+                        <div class="flex flex-col items-center gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                            <p class="flex items-center gap-1.5 w-full font-medium text-left text-[11px] uppercase tracking-wider text-text-muted whitespace-nowrap truncate"><i aria-hidden="true" class="fa-solid fa-sun shrink-0 text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> UV Index</p>
                             <div class="flex items-center gap-2">
-                                <p id="uv-index" class="font-bold text-text-main md:text-lg"></p>
+                                <p id="uv-index" class="w-full font-bold text-center text-text-main md:text-lg"></p>
                                 <span id="uv-index-condition" class="px-2 py-0.5 text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors duration-200"></span>
                             </div>
                         </div>
     
-                        <!-- Precipitation Stat -->
-                        <div class="flex flex-col items-start gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
-                            <p class="flex items-center gap-1.5 font-medium text-[11px] uppercase tracking-wider text-text-muted"><i aria-hidden="true" class="fa-solid fa-cloud-rain text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Precipitation</p>
-                            <p class="font-bold text-text-main md:text-lg"><span id="precipitation"></span>%</p>
+                        <!-- Rain Stat -->
+                        <div class="flex flex-col items-center gap-1 p-3.5 bg-brand-bg/60 border border-hairline/40 rounded-2xl md:p-4 hover:border-hairline/80 hover:bg-brand-bg/80 hover:shadow-md hover:-translate-y-0.5 group transition-all duration-200 ease-in-out">
+                            <p class="flex items-center gap-1.5 w-full font-medium text-left text-[11px] uppercase tracking-wider text-text-muted whitespace-nowrap truncate"><i aria-hidden="true" class="fa-solid fa-cloud-rain shrink-0 text-accent-sky group-hover:scale-110 transition-transform duration-200"></i> Rain</p>
+                            <p class="w-full font-bold text-center text-text-main md:text-lg"><span id="precipitation"></span>%</p>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                 </h2>
     
                 <!-- AQI #/Status -->
-                <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 lg:gap-4">
+                <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14min-[900px]:flex-col! min-[900px]:gap-3! lg:flex-row! lg:gap-4!">
                     <div class="flex items-center gap-3">
                         <p id="aqi-num" class="font-extrabold text-4xl tracking-tight text-text-main sm:text-5xl">42</p>
                         <span id="aqi-condition" class="inline-flex items-center px-3 py-1 font-semibold text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full sm:text-sm">Good</span>
