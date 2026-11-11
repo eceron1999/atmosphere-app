@@ -86,7 +86,7 @@ export function renderAQI(airQualityData) {
     elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.badgeColor} border rounded-full sm:text-sm`
     elements.mainPollutant.innerText = mainPollutant.name
     elements.aqiMessage.innerText = aqiStatus.description
-    elements.aqiMessageBg.className = `p-2.5 ${aqiStatus.messageColor} border rounded-lg lg:p-1`
+    elements.aqiMessageBg.className = `p-2.5 border rounded-lg ${aqiStatus.messageColor} min-[900px]:p-1.5! lg:p-1!`
     elements.aqiScaleMarker.style.left = `${aqiMarkerPercent}%`
     elements.pm25.innerText = Math.round(aqiInfo.pm2_5)
     elements.pm10.innerText = Math.round(aqiInfo.pm10)

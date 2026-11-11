@@ -139,28 +139,28 @@
             </section> 
     
             <!-- Air Quality Index -->
-             <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline/60 rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-white/5 sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-1 min-[900px]:col-start-9 min-[900px]:gap-4">
+             <section aria-labelledby="aqi-heading" class="flex flex-col justify-between gap-5 p-5 bg-brand-surface border border-hairline/60 rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-white/5 sm:p-6 min-[900px]:col-span-4 min-[900px]:row-start-1 min-[900px]:col-start-9 min-[900px]:gap-1 lg:gap-4">
                 <h2 id="aqi-heading" class="flex items-center gap-2.5 font-bold text-lg text-text-main sm:text-xl">
                     <i aria-hidden="true" class="fa-solid fa-smog text-accent-sky"></i>
                     <span>Air Quality Index</span>
                 </h2>
     
                 <!-- AQI #/Status -->
-                <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14min-[900px]:flex-col! min-[900px]:gap-3! lg:flex-row! lg:gap-4!">
+                <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 min-[900px]:flex-col! min-[900px]:gap-3! lg:flex-row! lg:gap-4!">
                     <div class="flex items-center gap-3">
                         <p id="aqi-num" class="font-extrabold text-4xl tracking-tight text-text-main sm:text-5xl">42</p>
                         <span id="aqi-condition" class="inline-flex items-center px-3 py-1 font-semibold text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full sm:text-sm">Good</span>
                     </div>
     
                     <!-- Main Pollutant Chip -->
-                    <div class="inline-flex items-center px-2.5 py-1 bg-brand-bg/60 border border-hairline rounded-md lg:p-0 lg:bg-brand-surface lg:border-none">
+                    <div class="inline-flex items-center px-2.5 py-1 bg-brand-bg/60 border border-hairline rounded-md min-[900px]:hidden min-[1131px]:inline-flex min-[1131px]:p-0 min-[1131px]:bg-brand-surface min-[1131px]:border-none">
                         <p class="font-medium text-xs text-text-muted">Main pollutant: <span id="main-pollutant" class="text-text-main">PM2.5</span></p>
                     </div>
                 </div>
     
                 <!-- Advisory Message -->
-                <div id="aqi-message-bg" class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg lg:p-1">
-                    <p id="aqi-message" class="text-center text-sm leading-relaxed text-slate-200 lg:text-xs">Air quality is satisfactory, and air pollution poses little or no risk to health.</p>
+                <div id="aqi-message-bg" class="p-2.5 rounded-lg min-[900px]:p-1.5! lg:p-1!">
+                    <p id="aqi-message" class="text-center text-sm leading-relaxed text-slate-200 min-[900px]:text-xs lg:text-sm"></p>
                 </div>
     
                 <!-- AQI Scale -->
@@ -172,27 +172,27 @@
                 </div> 
     
                 <!-- Sub Metrics Grid -->
-                <dl aria-label="Key pollutant breakdown" class="grid grid-cols-2 gap-3 pt-3 border-t border-hairline sm:grid-cols-4 lg:gap-1 lg:pt-6.5">
+                <dl aria-label="Key pollutant breakdown" class="grid grid-cols-2 gap-3 pt-5 border-t border-hairline sm:grid-cols-4 min-[900px]:pt-5.5 lg:gap-1 lg:pt-6 min-[1232px]:pt-11!">
                     <!-- Card 1 -->
-                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:p-2! lg:p-2.5!">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:px-2! min-[900px]:py-4! lg:p-2.5! min-[1232px]:px-2.5!">
                         <dt class="text-xs font-medium text-text-muted min-[900px]:text-[11px] lg:text-xs">PM2.5</dt>
                         <dd class="text-base font-bold text-center text-text-main min-[900px]:text-xs lg:text-sm"><span id="pm2-5">8.4</span> <span class="text-xs text-text-muted min-[900px]:text-[10px] lg:text-xs">µg/m³</span></dd>
                     </div>
                     
                     <!-- Card 2 -->
-                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:p-2! lg:p-2.5!">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:px-2! min-[900px]:py-4! lg:p-2.5! min-[1232px]:px-2.5!">
                         <dt class="text-xs font-medium text-text-muted min-[900px]:text-[11px] lg:text-xs">PM10</dt>
                         <dd class="text-base font-bold text-center text-text-main min-[900px]:text-xs lg:text-sm"><span id="pm10">18.2</span> <span class="text-xs text-text-muted min-[900px]:text-[10px] lg:text-xs">µg/m³</span></dd>
                     </div>
     
                     <!-- Card 3 -->
-                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:p-2! lg:p-2.5!">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:px-2! min-[900px]:py-4! lg:p-2.5! min-[1232px]:px-2.5!">
                         <dt class="text-xs font-medium text-text-muted min-[900px]:text-[11px] lg:text-xs">O3</dt>
                         <dd class="text-base font-bold text-center text-text-main min-[900px]:text-xs lg:text-sm"><span id="ozone">32</span> <span class="text-xs text-text-muted min-[900px]:text-[10px] lg:text-xs">ppb</span></dd>
                     </div>
                     
                     <!-- Card 4 -->
-                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:p-2! lg:p-2.5!">
+                    <div class="flex flex-col gap-1 p-3.5 rounded-2xl bg-brand-bg/60 border border-hairline/40 hover:border-hairline/80 min-[900px]:px-2! min-[900px]:py-4! lg:p-2.5! min-[1232px]:px-2.5!">
                         <dt class="text-xs font-medium text-text-muted min-[900px]:text-[11px] lg:text-xs">NO2</dt>
                         <dd class="text-base font-bold text-center text-text-main min-[900px]:text-xs lg:text-sm"><span id="no2">12</span> <span class="text-xs text-text-muted min-[900px]:text-[10px] lg:text-xs">ppb</span></dd>
                     </div>
