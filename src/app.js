@@ -2,7 +2,6 @@ import './input.css';
 import { elements, hideError, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, setLoading, showError, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
 import { getPrimaryLocation, getSavedLocations, removeLocation, savePrimaryLocation, saveLocation } from './storage.js';
-import { getWeatherInfo } from './utils.js';
 
 let currentUnit = 'fahrenheit'
 let currentLocationData = null
