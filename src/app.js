@@ -1,7 +1,7 @@
 import './input.css';
 import { elements, hideError, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, setLoading, showError, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
-import { getLastLocation, getSavedLocations, removeLocation, saveLastLocation, saveLocation } from './storage.js';
+import { getPrimaryLocation, getSavedLocations, removeLocation, savePrimaryLocation, saveLocation } from './storage.js';
 import { getWeatherInfo } from './utils.js';
 
 let currentUnit = 'fahrenheit'
@@ -18,7 +18,7 @@ async function onSubmit(e) {
         const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
     
         currentLocationData = { latitude, longitude, name, admin1, country_code }
-        saveLastLocation(currentLocationData)
+        
     
         const [weatherData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
@@ -39,10 +39,10 @@ async function onSubmit(e) {
 }
 
 async function loadInitialLocation() {
-    const lastLocation = getLastLocation()
+    const primaryLocation = getPrimaryLocation()
 
-    if (lastLocation) {
-        const { latitude, longitude } = lastLocation
+    if (primaryLocation) {
+        const { latitude, longitude } = primaryLocation
 
         const [weatherData, locationData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
@@ -90,7 +90,7 @@ async function handleCurrentLocationClick(e) {
             longitude,
             ...locationData
         }
-        saveLastLocation(currentLocationData)
+        savePrimaryLocation(currentLocationData)
 
         renderCurrentWeather(weatherData, currentLocationData)
         renderAQI(airQualityData)
@@ -112,6 +112,7 @@ async function handleSaveLocationBtn(e) {
 
     if (isAlreadySaved) {
         removeLocation(currentLocationData)
+        localStorage.removeItem('primaryLocation')
     } else {
         const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
         const locationToSave = {
@@ -119,6 +120,7 @@ async function handleSaveLocationBtn(e) {
             weatherData
         }
 
+        savePrimaryLocation(currentLocationData)
         saveLocation(locationToSave)
     }
     
@@ -179,7 +181,7 @@ async function handleSavedLocationClick(e) {
         if (!targetLocation) return
 
         currentLocationData = targetLocation
-        saveLastLocation(currentLocationData)
+        savePrimaryLocation(currentLocationData)
 
         const weatherData = await getWeather(lat, long, currentUnit)
         const aqiData = await getAirQuality(lat, long)

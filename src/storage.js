@@ -18,14 +18,14 @@ export function saveLocation(location) {
     localStorage.setItem('savedLocations', JSON.stringify(updatedLocations))
 }
 
-export function saveLastLocation(locationData) {
-    localStorage.setItem('lastLocation', JSON.stringify(locationData))
+export function savePrimaryLocation(locationData) {
+    localStorage.setItem('primaryLocation', JSON.stringify(locationData))
 }
 
-export function getLastLocation() {
-    const lastLocation = localStorage.getItem('lastLocation')
+export function getPrimaryLocation() {
+    const primaryLocation = localStorage.getItem('primaryLocation')
 
-    return lastLocation ? JSON.parse(lastLocation) : null
+    return primaryLocation ? JSON.parse(primaryLocation) : null
 }
 
 export function removeLocation(location) {
