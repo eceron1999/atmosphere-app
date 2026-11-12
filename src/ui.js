@@ -283,13 +283,13 @@ export function setLoading(isLoading, source = 'search') {
         elements.currentLocBtn.disabled = true
 
         targetIcon.classList.replace(originalClass, 'fa-spinner')
-        targetIcon.classList.add('fa-spin')
+        targetIcon.classList.add('fa-spin', 'text-accent-sky')
     } else {
         elements.searchInput.disabled = false
         elements.searchBtn.disabled = false
         elements.currentLocBtn.disabled = false
 
         targetIcon.classList.replace('fa-spinner', originalClass)
-        targetIcon.classList.remove('fa-spin')
+        targetIcon.classList.remove('fa-spin', 'text-accent-sky')
     }
 }
