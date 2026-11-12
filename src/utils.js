@@ -107,7 +107,7 @@ export function getUvDetails(uvIndex) {
         purple: "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/40"
     }
 
-    const baseClasses = 'px-2 py-0.5 text-[10px] font-medium border rounded-full transition-colors duration-200'
+    const baseClasses = 'px-2 py-0.5 text-[10px] font-medium rounded-full transition-colors duration-200 min-[900px]:px-1.5! lg:px-2!'
 
     return {
         text: currentLevel.text,
