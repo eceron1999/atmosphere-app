@@ -98,6 +98,8 @@ async function handleCurrentLocationClick(e) {
         renderWeeklyForecast(weatherData)
         loadSavedLocations()
         updateBookmarkUI(currentLocationData)
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         
     } catch (error) {
         console.error('Error loading weather data:', error)
