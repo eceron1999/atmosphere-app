@@ -167,32 +167,47 @@ async function handleSavedLocationClick(e) {
     const { lat, long } = locationCard.dataset
     const savedLocations = getSavedLocations()
 
+    // Handle delete button
     if (e.target.closest('button')) {
         locationCard.classList.add('scale-95', 'opacity-0', 'transition-all', 'duration-150')
         await new Promise(resolve => setTimeout(resolve, 150))
 
-        const filteredLocations = savedLocations.filter(loc => loc.latitude !== +lat && loc.longitude !== +long)
+        const filteredLocations = savedLocations.filter(loc => !(loc.latitude !== +lat && loc.longitude !== +long))
 
-        localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))
-        
+        localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))   
         renderSavedLocations(filteredLocations, currentLocationData)
 
         if (currentLocationData) updateBookmarkUI(currentLocationData)
-    } else {
-        const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
-        if (!targetLocation) return
+        return
+    } 
 
+    // Handle card selection
+    const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
+    if (!targetLocation) return
+
+    hideError()
+
+    try {
         currentLocationData = targetLocation
         savePrimaryLocation(currentLocationData)
-
-        const weatherData = await getWeather(lat, long, currentUnit)
-        const aqiData = await getAirQuality(lat, long)
-
+    
+        const [ weatherData, aqiData] = await Promise.all([
+            getWeather(lat, long, currentUnit),
+            getAirQuality(lat, long)
+        ])
+    
         renderCurrentWeather(weatherData, targetLocation)
         renderAQI(aqiData)
         renderWeeklyForecast(weatherData)
         updateBookmarkUI(currentLocationData)
         loadSavedLocations()
+    
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (error) {
+        console.error('Error loading saved location:', error)
+        showError(error.message)
+    } finally {
+        setLoading(false, 'saved')
     }
 }
 
