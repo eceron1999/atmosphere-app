@@ -29,6 +29,8 @@ async function onSubmit(e) {
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
         loadSavedLocations()
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
         console.error('Error loading weather data:', error)
         showError(error.message)
@@ -140,6 +142,7 @@ async function handleUnitToggle(e) {
     const weatherData = await getWeather(latitude, longitude, currentUnit)
 
     renderCurrentWeather(weatherData, currentLocationData)
+    renderWeeklyForecast(weatherData)
     updateUnitToggleUI(currentUnit)
     loadSavedLocations()
 }
