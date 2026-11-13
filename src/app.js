@@ -181,7 +181,7 @@ async function handleSavedLocationClick(e) {
         locationCard.classList.add('scale-95', 'opacity-0', 'transition-all', 'duration-150')
         await new Promise(resolve => setTimeout(resolve, 150))
 
-        const filteredLocations = savedLocations.filter(loc => !(loc.latitude !== +lat && loc.longitude !== +long))
+        const filteredLocations = savedLocations.filter(loc => loc.latitude !== +lat || loc.longitude !== +long)
 
         localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))   
         renderSavedLocations(filteredLocations, currentLocationData)
