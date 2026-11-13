@@ -152,12 +152,19 @@ async function handleUnitToggle(e) {
 async function loadSavedLocations() {
     const savedLocations = getSavedLocations()
 
-    const hydratedLocations = await Promise.all(
+    const results = await Promise.allSettled(
         savedLocations.map(async loc => {
             const weatherData = await getWeather(loc.latitude, loc.longitude, currentUnit)
-            return { ...loc, weatherData}
+            return { ...loc, weatherData }
         })
     )
+
+    const hydratedLocations = savedLocations.map((loc, index) => {
+        const result = results[index]
+        return result.status === 'fulfilled'
+            ? result.value
+            : { ...loc, weatherData: null }
+    })
 
     renderSavedLocations(hydratedLocations, currentLocationData)
 }
