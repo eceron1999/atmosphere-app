@@ -58,7 +58,10 @@ export function getWeatherInfo(code) {
 export function formatLocation({ name, admin1, country_code }) {
     let html = `<span>${name}</span>`
 
-    if (admin1) {
+    if (admin1 && admin1 !== name) {
+        // Mobile devices
+        html += `<span class='block mt-0.5 text-sm font-normal text-text-muted sm:hidden'>${admin1}</span>`
+        // Small screens+
         html += `<span class='hidden sm:inline'>, ${admin1}</span>`
     }
 
