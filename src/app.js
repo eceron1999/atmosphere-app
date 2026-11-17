@@ -43,24 +43,30 @@ async function loadInitialLocation() {
     const primaryLocation = getPrimaryLocation()
 
     if (primaryLocation) {
-        const { latitude, longitude } = primaryLocation
+        try {
+            const { latitude, longitude } = primaryLocation
 
-        const [weatherData, locationData, airQualityData] = await Promise.all([
-            getWeather(latitude, longitude, currentUnit),
-            getReverseLocationData(latitude, longitude),
-            getAirQuality(latitude, longitude),
-        ])
+            const [weatherData, locationData, airQualityData] = await Promise.all([
+                getWeather(latitude, longitude, currentUnit),
+                getReverseLocationData(latitude, longitude),
+                getAirQuality(latitude, longitude),
+            ])
 
-        currentLocationData = {
-            latitude,
-            longitude, 
-            ...locationData
+            currentLocationData = {
+                latitude,
+                longitude,
+                ...locationData
+            }
+
+            renderCurrentWeather(weatherData, currentLocationData)
+            renderAQI(airQualityData)
+            renderWeeklyForecast(weatherData)
+            updateBookmarkUI(currentLocationData)
+
+        } catch (error) {
+            console.error('Error loading initial location:', error)
+            showError(error.message)
         }
-
-        renderCurrentWeather(weatherData, currentLocationData)
-        renderAQI(airQualityData)
-        renderWeeklyForecast(weatherData)
-        updateBookmarkUI(currentLocationData)
     } else {
         await handleCurrentLocationClick()
     }
@@ -224,9 +230,6 @@ async function init() {
     updateTime()
     setInterval(updateTime, 1000)
 
-    await loadInitialLocation()
-    await loadSavedLocations()
-
     // Event Listeners
     elements.searchForm.addEventListener('submit', onSubmit)
     elements.fahrenheitBtn.addEventListener('click', handleUnitToggle)
@@ -234,6 +237,9 @@ async function init() {
     elements.currentLocBtn.addEventListener('click', handleCurrentLocationClick)
     elements.saveLocationBtn.addEventListener('click', handleSaveLocationBtn)
     elements.savedLocationsContainer.addEventListener('click', handleSavedLocationClick)
+
+    await loadInitialLocation()
+    await loadSavedLocations()
 }
 
 init()
