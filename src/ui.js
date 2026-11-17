@@ -231,39 +231,51 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
 
         const isActive = currentLocationData && currentLocationData.name === name && currentLocationData.admin1 === admin1
 
-        const currentTemp = Math.round(weatherData?.current.temperature_2m)
-        const highTemp = Math.round(weatherData.daily.temperature_2m_max[0])
-        const lowTemp = Math.round(weatherData.daily.temperature_2m_min[0])
-        const precipitation = weatherData.daily.precipitation_probability_max[0]
+        const hasWeatherData = weatherData?.current && weatherData?.daily
 
-        const weatherInfo = getWeatherInfo(weatherData.current.weather_code)
+        const currentTemp = hasWeatherData ? Math.round(weatherData.current.temperature_2m) : null
+        const highTemp = hasWeatherData ? Math.round(weatherData.daily.temperature_2m_max[0]) : null
+        const lowTemp = hasWeatherData ? Math.round(weatherData.daily.temperature_2m_min[0]) : null
+        const precipitation = hasWeatherData ? weatherData.daily.precipitation_probability_max[0] : null
+        const weatherInfo = hasWeatherData ? getWeatherInfo(weatherData.current.weather_code) : null
         
         return `
         <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden active:scale-[0.98] active:bg-brand-bg/95 ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
             <div class="flex flex-col justify-center min-w-0 overflow-hidden">
                 <!-- City -->
                 <p class="text-sm font-bold tracking-tight text-text-main sm:text-base min-[900px]:text-sm group-hover:text-accent-sky transition-colors truncate ${isActive ? 'text-accent-sky' : 'group-hover:text-accent-sky'}">${loc.name}</p>
+
                 <!-- State/Country -->
                 <p class="text-xs text-text-muted/80 truncate">${loc.admin1}, ${loc.country_code}</p>
             </div>
     
-            <div class="flex flex-col items-center justify-center gap-0.5 min-w-0 px-1">
-                <div class="flex items-center gap-1.5 min-w-0">
-                    <!-- Weather Icon -->
-                    <i aria-hidden="true" class="fa-solid ${weatherInfo.icon} shrink-0 w-6 text-center text-lg ${weatherInfo.color} min-[400px]:text-xl min-[900px]:text-lg group-hover:scale-110 transition-transform duration-200"></i>
-                    <!-- Current Temp -->
-                    <p class="text-base font-bold tracking-tight tabular-nums text-text-main sm:text-lg min-[900px]:text-sm!">${currentTemp}&deg;</p>
+            ${hasWeatherData ? `
+                <div class="flex flex-col items-center justify-center gap-0.5 min-w-0 px-1">
+                    <div class="flex items-center gap-1.5 min-w-0">
+                        <!-- Weather Icon -->
+                        <i aria-hidden="true" class="fa-solid ${weatherInfo.icon} shrink-0 w-6 text-center text-lg ${weatherInfo.color} min-[400px]:text-xl min-[900px]:text-lg group-hover:scale-110 transition-transform duration-200"></i>
+
+                        <!-- Current Temp -->
+                        <p class="text-base font-bold tracking-tight tabular-nums text-text-main sm:text-lg min-[900px]:text-sm!">${currentTemp}&deg;</p>
+                    </div>
+
+                    <!-- High/Low -->
+                    <p class="whitespace-nowrap text-[10px] text-text-muted min-[400px]:text-xs">H: ${highTemp}&deg; L: ${lowTemp}&deg;</p>
                 </div>
-    
-                <!-- High/Low -->
-                <p class="whitespace-nowrap text-[10px] text-text-muted min-[400px]:text-xs">H: ${highTemp}&deg; L: ${lowTemp}&deg;</p>
-            </div>
+                ` : `
+                <div class="flex items-center justify-center min-w-0 px-1">
+                    <p class="text-xs text-text-muted text-center">Weather unavailable</p>
+                </div>
+            `}
     
             <!-- Precipitation % -->
-            <div class="hidden min-[400px]:inline-flex items-center justify-center justify-self-center shrink-0 gap-1 px-1 py-0.5 text-xs font-semibold text-accent-sky bg-accent-sky/10 border border-accent-sky/30 rounded-full tabular-nums min-[900px]:hidden min-[1200px]:inline-flex">
-                <i class="fa-solid fa-droplet"></i>
-                <span>${precipitation}%</span>
-            </div>
+            ${hasWeatherData ? `
+                <div class="hidden min-[400px]:inline-flex items-center justify-center justify-self-center shrink-0 gap-1 px-1 py-0.5 text-xs font-semibold text-accent-sky bg-accent-sky/10 border border-accent-sky/30 rounded-full tabular-nums min-[900px]:hidden min-[1200px]:inline-flex">
+                    <i class="fa-solid fa-droplet"></i>
+                    <span>${precipitation}%</span>
+                </div>
+            ` : ''}
+
             <!-- Remove Button -->
             <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full active:text-red-500 active:bg-red-500/20 active:scale-90 hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
                 <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
