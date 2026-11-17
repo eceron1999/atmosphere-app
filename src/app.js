@@ -5,6 +5,7 @@ import { getPrimaryLocation, getSavedLocations, removeLocation, savePrimaryLocat
 
 let currentUnit = 'fahrenheit'
 let currentLocationData = null
+let savedLocationsData = []
 
 async function onSubmit(e) {
     e.preventDefault()
@@ -102,7 +103,7 @@ async function handleCurrentLocationClick(e) {
         renderCurrentWeather(weatherData, currentLocationData)
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
-        loadSavedLocations()
+        renderSavedLocations(savedLocationsData, currentLocationData)
         updateBookmarkUI(currentLocationData)
 
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -122,19 +123,19 @@ async function handleSaveLocationBtn(e) {
     if (isAlreadySaved) {
         removeLocation(currentLocationData)
         localStorage.removeItem('primaryLocation')
+
+        savedLocationsData = savedLocationsData.filter(loc => loc.name !== currentLocationData.name || loc.admin1 !== currentLocationData.admin1)
     } else {
         const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
-        const locationToSave = {
-            ...currentLocationData,
-            weatherData
-        }
 
         savePrimaryLocation(currentLocationData)
-        saveLocation(locationToSave)
+        saveLocation(currentLocationData)
+
+        savedLocationsData = [...savedLocationsData, { ...currentLocationData, weatherData }]
     }
-    
+
     updateBookmarkUI(currentLocationData)
-    loadSavedLocations()
+    renderSavedLocations(savedLocationsData, currentLocationData)
 }
 
 async function handleUnitToggle(e) {
@@ -165,14 +166,14 @@ async function loadSavedLocations() {
         })
     )
 
-    const hydratedLocations = savedLocations.map((loc, index) => {
+    savedLocationsData = savedLocations.map((loc, index) => {
         const result = results[index]
         return result.status === 'fulfilled'
             ? result.value
             : { ...loc, weatherData: null }
     })
 
-    renderSavedLocations(hydratedLocations, currentLocationData)
+    renderSavedLocations(savedLocationsData, currentLocationData)
 }
 
 async function handleSavedLocationClick(e) {
@@ -189,8 +190,9 @@ async function handleSavedLocationClick(e) {
 
         const filteredLocations = savedLocations.filter(loc => loc.latitude !== +lat || loc.longitude !== +long)
 
-        localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))   
-        renderSavedLocations(filteredLocations, currentLocationData)
+        localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))
+        savedLocationsData = savedLocationsData.filter(loc => loc.latitude !== +lat || loc.longitude !== +long)
+        renderSavedLocations(savedLocationsData, currentLocationData)
 
         if (currentLocationData) updateBookmarkUI(currentLocationData)
         return
@@ -215,7 +217,7 @@ async function handleSavedLocationClick(e) {
         renderAQI(aqiData)
         renderWeeklyForecast(weatherData)
         updateBookmarkUI(currentLocationData)
-        loadSavedLocations()
+        renderSavedLocations(savedLocationsData, currentLocationData)
     
         window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
