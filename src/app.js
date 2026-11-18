@@ -117,25 +117,31 @@ async function handleCurrentLocationClick(e) {
 }
 
 async function handleSaveLocationBtn(e) {
-    const savedLocations = getSavedLocations()
-    const isAlreadySaved = savedLocations.some(loc => loc.name === currentLocationData.name && loc.admin1 === currentLocationData.admin1)
+    try {
+        const savedLocations = getSavedLocations()
+        const isAlreadySaved = savedLocations.some(loc => loc.name === currentLocationData.name && loc.admin1 === currentLocationData.admin1)
 
-    if (isAlreadySaved) {
-        removeLocation(currentLocationData)
-        localStorage.removeItem('primaryLocation')
+        if (isAlreadySaved) {
+            removeLocation(currentLocationData)
+            localStorage.removeItem('primaryLocation')
 
-        savedLocationsData = savedLocationsData.filter(loc => loc.name !== currentLocationData.name || loc.admin1 !== currentLocationData.admin1)
-    } else {
-        const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
+            savedLocationsData = savedLocationsData.filter(loc => loc.name !== currentLocationData.name || loc.admin1 !== currentLocationData.admin1)
+        } else {
+            const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
 
-        savePrimaryLocation(currentLocationData)
-        saveLocation(currentLocationData)
+            savePrimaryLocation(currentLocationData)
+            saveLocation(currentLocationData)
 
-        savedLocationsData = [...savedLocationsData, { ...currentLocationData, weatherData }]
+            savedLocationsData = [...savedLocationsData, { ...currentLocationData, weatherData }]
+        }
+
+        updateBookmarkUI(currentLocationData)
+        renderSavedLocations(savedLocationsData, currentLocationData)
+
+    } catch (error) {
+        console.error('Error saving or removing location:', error)
+        showError(error.message)
     }
-
-    updateBookmarkUI(currentLocationData)
-    renderSavedLocations(savedLocationsData, currentLocationData)
 }
 
 async function handleUnitToggle(e) {
@@ -145,15 +151,21 @@ async function handleUnitToggle(e) {
         return
     } 
 
-    currentUnit = selectedUnit
     const { latitude, longitude } = currentLocationData
 
-    const weatherData = await getWeather(latitude, longitude, currentUnit)
+    try {
+        const weatherData = await getWeather(latitude, longitude, selectedUnit)
 
-    renderCurrentWeather(weatherData, currentLocationData)
-    renderWeeklyForecast(weatherData)
-    updateUnitToggleUI(currentUnit)
-    loadSavedLocations()
+        currentUnit = selectedUnit
+
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderWeeklyForecast(weatherData)
+        updateUnitToggleUI(currentUnit)
+        await loadSavedLocations()
+    } catch (error) {
+        console.error('Error switching temperature units:', error)
+        showError(error.message)
+    }
 }
 
 async function loadSavedLocations() {
