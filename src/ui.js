@@ -42,6 +42,7 @@ export const elements = {
     mainPollutant: document.getElementById('main-pollutant'),
     aqiMessage: document.getElementById('aqi-message'),
     aqiMessageBg: document.getElementById('aqi-message-bg'),
+    aqiScale: document.getElementById('aqi-scale'),
     aqiScaleMarker: document.getElementById('aqi-scale-marker'),
     pm25: document.getElementById('pm2-5'),
     pm10: document.getElementById('pm10'),
@@ -87,6 +88,8 @@ export function renderAQI(airQualityData) {
     elements.mainPollutant.innerText = mainPollutant.name
     elements.aqiMessage.innerText = aqiStatus.description
     elements.aqiMessageBg.className = `p-2.5 border rounded-lg ${aqiStatus.messageColor} min-[900px]:p-1.5! lg:p-1!`
+    elements.aqiScale.setAttribute('aria-valuenow', Math.round(aqiInfo.us_aqi))
+    elements.aqiScale.setAttribute('aria-valuetext', `${Math.round(aqiInfo.us_aqi)}, ${aqiStatus.status}`)
     elements.aqiScaleMarker.style.left = `${aqiMarkerPercent}%`
     elements.pm25.innerText = Math.round(aqiInfo.pm2_5)
     elements.pm10.innerText = Math.round(aqiInfo.pm10)
@@ -277,7 +280,7 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
             ` : ''}
 
             <!-- Remove Button -->
-            <button type="button" aria-label="Remove Raleigh from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full active:text-red-500 active:bg-red-500/20 active:scale-90 hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
+            <button type="button" aria-label="Remove ${escapeHTML(name)} from saved locations" class="flex items-center justify-center justify-self-center w-8 h-8 text-text-muted/70 rounded-full active:text-red-500 active:bg-red-500/20 active:scale-90 hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 transition-colors cursor-pointer">
                 <i aria-hidden="true" class="fa-solid fa-trash-can text-sm"></i>
             </button>
         </li>

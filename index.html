@@ -47,7 +47,7 @@
 
     <main class="flex flex-col gap-5 px-4 py-6 max-w-7xl w-full mx-auto sm:gap-6 sm:px-6 sm:py-8">
         <!-- Error Banner -->
-        <div id="error-banner" class="hidden w-full max-w-md mx-auto mb-2 p-3 text-xs font-medium text-red-400 bg-red-950/40 border border-red-800/50 rounded-xl text-center sm:text-sm min-[900px]:col-span-12"></div>
+        <div id="error-banner" role="alert" class="hidden w-full max-w-md mx-auto mb-2 p-3 text-xs font-medium text-red-400 bg-red-950/40 border border-red-800/50 rounded-xl text-center sm:text-sm min-[900px]:col-span-12"></div>
 
         <div class="flex flex-col gap-5 sm:gap-6 min-[900px]:grid min-[900px]:grid-cols-12 min-[900px]:gap-6">
             <!-- Weather Hero -->
@@ -66,9 +66,9 @@
         
                     <!-- Temperature Toggle Button -->
                      <div role="group" aria-label="Temperature unit selection" class="flex items-center gap-0.5 p-1 bg-brand-bg border border-hairline rounded-full transition-all duration-200">
-                        <button id="c-toggle-btn" data-unit="celsius" type="button" aria-pressed="false" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-text-main hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;C</button>
+                        <button id="c-toggle-btn" data-unit="celsius" type="button" aria-pressed="false" aria-label="Celsius" class="flex justify-center items-center px-3 py-1 text-text-muted bg-transparent rounded-full cursor-pointer hover:text-text-main hover:bg-brand-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;C</button>
         
-                        <button id="f-toggle-btn" data-unit="fahrenheit" type="button" aria-pressed="true" aria-label="Fahrenheit, selected" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;F</button>
+                        <button id="f-toggle-btn" data-unit="fahrenheit" type="button" aria-pressed="true" aria-label="Fahrenheit" class="flex justify-center items-center px-3 py-1 text-text-main font-semibold bg-brand-surface rounded-full cursor-pointer hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-sky active:scale-95 transition-all duration-200">&deg;F</button>
                      </div>
                 </div>
     
@@ -164,7 +164,7 @@
                 </div>
     
                 <!-- AQI Scale -->
-                <div role="progressbar" aria-label="Air Quality Index Scale" aria-valuenow="42" aria-valuemin="0" aria-valuemax="500" aria-valuetext="42, Good" class="relative w-full h-3 my-1 bg-white/10 border border-white/20 rounded-full overflow-visible">
+                <div id="aqi-scale" role="meter" aria-label="Air Quality Index Scale" aria-valuenow="0" aria-valuemin="0" aria-valuemax="500" aria-valuetext="Air quality unavailable" class="relative w-full h-3 my-1 bg-white/10 border border-white/20 rounded-full overflow-visible">
                     <!-- Gradient Colors -->
                     <div aria-hidden="true" class="absolute left-0 inset-y-0 w-full rounded-full bg-[linear-gradient(to_right,#10b981_0%,#10b981_10%,#f59e0b_20%,#f97316_30%,#ef4444_40%,#f43f5e_60%,#a855f7_100%)]"></div>
                     <!-- Marker Placement -->
