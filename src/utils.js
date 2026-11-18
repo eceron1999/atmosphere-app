@@ -55,18 +55,28 @@ export function getWeatherInfo(code) {
     }
 }
 
+export function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char])
+}
+
 export function formatLocation({ name, admin1, country_code }) {
-    let html = `<span>${name}</span>`
+    let html = `<span>${escapeHTML(name)}</span>`
 
     if (admin1 && admin1 !== name) {
         // Mobile devices
-        html += `<span class='block mt-0.5 text-sm font-normal text-text-muted sm:hidden'>${admin1}</span>`
+        html += `<span class='block mt-0.5 text-sm font-normal text-text-muted sm:hidden'>${escapeHTML(admin1)}</span>`
         // Small screens+
-        html += `<span class='hidden sm:inline'>, ${admin1}</span>`
+        html += `<span class='hidden sm:inline'>, ${escapeHTML(admin1)}</span>`
     }
 
     if (country_code) {
-        html += `<span class='show-country'>, ${country_code}</span>`
+        html += `<span class='show-country'>, ${escapeHTML(country_code)}</span>`
     }
 
     return html.trim()

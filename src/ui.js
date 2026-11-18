@@ -1,5 +1,5 @@
 import { getAirQuality, getLocationData } from "./api.js"
-import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent } from "./utils.js"
+import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent, escapeHTML } from "./utils.js"
 import { getSavedLocations } from "./storage.js"
 
 export const elements = {
@@ -240,13 +240,13 @@ export function renderSavedLocations(savedLocations, currentLocationData) {
         const weatherInfo = hasWeatherData ? getWeatherInfo(weatherData.current.weather_code) : null
         
         return `
-        <li data-lat="${latitude}" data-long="${longitude}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden active:scale-[0.98] active:bg-brand-bg/95 ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
+        <li data-lat="${escapeHTML(latitude)}" data-long="${escapeHTML(longitude)}" class="grid grid-cols-[100px_1fr_auto] items-center gap-2 w-full min-w-0 px-3 py-4 bg-brand-bg/40 rounded-xl min-[400px]:grid-cols-[105px_auto_auto_auto] min-[400px]:gap-2.5 min-[400px]:px-4 sm:grid-cols-[150px_auto_auto_auto] sm:gap-4 sm:px-6 min-[900px]:grid-cols-[65px_1fr_auto]! min-[900px]:self-start min-[900px]:gap-3! min-[900px]:px-2! min-[900px]:py-3! min-[1024px]:grid-cols-[80px_1fr_auto]! min-[1024px]:px-3! min-[1200px]:grid-cols-[90px_1fr_auto_auto]! transition-all duration-200 group cursor-pointer overflow-hidden active:scale-[0.98] active:bg-brand-bg/95 ${isActive ? 'border border-accent-sky bg-brand-bg/90 shadow-sm shadow-accent-sky/15 ring-1 ring-accent-sky/30' : 'border border-hairline/60 hover:bg-brand-bg/80 hover:border-accent-sky/50 hover:shadow-lg hover:shadow-accent-sky/5'}">
             <div class="flex flex-col justify-center min-w-0 overflow-hidden">
                 <!-- City -->
-                <p class="text-sm font-bold tracking-tight text-text-main sm:text-base min-[900px]:text-sm group-hover:text-accent-sky transition-colors truncate ${isActive ? 'text-accent-sky' : 'group-hover:text-accent-sky'}">${loc.name}</p>
+                <p class="text-sm font-bold tracking-tight text-text-main sm:text-base min-[900px]:text-sm group-hover:text-accent-sky transition-colors truncate ${isActive ? 'text-accent-sky' : 'group-hover:text-accent-sky'}">${escapeHTML(name)}</p>
 
                 <!-- State/Country -->
-                <p class="text-xs text-text-muted/80 truncate">${loc.admin1}, ${loc.country_code}</p>
+                <p class="text-xs text-text-muted/80 truncate">${escapeHTML(admin1)}, ${escapeHTML(country_code)}</p>
             </div>
     
             ${hasWeatherData ? `
