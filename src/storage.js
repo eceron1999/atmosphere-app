@@ -4,7 +4,8 @@ export function getSavedLocations() {
     if (!getLocations) return []
 
     try {
-        return JSON.parse(getLocations)
+        const savedLocations = JSON.parse(getLocations)
+        return Array.isArray(savedLocations) ? savedLocations : []
     } catch (error) {
         console.error('Failed to parse saved locations from localStorage', error)
         return []
@@ -25,7 +26,14 @@ export function savePrimaryLocation(locationData) {
 export function getPrimaryLocation() {
     const primaryLocation = localStorage.getItem('primaryLocation')
 
-    return primaryLocation ? JSON.parse(primaryLocation) : null
+    if (!primaryLocation) return null
+
+    try {
+        return JSON.parse(primaryLocation)
+    } catch (error) {
+        console.error('Failed to parse primary location from localStorage', error)
+        return null
+    }
 }
 
 export function removeLocation(location) {
