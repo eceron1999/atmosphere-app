@@ -167,8 +167,8 @@ export function renderWeeklyForecast(weatherData) {
         const maxTemp = Math.round(weatherData.daily.temperature_2m_max[index])
 
         const percent = getTempPercent(currentTemp, weekMin, weekMax)
-        const leftPercent = ((minTemp - weekMin) / (weekMax - weekMin)) * 100
-        const rightPercent = ((weekMax - maxTemp) / (weekMax - weekMin)) * 100
+        const leftPercent = weekMax === weekMin ? 0 : ((minTemp - weekMin) / (weekMax - weekMin)) * 100
+        const rightPercent = weekMax === weekMin ? 0 : ((weekMax - maxTemp) / (weekMax - weekMin)) * 100
         const currentTempDot = index === 0 ? `<div style="left: ${percent}%" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-text-main rounded-full ring-2 ring-brand-surface"></div>` : ''
 
         return `
