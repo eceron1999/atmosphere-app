@@ -216,13 +216,13 @@ async function handleSavedLocationClick(e) {
     hideError()
 
     try {
-        currentLocationData = targetLocation
-        savePrimaryLocation(currentLocationData)
-    
         const [ weatherData, aqiData] = await Promise.all([
             getWeather(lat, long, currentUnit),
             getAirQuality(lat, long)
         ])
+
+        currentLocationData = targetLocation
+        savePrimaryLocation(currentLocationData)
     
         renderCurrentWeather(weatherData, targetLocation)
         renderAQI(aqiData)
