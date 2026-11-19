@@ -17,13 +17,12 @@ async function onSubmit(e) {
     
         const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
     
-        currentLocationData = { latitude, longitude, name, admin1, country_code }
-        
-    
         const [weatherData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
             getAirQuality(latitude, longitude),
         ])
+
+        currentLocationData = { latitude, longitude, name, admin1, country_code }
     
         renderCurrentWeather(weatherData, currentLocationData)
         updateBookmarkUI(currentLocationData)
