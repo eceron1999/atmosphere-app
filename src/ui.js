@@ -77,18 +77,25 @@ export function renderCurrentWeather(weatherData, locationData) {
 
 export function renderAQI(airQualityData) {
     const aqiInfo = airQualityData.current
+    const hasValidAqi = Number.isFinite(aqiInfo.us_aqi) && aqiInfo.us_aqi >= 0 && aqiInfo.us_aqi <= 500
     const aqiStatus = getAqiStatus(aqiInfo.us_aqi)
     const mainPollutant = getMainPollutant(airQualityData)
     const aqiMarkerPercent = getAqiPercent(aqiInfo.us_aqi)
 
-    elements.aqiNumber.innerText = Math.round(aqiInfo.us_aqi)
+    if (hasValidAqi) {
+        elements.aqiScale.setAttribute('aria-valuenow', Math.round(aqiInfo.us_aqi))
+    } else {
+        elements.aqiScale.removeAttribute('aria-valuenow')
+    } 
+
+    elements.aqiScale.setAttribute('aria-valuetext', hasValidAqi ? `${Math.round(aqiInfo.us_aqi)}, ${aqiStatus.status}` : 'Air quality unavailable')
+
+    elements.aqiNumber.innerText = hasValidAqi ? Math.round(aqiInfo.us_aqi) : 'N/A'
     elements.aqiCondition.innerText = aqiStatus.status
     elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.badgeColor} border rounded-full sm:text-sm`
     elements.mainPollutant.innerText = mainPollutant.name
     elements.aqiMessage.innerText = aqiStatus.description
     elements.aqiMessageBg.className = `p-2.5 border rounded-lg ${aqiStatus.messageColor} min-[900px]:p-1.5! lg:p-1!`
-    elements.aqiScale.setAttribute('aria-valuenow', Math.round(aqiInfo.us_aqi))
-    elements.aqiScale.setAttribute('aria-valuetext', `${Math.round(aqiInfo.us_aqi)}, ${aqiStatus.status}`)
     elements.aqiScaleMarker.style.left = `${aqiMarkerPercent}%`
     elements.pm25.innerText = Math.round(aqiInfo.pm2_5)
     elements.pm10.innerText = Math.round(aqiInfo.pm10)

@@ -137,7 +137,25 @@ export function getUvDetails(uvIndex) {
 }
 
 export function getAqiStatus(aqiValue) {
-    return AQI_THRESHOLDS.find(threshold => threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI)
+    if (!Number.isFinite(aqiValue) || aqiValue < 0 || aqiValue > 500) {
+        return {
+            status: 'Unavailable',
+            description: 'Air quality data is currently unavailable.',
+            badgeColor: 'bg-slate-500/15 text-slate-400 border-slate-500/30',
+            messageColor: 'bg-slate-500/10 border-slate-500/20'
+        }
+    }
+    
+    const status = AQI_THRESHOLDS.find(threshold =>
+        threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI
+    )
+
+    return status || {
+        status: 'Unavailable',
+        description: 'Air quality data is currently unavailable.',
+        badgeColor: 'bg-slate-500/15 text-slate-400 border-slate-500/30',
+        messageColor: 'bg-slate-500/10 border-slate-500/20'
+    }
 }
 
 export function getMainPollutant(airQualityData) {
@@ -153,6 +171,10 @@ export function getMainPollutant(airQualityData) {
 }
 
 export function getAqiPercent(aqiNum) {
+    if (!Number.isFinite(aqiNum) || aqiNum < 0 || aqiNum > 500) {
+        return 0
+    }
+
     const aqiPercent = (aqiNum / 500) * 100
     return Math.max(0, Math.min(100, aqiPercent))
 }
