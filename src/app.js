@@ -234,8 +234,6 @@ async function handleSavedLocationClick(e) {
     } catch (error) {
         console.error('Error loading saved location:', error)
         showError(error.message)
-    } finally {
-        setLoading(false, 'saved')
     }
 }
 
