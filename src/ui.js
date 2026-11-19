@@ -1,4 +1,3 @@
-import { getAirQuality, getLocationData } from "./api.js"
 import { getWeatherInfo, formatLocation, getWindDirection, getFormattedCurrentTime, getUvDetails, formatDayName, getTempPercent, getAqiStatus, getMainPollutant, getAqiPercent, escapeHTML } from "./utils.js"
 import { getSavedLocations } from "./storage.js"
 
