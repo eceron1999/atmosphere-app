@@ -150,6 +150,8 @@ async function handleUnitToggle(e) {
         return
     } 
 
+    if (!currentLocationData) return
+
     const { latitude, longitude } = currentLocationData
 
     try {
