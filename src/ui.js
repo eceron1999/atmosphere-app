@@ -135,11 +135,13 @@ export function updateBookmarkUI(locationData) {
         elements.saveLocationIcon.classList.remove('text-text-muted')
         elements.saveLocationIcon.classList.add('fa-solid')
         elements.saveLocationIcon.classList.add('text-accent-sky')
+        elements.saveLocationBtn.setAttribute('aria-label', 'Remove saved location')
     } else {
         elements.saveLocationIcon.classList.remove('fa-solid')
         elements.saveLocationIcon.classList.remove('text-accent-sky')
         elements.saveLocationIcon.classList.add('fa-regular')
         elements.saveLocationIcon.classList.add('text-text-muted')
+        elements.saveLocationBtn.setAttribute('aria-label', 'Save location')
     }
 }
 
