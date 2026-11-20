@@ -108,6 +108,10 @@ export function showError(message) {
     
     elements.errorBanner.textContent = message
     elements.errorBanner.classList.remove('hidden')
+    window.scrollTo({
+        top: elements.errorBanner.getBoundingClientRect().top + window.scrollY - 100,
+        behavior: 'smooth'
+    })
 }
 
 export function hideError() {
