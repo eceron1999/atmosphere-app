@@ -122,7 +122,12 @@ async function handleSaveLocationBtn(e) {
 
         if (isAlreadySaved) {
             removeLocation(currentLocationData)
-            localStorage.removeItem('primaryLocation')
+            
+            const primaryLocation = getPrimaryLocation()
+
+            if (primaryLocation?.name === currentLocationData.name && primaryLocation?.admin1 === currentLocationData.admin1) {
+                localStorage.removeItem('primaryLocation')
+            }
 
             savedLocationsData = savedLocationsData.filter(loc => loc.name !== currentLocationData.name || loc.admin1 !== currentLocationData.admin1)
         } else {
