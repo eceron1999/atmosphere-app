@@ -1,5 +1,11 @@
+const weatherCache = new Map()
+const CACHE_TTL_MS = 5 * 60 * 1000
+
 export async function getLocationData(cityName) {
-    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}`
+    const trimmedName = cityName.trim()
+    if (!trimmedName) throw new Error('Please enter a city name.')
+
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(trimmedName)}`
     const res = await fetch(url)
 
     if (!res.ok) {
@@ -9,7 +15,7 @@ export async function getLocationData(cityName) {
     const data = await res.json()
      
     if (!data.results || data.results.length === 0) {
-        throw new Error('City not found!')
+        throw new Error(`No results found for "${trimmedName}".`)
     }
 
     const { latitude, longitude, name, admin1, country_code } = data.results[0]
@@ -38,6 +44,13 @@ export async function getReverseLocationData(latitude, longitude) {
 }
 
 export async function getWeather(latitude, longitude, currentUnit) {
+    const cacheKey = `${latitude},${longitude},${currentUnit}`
+    const cached = weatherCache.get(cacheKey)
+
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+        return cached.data
+    }
+
     const url = `https://api.open-meteo.com/v1/forecast?daily=uv_index_max,temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max&current=temperature_2m,wind_speed_10m,wind_direction_10m,apparent_temperature,relative_humidity_2m,weather_code&timezone=auto&temperature_unit=${currentUnit}&latitude=${latitude}&longitude=${longitude}`
     const res = await fetch(url)
 
@@ -46,6 +59,8 @@ export async function getWeather(latitude, longitude, currentUnit) {
     }
 
     const data = await res.json()
+
+    weatherCache.set(cacheKey, { data, timestamp: Date.now() })
     
     return data
 }

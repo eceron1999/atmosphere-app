@@ -1,61 +1,72 @@
 import './input.css';
-import { elements, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
+import { elements, hideError, renderAQI, renderCurrentWeather, renderSavedLocations, renderWeeklyForecast, setLoading, showError, updateBookmarkUI, updateTime, updateUnitToggleUI } from "./ui.js";
 import { getLocationData, getWeather, getAirQuality, getReverseLocationData } from "./api.js";
-import { getLastLocation, getSavedLocations, removeLocation, saveLastLocation, saveLocation } from './storage.js';
-import { getWeatherInfo } from './utils.js';
+import { getPrimaryLocation, getSavedLocations, removeLocation, savePrimaryLocation, saveLocation } from './storage.js';
 
 let currentUnit = 'fahrenheit'
 let currentLocationData = null
+let savedLocationsData = []
 
 async function onSubmit(e) {
     e.preventDefault()
+    hideError()
+    setLoading(true, 'search')
 
     try {
         const cityName = elements.searchInput.value
     
         const { latitude, longitude, name, admin1, country_code } = await getLocationData(cityName)
     
-        currentLocationData = { latitude, longitude, name, admin1, country_code }
-        saveLastLocation(currentLocationData)
-    
         const [weatherData, airQualityData] = await Promise.all([
             getWeather(latitude, longitude, currentUnit),
             getAirQuality(latitude, longitude),
         ])
+
+        currentLocationData = { latitude, longitude, name, admin1, country_code }
     
         renderCurrentWeather(weatherData, currentLocationData)
         updateBookmarkUI(currentLocationData)
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
         loadSavedLocations()
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
         console.error('Error loading weather data:', error)
-        alert(`Could not load weather: ${error.message}`)
+        showError(error.message)
+    } finally {
+        setLoading(false, 'search')
     }
 }
 
 async function loadInitialLocation() {
-    const lastLocation = getLastLocation()
+    const primaryLocation = getPrimaryLocation()
 
-    if (lastLocation) {
-        const { latitude, longitude } = lastLocation
+    if (primaryLocation) {
+        try {
+            const { latitude, longitude } = primaryLocation
 
-        const [weatherData, locationData, airQualityData] = await Promise.all([
-            getWeather(latitude, longitude, currentUnit),
-            getReverseLocationData(latitude, longitude),
-            getAirQuality(latitude, longitude),
-        ])
+            const [weatherData, locationData, airQualityData] = await Promise.all([
+                getWeather(latitude, longitude, currentUnit),
+                getReverseLocationData(latitude, longitude),
+                getAirQuality(latitude, longitude),
+            ])
 
-        currentLocationData = {
-            latitude,
-            longitude, 
-            ...locationData
+            currentLocationData = {
+                latitude,
+                longitude,
+                ...locationData
+            }
+
+            renderCurrentWeather(weatherData, currentLocationData)
+            renderAQI(airQualityData)
+            renderWeeklyForecast(weatherData)
+            updateBookmarkUI(currentLocationData)
+
+        } catch (error) {
+            console.error('Error loading initial location:', error)
+            showError(error.message)
         }
-
-        renderCurrentWeather(weatherData, currentLocationData)
-        renderAQI(airQualityData)
-        renderWeeklyForecast(weatherData)
-        updateBookmarkUI(currentLocationData)
     } else {
         await handleCurrentLocationClick()
     }
@@ -68,6 +79,9 @@ async function getCurrentPosition() {
 }
 
 async function handleCurrentLocationClick(e) {
+    hideError()
+    setLoading(true, 'location')
+
     try {
         const currentPosition = await getCurrentPosition()
         const { latitude, longitude } = currentPosition.coords
@@ -83,38 +97,55 @@ async function handleCurrentLocationClick(e) {
             longitude,
             ...locationData
         }
-        saveLastLocation(currentLocationData)
+        savePrimaryLocation(currentLocationData)
 
         renderCurrentWeather(weatherData, currentLocationData)
         renderAQI(airQualityData)
         renderWeeklyForecast(weatherData)
-        loadSavedLocations()
+        renderSavedLocations(savedLocationsData, currentLocationData)
         updateBookmarkUI(currentLocationData)
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         
     } catch (error) {
         console.error('Error loading weather data:', error)
-        alert(`Could not load weather: ${error.message}`)
+        showError(error.message)
+    } finally {
+        setLoading(false, 'location')
     }
 }
 
 async function handleSaveLocationBtn(e) {
-    const savedLocations = getSavedLocations()
-    const isAlreadySaved = savedLocations.some(loc => loc.name === currentLocationData.name && loc.admin1 === currentLocationData.admin1)
+    try {
+        const savedLocations = getSavedLocations()
+        const isAlreadySaved = savedLocations.some(loc => loc.name === currentLocationData.name && loc.admin1 === currentLocationData.admin1)
 
-    if (isAlreadySaved) {
-        removeLocation(currentLocationData)
-    } else {
-        const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
-        const locationToSave = {
-            ...currentLocationData,
-            weatherData
+        if (isAlreadySaved) {
+            removeLocation(currentLocationData)
+            
+            const primaryLocation = getPrimaryLocation()
+
+            if (primaryLocation?.name === currentLocationData.name && primaryLocation?.admin1 === currentLocationData.admin1) {
+                localStorage.removeItem('primaryLocation')
+            }
+
+            savedLocationsData = savedLocationsData.filter(loc => loc.name !== currentLocationData.name || loc.admin1 !== currentLocationData.admin1)
+        } else {
+            const weatherData = await getWeather(currentLocationData.latitude, currentLocationData.longitude, currentUnit)
+
+            savePrimaryLocation(currentLocationData)
+            saveLocation(currentLocationData)
+
+            savedLocationsData = [...savedLocationsData, { ...currentLocationData, weatherData }]
         }
 
-        saveLocation(locationToSave)
+        updateBookmarkUI(currentLocationData)
+        renderSavedLocations(savedLocationsData, currentLocationData)
+
+    } catch (error) {
+        console.error('Error saving or removing location:', error)
+        showError(error.message)
     }
-    
-    updateBookmarkUI(currentLocationData)
-    loadSavedLocations()
 }
 
 async function handleUnitToggle(e) {
@@ -124,27 +155,43 @@ async function handleUnitToggle(e) {
         return
     } 
 
-    currentUnit = selectedUnit
+    if (!currentLocationData) return
+
     const { latitude, longitude } = currentLocationData
 
-    const weatherData = await getWeather(latitude, longitude, currentUnit)
+    try {
+        const weatherData = await getWeather(latitude, longitude, selectedUnit)
 
-    renderCurrentWeather(weatherData, currentLocationData)
+        currentUnit = selectedUnit
 
-    updateUnitToggleUI(currentUnit)
+        renderCurrentWeather(weatherData, currentLocationData)
+        renderWeeklyForecast(weatherData)
+        updateUnitToggleUI(currentUnit)
+        await loadSavedLocations()
+    } catch (error) {
+        console.error('Error switching temperature units:', error)
+        showError(error.message)
+    }
 }
 
 async function loadSavedLocations() {
     const savedLocations = getSavedLocations()
 
-    const hydratedLocations = await Promise.all(
+    const results = await Promise.allSettled(
         savedLocations.map(async loc => {
             const weatherData = await getWeather(loc.latitude, loc.longitude, currentUnit)
-            return { ...loc, weatherData}
+            return { ...loc, weatherData }
         })
     )
 
-    renderSavedLocations(hydratedLocations, currentLocationData)
+    savedLocationsData = savedLocations.map((loc, index) => {
+        const result = results[index]
+        return result.status === 'fulfilled'
+            ? result.value
+            : { ...loc, weatherData: null }
+    })
+
+    renderSavedLocations(savedLocationsData, currentLocationData)
 }
 
 async function handleSavedLocationClick(e) {
@@ -154,38 +201,52 @@ async function handleSavedLocationClick(e) {
     const { lat, long } = locationCard.dataset
     const savedLocations = getSavedLocations()
 
+    // Handle delete button
     if (e.target.closest('button')) {
-        const filteredLocations = savedLocations.filter(loc => loc.latitude !== +lat && loc.longitude !== +long)
+        locationCard.classList.add('scale-95', 'opacity-0', 'transition-all', 'duration-150')
+        await new Promise(resolve => setTimeout(resolve, 150))
+
+        const filteredLocations = savedLocations.filter(loc => loc.latitude !== +lat || loc.longitude !== +long)
 
         localStorage.setItem('savedLocations', JSON.stringify(filteredLocations))
-        
-        renderSavedLocations(filteredLocations, currentLocationData)
+        savedLocationsData = savedLocationsData.filter(loc => loc.latitude !== +lat || loc.longitude !== +long)
+        renderSavedLocations(savedLocationsData, currentLocationData)
 
         if (currentLocationData) updateBookmarkUI(currentLocationData)
-    } else {
-        const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
-        if (!targetLocation) return
+        return
+    } 
+
+    // Handle card selection
+    const targetLocation = savedLocations.find(loc => loc.latitude === +lat && loc.longitude === +long)
+    if (!targetLocation) return
+
+    hideError()
+
+    try {
+        const [ weatherData, aqiData] = await Promise.all([
+            getWeather(lat, long, currentUnit),
+            getAirQuality(lat, long)
+        ])
 
         currentLocationData = targetLocation
-        saveLastLocation(currentLocationData)
-
-        const weatherData = await getWeather(lat, long, currentUnit)
-        const aqiData = await getAirQuality(lat, long)
-
+        savePrimaryLocation(currentLocationData)
+    
         renderCurrentWeather(weatherData, targetLocation)
         renderAQI(aqiData)
         renderWeeklyForecast(weatherData)
         updateBookmarkUI(currentLocationData)
-        loadSavedLocations()
+        renderSavedLocations(savedLocationsData, currentLocationData)
+    
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (error) {
+        console.error('Error loading saved location:', error)
+        showError(error.message)
     }
 }
 
 async function init() {
     updateTime()
     setInterval(updateTime, 1000)
-
-    await loadInitialLocation()
-    await loadSavedLocations()
 
     // Event Listeners
     elements.searchForm.addEventListener('submit', onSubmit)
@@ -194,6 +255,9 @@ async function init() {
     elements.currentLocBtn.addEventListener('click', handleCurrentLocationClick)
     elements.saveLocationBtn.addEventListener('click', handleSaveLocationBtn)
     elements.savedLocationsContainer.addEventListener('click', handleSavedLocationClick)
+
+    await loadInitialLocation()
+    await loadSavedLocations()
 }
 
 init()

@@ -16,21 +16,29 @@ const WEATHER_CODES = {
     2: { description: 'Partly Cloudy', ...WEATHER_STYLES.partlyCloudy },
     3: { description: 'Overcast', ...WEATHER_STYLES.overcast },
     45: { description: 'Foggy', ...WEATHER_STYLES.fog },
-    48: { description: 'Smog', ...WEATHER_STYLES.fog },
+    48: { description: 'Freezing Fog', ...WEATHER_STYLES.fog },
     51: { description: 'Light Drizzle', ...WEATHER_STYLES.drizzle },
     53: { description: 'Moderate Drizzle', ...WEATHER_STYLES.drizzle },
     55: { description: 'Dense Drizzle', ...WEATHER_STYLES.drizzle },
+    56: { description: 'Light Freezing Drizzle', ...WEATHER_STYLES.drizzle },
+    57: { description: 'Dense Freezing Drizzle', ...WEATHER_STYLES.drizzle },
     61: { description: 'Slight Rain', ...WEATHER_STYLES.rain },
     63: { description: 'Moderate Rain', ...WEATHER_STYLES.rain },
     65: { description: 'Heavy Rain', ...WEATHER_STYLES.heavyRain},
+    66: { description: 'Light Freezing Rain', ...WEATHER_STYLES.rain },
+    67: { description: 'Heavy Freezing Rain', ...WEATHER_STYLES.heavyRain },
     71: { description: 'Slight Snow', ...WEATHER_STYLES.snow },
     73: { description: 'Moderate Snow', ...WEATHER_STYLES.snow },
     75: { description: 'Heavy Snow', ...WEATHER_STYLES.snow },
+    77: { description: 'Snow Grains', ...WEATHER_STYLES.snow },
     80: { description: 'Slight Showers', ...WEATHER_STYLES.rain },
     81: { description: 'Moderate Showers', ...WEATHER_STYLES.heavyRain },
     82: { description: 'Violent Showers', ...WEATHER_STYLES.heavyRain },
+    85: { description: 'Light Snow Showers', ...WEATHER_STYLES.snow },
+    86: { description: 'Heavy Snow Showers', ...WEATHER_STYLES.snow },
     95: { description: 'Thunderstorm', ...WEATHER_STYLES.thunder },
     96: { description: 'Thunderstorm With Slight Hail', ...WEATHER_STYLES.thunder },
+    97: { description: 'Heavy Thunderstorm', ...WEATHER_STYLES.thunder },
     99: { description: 'Thunderstorm With Heavy Hail', ...WEATHER_STYLES.thunder },
 }
 
@@ -55,15 +63,28 @@ export function getWeatherInfo(code) {
     }
 }
 
-export function formatLocation({ name, admin1, country_code }) {
-    let html = `<span>${name}</span>`
+export function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char])
+}
 
-    if (admin1) {
-        html += `<span class='hidden sm:inline'>, ${admin1}</span>`
+export function formatLocation({ name, admin1, country_code }) {
+    let html = `<span>${escapeHTML(name)}</span>`
+
+    if (admin1 && admin1 !== name) {
+        // Mobile devices
+        html += `<span class='block mt-0.5 text-sm font-normal text-text-muted sm:hidden'>${escapeHTML(admin1)}</span>`
+        // Small screens+
+        html += `<span class='hidden sm:inline'>, ${escapeHTML(admin1)}</span>`
     }
 
     if (country_code) {
-        html += `<span class='show-country'>, ${country_code}</span>`
+        html += `<span class='show-country'>, ${escapeHTML(country_code)}</span>`
     }
 
     return html.trim()
@@ -107,7 +128,7 @@ export function getUvDetails(uvIndex) {
         purple: "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/40"
     }
 
-    const baseClasses = 'px-2 py-0.5 text-[10px] font-medium border rounded-full transition-colors duration-200'
+    const baseClasses = 'px-2 py-0.5 text-[10px] font-medium rounded-full transition-colors duration-200 min-[900px]:px-1.5! lg:px-2!'
 
     return {
         text: currentLevel.text,
@@ -116,7 +137,25 @@ export function getUvDetails(uvIndex) {
 }
 
 export function getAqiStatus(aqiValue) {
-    return AQI_THRESHOLDS.find(threshold => threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI)
+    if (!Number.isFinite(aqiValue) || aqiValue < 0 || aqiValue > 500) {
+        return {
+            status: 'Unavailable',
+            description: 'Air quality data is currently unavailable.',
+            badgeColor: 'bg-slate-500/15 text-slate-400 border-slate-500/30',
+            messageColor: 'bg-slate-500/10 border-slate-500/20'
+        }
+    }
+    
+    const status = AQI_THRESHOLDS.find(threshold =>
+        threshold.minAQI <= aqiValue && aqiValue <= threshold.maxAQI
+    )
+
+    return status || {
+        status: 'Unavailable',
+        description: 'Air quality data is currently unavailable.',
+        badgeColor: 'bg-slate-500/15 text-slate-400 border-slate-500/30',
+        messageColor: 'bg-slate-500/10 border-slate-500/20'
+    }
 }
 
 export function getMainPollutant(airQualityData) {
@@ -132,6 +171,10 @@ export function getMainPollutant(airQualityData) {
 }
 
 export function getAqiPercent(aqiNum) {
+    if (!Number.isFinite(aqiNum) || aqiNum < 0 || aqiNum > 500) {
+        return 0
+    }
+
     const aqiPercent = (aqiNum / 500) * 100
     return Math.max(0, Math.min(100, aqiPercent))
 }
