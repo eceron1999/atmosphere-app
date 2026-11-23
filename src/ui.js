@@ -92,7 +92,7 @@ export function renderAQI(airQualityData) {
 
     elements.aqiNumber.innerText = hasValidAqi ? Math.round(aqiInfo.us_aqi) : 'N/A'
     elements.aqiCondition.innerText = aqiStatus.status
-    elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs ${aqiStatus.badgeColor} border rounded-full sm:text-sm`
+    elements.aqiCondition.className = `inline-flex items-center px-3 py-1 font-semibold text-xs text-center ${aqiStatus.badgeColor} border rounded-full sm:text-sm`
     elements.mainPollutant.innerText = mainPollutant.name
     elements.aqiMessage.innerText = aqiStatus.description
     elements.aqiMessageBg.className = `p-2.5 border rounded-lg ${aqiStatus.messageColor} min-[900px]:p-1.5! lg:p-1!`
