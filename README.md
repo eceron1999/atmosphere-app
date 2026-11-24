@@ -2,7 +2,7 @@
 
 AtmoSphere is an international weather application that allows users to search for cities around the world, explore current weather conditions, view a 7-day forecast, and monitor air quality.
 
-Built with vanilla JavaScript, Tailwind CSS, and Vite, the application provides a responsive interface with location-based weather data and persistent saved locations.
+Built with HTML5, vanilla JavaScript, Tailwind CSS, and Vite, the application provides a responsive interface with location-based weather data and persistent saved locations.
 
 ## Live Demo
 
